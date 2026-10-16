@@ -3,6 +3,10 @@
 oauth/
 *client_secret*.json
 
+# Raw n8n runs: they hold n8n's encrypted copy of the logins and a resume token.
+# Kept on disk for re-scoring; the score reports and scored-runs.csv are committed.
+results/*-raw.json
+
 # Local Claude settings
 .claude/settings.local.json
 

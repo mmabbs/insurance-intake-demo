@@ -1,0 +1,719 @@
+[
+  {
+    "id": "1a144f0f55dd01b5",
+    "threadId": "1a144f0f55dd01b5",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8047,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 13:40:03 +0000",
+      "x-received": "X-Received: by 2002:a05:620a:172b:b0:93b:eb9a:ca47 with SMTP id af79cd13be357-93ebd23d4e0mr3737790985a.31.1792158004539;\r\n        Fri, 16 Oct 2026 06:40:04 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792158004; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=b0cG864uoMg2aVkuAvYHjwzRbjk0dvqX2pUILX04fWNFZcKV3xgfEZMEG2HAz+hlwR\r\n         jNG6jNqHc034Y5V13bPKMDwuthfvAYp5xIdPbAT0Rug5PL/KrUi051nz1giDiH1hH+5I\r\n         Vxj8BWT5UH2KxrpgvW4MMvsWJgl99VeWrLzoKaaxszBokkEDFRQRWuaKlpd/WPVxxIlI\r\n         xhVpgpYcgonoch1KRDwqNysUzRhe84ejOFInUZA2HA++ENecbyvSyobjJswH1n05MLZE\r\n         R/wE09j9/+K4hmKr7Tuh5W2qkiqfQfW7BtNsZZFz6dtJvSuL1XldTGbeDbF9UNNzjZ1R\r\n         WGIA==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=/NNFmPj65gBqsteoux3EaZMOsfL4sRdq2RezBDLlGUI=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=lGlyjmKJ0ngG8mlRhPZzRm0c7PHLWx+aylu51jXTrixYhBZN3s3D76FfnO73nIvYS/\r\n         n6l9pgOX4Q7WkLsRQL0gWDIQLwxNULWUTVMA0ArYaH38yRft7jNzXP+kKK8MXV+Vug0Y\r\n         A/vDuie9z+ETyp8OT5QJxAZ7HqB3zWp1BQ7QZ7+Q9QRAbl7AnThGw+pglBELiOIqHlY4\r\n         E0IESNlnDhkEraEmJWRrHQYiX4tq9gRl9DR6ZomOlUStxvlp3IpC3f0gRudLuTL0PP24\r\n         KvJJcW3XBBbFmd51qOdd2xvP3QIfEBQ0ssPoLMbmG5XvwOF419mEu4amqKOhL1gPFdpy\r\n         jI6A==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=QjB07wBP;\r\n       spf=pass (google.com: domain of crdemopersonas-jmercer@yahoo.com designates 74.6.130.228 as permitted sender) smtp.mailfrom=crdemopersonas-jmercer@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-jmercer@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-jmercer@yahoo.com designates 74.6.130.228 as permitted sender) client-ip=74.6.130.228;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=QjB07wBP;\r\n       spf=pass (google.com: domain of crdemopersonas-jmercer@yahoo.com designates 74.6.130.228 as permitted sender) smtp.mailfrom=crdemopersonas-jmercer@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792158003; bh=/NNFmPj65gBqsteoux3EaZMOsfL4sRdq2RezBDLlGUI=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=QjB07wBPm8u8J3GLCtrbRquuVS0GgHTd+5HjGJclmLGk8/dacKQ/Er1peeNBiuuDSGQHTPvUE3Ec64s8UqDTMB6g6eDBpr8NdivzO+YTSp4T4FtifKspr/jE83q/Z4O0T/RlpszIq38cH72KdB8xy1yNXK3Xd1iIVOwwMFsI2Jaqk3QkoAh2Sd0HLy72cYPebGgeXyymq2G/H/j+j8WZtER9NPpoAQxAaWh01p6rnJJP2TzRiEm8O84JpGPJy5rzphneAYBzvIuHj0WGzDx7WaapsaOc5/oVCuyz699waeBogmS7hq+Dpu8gh34Zk6NvGslWIZfrLRowKB8C897J4w==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792158003; bh=ynOBoaw9z9RRVSSOZzazm1Y7MlKWQGNpwRm9q5qg/i5=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=p7j8dsqbNgMdTzyhUJEzt0t2ePBD/SJ0YaLLN7jG3WrHbLWXLCMAljIS6x7Kanl1z5i/+KO3y4LhPWcigxR1qAL/wT8Nz7jftsnsoZOnsrgvhkDomdMO+9mxN1D0lGFfs/zoGjwYmvPI/c7yTo9zt77xtlwYVFT7hy4obVfjBSfS3co0UZyTBZt4ivqBOKKUKz+oN2QBygpjjCTaY3iZnC6CLEGGuQcENNZy+Fweq7bjctr5ILZ2nCpOGERxaTL98irWwLgmtg5B+kinuVvNIDv0pssfnt53mCUoUuLt0mVAp+MTcGnuV5FHuHOi0KGE1D6t+8jVg+VFacs0MbfqIw==",
+      "x-ymail-osg": "X-YMail-OSG: AtNsYHcVM1kEWi3lgJVBdDJZcXmquX1ZiSPCs1YRSWc2fszVzBu8aPdlwIGbayF\r\n GT4YHPvpaaF_81kDQCShhE4NBGCEhMjmIvj.1Q3pDIvD9BGISEmI7ge4o8O.4pUdJPdTp2ehDkAu\r\n k6TQwtWvqnM7Aivc.ISerKM1xd7CHoLMijwx7QmjV0qMq_dSClJYHsNCR1KgfQ1vCbDTBzzUGk7d\r\n xIAx7GBxmEMahQBvfZ64zmeOYgfmsEF27mvoVXl09QXRfoTmGO.TFE7HXipKP5Ig7ws11hzyhPei\r\n Jv_M20ZAj0ywkCD2qaKXuWAjj5vGIwFON8KkM.wkdrsqpYBxddRYbrP6K5PV2tokBUXprOSYSA49\r\n Lh6zhUB0HPCuIW9ckHHNWFe.UpmUHGsnuEaIMndVfnq2xvo9DNQ9SxxLZCAR.BoZ_T.pvCnSEoFc\r\n jljX_Gt_4L3bjY1NFQH2_YEBYoYXR.Jk75LkYSgLqVvoiMWD4IgN_VDvsSO.0jvKZSFwALjduYQB\r\n VtuD9t_xoSSM66NEbcn2stRjpZ7rG9d1PF03DkFX27bcXpRjq3b.jtGOcjCiaz.2yiZcI0vvlmpW\r\n mPZRr6fPTr6mEZwpvPETyOGCoAEZNWPQ7gYHX4zVqQjMs2BdI2MmKSCvi6b9ynYeI5gab8_r8FGH\r\n fS83ainPZPkToXNEbTJHeHFcPjSQHb7a9SJM4L9o2cCWdtzd7qG5jXR8UJ0SSm6yCPWvQgPXk3qK\r\n Z1VvbTCOm.5m.VhZLSTyXEMkLETCtnl80SwtVr5JvYU1ZuSJE8sYDsjRF165sFCzBiBEwQ4MBeQs\r\n b6LAeaX3SUMWtEBLOVLpzjqsQdfMgyDfanIwN_icKhegsOYq.VFvuliJzrtf1k_7IsTSfXAO9uec\r\n yy1.5AwrEUxIpveEl43ad7dW.RLqYChvjyPUrfj669j66Yo76h4uAV1Z1jsTaOQKRvVNX6XFZSL6\r\n acF8Xx2BUQnm8T_bduKoRvpoai8IgbtMdqqIqxiO9IhGQCROXEM8zEpluqsQ3ly71GE6AP_t.O2.\r\n cYCGCxA1NcEIi.0JmWgOoJ2DghUhoWbLrSniDURWD0OjsDb1ysMgGyPni42tTUS8Q0_EDPNkoIZv\r\n GJWpWLRzDx3N0nW.fAwBGWmgZjniyiPDfRGpCc6FoW1qhFHzGlgY.h71T6XIMSrCZjVDTSREdDLS\r\n ypugGyqBuBEwYweUmBMb4RO5mRJQRHzIuxeJYBlCrmdS13kRBaK6nXgUyWOpUJAPGUzbc6193FZ.\r\n h4NH5bw5jkazrqzXYsE8TAi4n1QmofiNuZjlDerMEB9oNuAlfBzFYmd2TzNqJdKIoJy1zqhsDtti\r\n PAeLxTQig8BKeEGfdorK4Vx20tr8fSxyBytCXh5_6nRTulmyChmhWzUVvpRBEq0ng0hl442wg6ak\r\n 3YXEZM9nV3ZM2uoF3Wt7F_3nSVskoX0qEfkRTWG1tOnMCafnWanoLPRDfJK14wBusCJZajR4_Mp4\r\n Bre6WXg0CuAzG30srpJWCeQP8nBvNus2oALP3c0M4zXj7QOILFetwTP..kJerzyfgiKCiS9xB8wb\r\n hAvjxa8MhYuK1tNtfOesf0m7iq0eA8GVVOcm1Ah_rpQRJ4aKbol2.SYEuR7hXicG9Q_VZlF4ANKm\r\n 1cJ.g0gCjUovb8eo5H6ivyaWmJ43yL2L4EMT3oa6m45Su_BKax2o5.ndk6Heqq2zZ0_RWGHuFXDH\r\n 8ZwfN2eHszgvXdCiLZqA3Rg_rie0M_qSAr5.A66nmq1bD8R4BQZQihg_BIw7FMyFgdAb9z350U0o\r\n Qppx8kXAhHTJqlu4LChR8l41hXO6cYpzNFKUu1LKcQuKEz8dQ5bonhk5.RPlHrFfkWjQQiyzcwCF\r\n NdC5KCJzgjwfKnAA9wa7jNxe6VKOLUhgLzo.HHia_m6kVqx09Ruz1AZ8f_zWIzEaaCxBG39gLcjP\r\n xxbBi_LpCtvhSZfzwHgEF3QotTa2On2e.OI0uoBPp3drkOpTYGjFKPh7qOPVWk5k0JheUAbgTZDm\r\n hpQ7PDvxtnP.fODfFaWSXfR00mmEDqUGf17z07Eyxcf9MfMRC3QkTpUT1pTmdyF2n5Ft3Iyt5FAy\r\n diSDNU2xfymz0GzklrOxNmoVy_6256KZmzB22soBXpO6BNrqXFGnLOhGCOoGvSuiblHjCRZOVQ.E\r\n I8cLguZtTQ0_W00fZrpNIumEcOd8BbLEjdQ_Yma2WccBW9N4UfRmm7hAYGUDv1Q--",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-jmercer@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: bd7b266f-10d8-4e90-935a-90d66ce128ba",
+      "date": "Date: Fri, 16 Oct 2026 13:38:03 +0000 (UTC)",
+      "from": "From: Jenna Mercer <crdemopersonas-jmercer@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <2138542974.581036.1792157883084@mail.yahoo.com>",
+      "references": "References: <2138542974.581036.1792157883084.ref@mail.yahoo.com>",
+      "subject": "Subject: pink slips",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_581035_1320504249.1792157883083\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 993"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi! It's Jenna (Ryan's wife). Can you email me the pink slips for both cars? I cleaned out the glovebox and I think I threw them out with the old receipts 🤦‍♀️</div><div><br></div><div>Thank you!!</div></div><br></div></div></body></html>",
+    "text": "Hi! It's Jenna (Ryan's wife). Can you email me the pink slips for both cars? I cleaned out the glovebox and I think I threw them out with the old receipts 🤦‍♀️\nThank you!!\n",
+    "textAsHtml": "<p>Hi! It&apos;s Jenna (Ryan&apos;s wife). Can you email me the pink slips for both cars? I cleaned out the glovebox and I think I threw them out with the old receipts &#x1F926;&zwj;&female;&#xFE0F;<br/>Thank you!!</p>",
+    "subject": "pink slips",
+    "references": "<2138542974.581036.1792157883084.ref@mail.yahoo.com>",
+    "date": "2026-10-16T13:38:03.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-jmercer@yahoo.com",
+          "name": "Jenna Mercer"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Jenna Mercer</span> &lt;<a href=\"mailto:crdemopersonas-jmercer@yahoo.com\" class=\"mp_address_email\">crdemopersonas-jmercer@yahoo.com</a>&gt;</span>",
+      "text": "\"Jenna Mercer\" <crdemopersonas-jmercer@yahoo.com>"
+    },
+    "messageId": "<2138542974.581036.1792157883084@mail.yahoo.com>"
+  },
+  {
+    "id": "1a144eff33cd091c",
+    "threadId": "1a144eff33cd091c",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8512,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 13:38:58 +0000",
+      "x-received": "X-Received: by 2002:a05:620a:1b85:b0:93f:1ca9:f2f6 with SMTP id af79cd13be357-93f1ca9f3afmr257907185a.77.1792157938545;\r\n        Fri, 16 Oct 2026 06:38:58 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792157938; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=ENwOvQLa1PtwnhPf8xO8FXAy8E7ndEtiEZ2ulhGx+AfP8iaVQvehxx1wZgfPIgjFKh\r\n         5hkdk65Q6FTEYHHqlHYVGMw0ubjPjsUnTYHDkHjBZNpHUH9xfbA68FiDwkYtW4Pp7xDN\r\n         8SMswJNMIS582VflizWM7uMpUGemXllWA7/MDiYRSH90jhLpjJDNFU6HNk4OxzczohOC\r\n         ZxHHrzCkD6gv74ChilUKW58GYl5nlHUM/DbV2NtDDAczZGThpH4yAnicpTv4C0ESookv\r\n         ZLRQ3YN/xfdIQo4MkUZuFGAyBMv70/velfzHyyDfJKmopUSLdi3Itf0M+3sgqLJeaswZ\r\n         3r3A==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=YQLUKnUq1+9SlX/7vll7SAEd+R0gs6attNvOIFLWN4E=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=Z5BZbvGh1NdPCDnPRbovsTDny6mb67Jwm1dX01jmzZ3ELcQ/llVoBaj2QJgfdaKV9u\r\n         0zHNWExX4DG55xmlto6HgK0J096ran+szCuAuP/yI/zqERL+kBHHK2aUs6m47Or1sp98\r\n         K/bMB8kF4Hc/PxAIGmdvWy0R9KwwXV/41jQNkkIB+u21yoXCWOtPleRA7RUVY7MdrTJg\r\n         3/jIl1+ZOLvYM/z0qHvjIKKPV2n+1Bt6WVkF2UYyOyYLAMeZvJ2q77aTPzWVFP9eQp1H\r\n         667lAFdox0LdAMV/48vFy+0qBtemB0FMUZDMwy4oDTOdSrmidLQw10+zii+Xb3gYH0E/\r\n         HCnA==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ClQFuNZX;\r\n       spf=pass (google.com: domain of crdemopersonas-bkowalski@yahoo.com designates 74.6.133.229 as permitted sender) smtp.mailfrom=crdemopersonas-bkowalski@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-bkowalski@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-bkowalski@yahoo.com designates 74.6.133.229 as permitted sender) client-ip=74.6.133.229;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ClQFuNZX;\r\n       spf=pass (google.com: domain of crdemopersonas-bkowalski@yahoo.com designates 74.6.133.229 as permitted sender) smtp.mailfrom=crdemopersonas-bkowalski@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792157938; bh=YQLUKnUq1+9SlX/7vll7SAEd+R0gs6attNvOIFLWN4E=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=ClQFuNZXL0ujX+k+MuqjTUtOGcpt65os1Zqz5R9Tb/h2E3UQFDQAZGPvQtaLZi/eW4oQdfFFUOlXiZJn9xwPd/pyMc3OAXSteBIiPN3IhKVR0dkuJVpivkd8ybF8XadsPfQUeUVm22xHhHYuMGL7eKuJ0S/u/f1nQsW4llIgSio/Ddp4gipOufgzvJxouwYs6PM9KF9dHEjOiUrLfhWkJizdZx1jiN5ei4RFbrPi7PU/3bmHAE1LVwUe5boiTY33kEh8y7JSVfAA5VNo+ogxiP4Z2KWGPMZSI0SuN5HW4MDOck4gnkPABVZ8hCOPWP00e4XRtIZmQGk69jLTMbl/iw==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792157938; bh=/Dsfv0ib4g7wIFpIshLPAzR6KKn+jQyJ+5v6HMKeqND=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=JI/nxHk9kWX2vUiijKegQbNtDlxHtLmVDA5OE++Sg4uWIjiJG3iIVIV61qNwq1cZsKy5bGBfESm6MW2TiulFbJEKA69vazv5KItmpZIXokFegjY62CTc+ePSfvrm0XhVixc5xUTFM1qxIiZVUx03mNkiMHjCUJ5/rsmqm0eV460SRIL9h4VY8j+fd1i/Nwvha7DMzoaexdCntTY1ExEjngA/GY3UXNpNd6R+dGOidjlI3B/ebmsoPHYkxke/UywcHRWTNHwhTwBG6jdyOHmfhC4FJrFU5gQLdJ2UDcxM7tD0L4LcpPqJNQg6hpbRnICO4THEGDLSngvzPmEUS8pAog==",
+      "x-ymail-osg": "X-YMail-OSG: QYupiPsVM1lVJ_bSnWU0pTYicngY.7VxN.jq5_ISwsrC8o0pekpY3IP8THC.8MB\r\n 5lPHZzllKgXP7xanz2oFQmYiw8Ac3e6cjogGH1RQCLM6eKCMnQKDMMEC.z0pLAwhAPI7zcLtZ.VJ\r\n hVZPE5XU.E0s8yRvBDQQPEgtYD4pDcrpZ6YFIU1iYgLX5uRYUT5cYs48DteALXXepAAANTRaBnE3\r\n fwAR3H4sXIqM8sUcuK.S_BZi8j2fwqh015F649MP6LBNOkn38A5w29WGjiu60SzFMDDziVGk7tfy\r\n wqbP9oAyQ3ZQcEkUdijZAWB3Sq.Ua8CFPIjYgLttLbd1Ru8zNFm6SxeDpILhDwlb8EjNH325ozoz\r\n 8lt1PHlgoecO39YYBQ.YVAkVWhLqtmvgYPjComno5Kn_Zyx2Zj8wsKceEgksnqGtwCOGC8QdHpOH\r\n 7Ut3J9HAFx8jOnpk8IKAEQSdIPXO_znEghLrsNnm99nXNkJV3zorbTU.CawrI8E60OUXAxheY83N\r\n dvmoEXEM2DKLhrlKqSfHnDUvgW5kFRyxVC9DY5aIPFXHV6HyJdasOkDijhorB..vVKq5SxpNdKma\r\n 05dXPlmnLt1WczNhEePHvYBriajqWCYYn4zuvaYX6NwvqnvwURcA6EhaEr1Sc4P9EDzYCiKN_FuG\r\n _sNJHCn2lnXNa2xikaHIwBUT8IJdtNu1c96cYlwTZwqxNVQqH8i4wcyYv4oyOA9W8yOEyX64Aq2J\r\n mDyaNw4ZVe7fxF4be9Uz0uHm0sMxdwKgCuRanfmdbHs8CpDyc.zOofIvNEB2U4cAAOPeREEuy1CS\r\n 4jNAiuFJAYawtSqO6SsnzD1HvTniXvKlkYuzplDnW7liQSp2oKu2vAZUPmBP52MITVjuvT_OK6Rj\r\n rwGcRSkCbQY1oAOyQACA_eip9NeDUmdxNETKh1OCelhVNQFGO_m.GgFiqScRvMikGM_YI43nueLC\r\n 0uu1qKymd4wrKNIrkrYdnioUflPUYDd7yNU1LVv3wl.eRJet_uaHOjfxx6jcPLTLPOn.kv3rcNUP\r\n ulxBKjVThTdKrkA0D_0xkJ.fH5.HxngCzncLOS70J5UWgNi2KxyNpUCBjq3gDzYvTtNS7Pc4ZV9d\r\n 9JFdrUMLSapUVkkmtYCFWzAYkVZs7OeXlf719pz1b_9Xqc6rJt.bwp2PWbtJqJ7Be4XbWNJLtWU3\r\n TeqXVAc2pq.MjkuLzOibi3tOorg1W1qBeduauG.aaKFRNqx5L3N8_pjRRFcZLHCh9goVqNXajiJ2\r\n P3wKzV0mq239kItnIxfGOO.VggwuNVtaTOhH3jdhlOvLYf_7Q7tDqINNALv.h_qzeHoCOrccQLSJ\r\n 3_QUitJzzKzyU6ggEX1oKEI1PS.jqe7sRvLdOjEqif2QLsYkRrbstBZRNDSeKttHJZmJ_2J4xaBY\r\n M0S2iqnQ4FpeLHxCz6pCqE1SV5UflgCDLBPtgBWJD6ry_dcUIqMhDk_wHL1VNAm1eadgePZTvxzz\r\n sp2YMXp5bW7O5SVvXADZrNFv468yjHl8KaNw.uA4j3WZW97d58wceLHixEKSQGmouI.K0Jai0fvR\r\n HN33.MxlZv0MtZv_GNN3lwuiTzeyJeSVMWS9oMxH_Wjjwtc0B3RI7nxxghRd3qI.eIQD81YqgOW2\r\n RbPiGCwU8F2NPbSvJ4NK6EEzeGvb9zEk6WA8Iggwwwch.FOKPnphsFZg4wDvZABk8UqRAbR3Frt8\r\n ENYegTRNCViiaLAAYBHVlpSx2YkjtiEFYSO2O0e94C71jYjMRfb.kXJCxfGTtfKJ.MRDjDwfQneB\r\n Qsg_AtVfvCi68j4_pN6ocGGiwlVeQxN.fNjvb0d4PRLxHnF25dMiS.23BY9blG6hFKOH4mbABkq6\r\n 77LN9t8tXkXsM8MXuDraX_xImHaMcJpd_M9.9ugaemcSdbGHAskWzGtTVSWRK4._ZoOKqvTU99UD\r\n Fm9u62WdBW1XmHJSXi0OvcX5xjLSQJ1iKDNuRL9jFqm_qbolhyUfRjeW_xHa2k2D.bafOP5xIrvU\r\n .7EZR33wzhsU4visE.2zkNLb4FiVuVrLrNJy4FWg0kvXV3cwCsARWsa9EKyukg21EfxDNk_Bn2xh\r\n 3F50tYyxCFXp5c0Z9EwQGOWWmMEpeaUB4dKdRjAGe.pxCS4Pj3K3yqXN1_aMPZNonxqTPJHiyO8c\r\n hg_UHgn4RibVac18OdKWQWJq7p0xpkOLOLQUf72iD6m9N2wNRnBGUyj83RNnmiw--",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-bkowalski@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: d10587c5-bc89-4fbb-b729-df93d6884cc7",
+      "date": "Date: Fri, 16 Oct 2026 13:36:56 +0000 (UTC)",
+      "from": "From: Brenda Kowalski <crdemopersonas-bkowalski@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <1126781735.576103.1792157816971@mail.yahoo.com>",
+      "references": "References: <1126781735.576103.1792157816971.ref@mail.yahoo.com>",
+      "subject": "Subject: Add new truck to fleet",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_576102_915091801.1792157816970\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1432"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi Joanne,</div><div><br></div><div>Please add our new truck to the fleet policy BVC-7720154 effective November 2, 2026:</div><div><br></div><div>2026 Ford F-250 Super Duty, VIN 1FT7W2BT5TEC04471, with plow package</div><div><br></div><div>Driver will be Kyle Duarte (already on our driver list).</div><div><br></div><div>We need the pink slip before it goes out for the first snow event please.</div><div><br></div><div>Thanks,</div><div><br></div><div>Brenda Kowalski</div><div>Office Manager</div><div>Northshore Landscaping Ltd.</div><div>905-555-0142</div></div><br></div></div></body></html>",
+    "text": "Hi Joanne,\nPlease add our new truck to the fleet policy BVC-7720154 effective November 2, 2026:\n2026 Ford F-250 Super Duty, VIN 1FT7W2BT5TEC04471, with plow package\nDriver will be Kyle Duarte (already on our driver list).\nWe need the pink slip before it goes out for the first snow event please.\nThanks,\nBrenda KowalskiOffice ManagerNorthshore Landscaping Ltd.905-555-0142\n",
+    "textAsHtml": "<p>Hi Joanne,<br/>Please add our new truck to the fleet policy BVC-7720154 effective November 2, 2026:<br/>2026 Ford F-250 Super Duty, VIN 1FT7W2BT5TEC04471, with plow package<br/>Driver will be Kyle Duarte (already on our driver list).<br/>We need the pink slip before it goes out for the first snow event please.<br/>Thanks,<br/>Brenda KowalskiOffice ManagerNorthshore Landscaping Ltd.905-555-0142</p>",
+    "subject": "Add new truck to fleet",
+    "references": "<1126781735.576103.1792157816971.ref@mail.yahoo.com>",
+    "date": "2026-10-16T13:36:56.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-bkowalski@yahoo.com",
+          "name": "Brenda Kowalski"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Brenda Kowalski</span> &lt;<a href=\"mailto:crdemopersonas-bkowalski@yahoo.com\" class=\"mp_address_email\">crdemopersonas-bkowalski@yahoo.com</a>&gt;</span>",
+      "text": "\"Brenda Kowalski\" <crdemopersonas-bkowalski@yahoo.com>"
+    },
+    "messageId": "<1126781735.576103.1792157816971@mail.yahoo.com>"
+  },
+  {
+    "id": "1a144e767af0779d",
+    "threadId": "1a144e767af0779d",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8186,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 13:29:36 +0000",
+      "x-received": "X-Received: by 2002:a05:620a:701c:b0:93f:1f27:c8ea with SMTP id af79cd13be357-93f1f27d31fmr209851985a.50.1792157378335;\r\n        Fri, 16 Oct 2026 06:29:38 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792157378; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=AqX8DwrJsTU9t32yP+2n6UKgQ4Na/Qn4HBxD/UG5qVzzW75/1p5JltL+p+3eOBBPJE\r\n         UEongihPG1pIqCrA0lZKCmRKnE9eSstvcz92cQSLrY7hEQmZSQb/+c8Xqy6neomNGMiL\r\n         tvW4XA5moEqs2cLc4Julc2Nk3RDd83r/dDD/NshADDOiCYO66K/qwU5PX2O8D5SBorHn\r\n         T07c84oYs4TZreuoc5DZjTuXOlopcZXzNcp/JgVRRNY1HO7BCe0EjewhgmoJOnXVsUAc\r\n         qEuWa08oXPtCq0UHM3gf9fPvn6u0sJD+7XWl+0soAVRoRfT1HcDoYAhkDsRx5tB4fCK1\r\n         dJaQ==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=v5mK+pKGbfS9Ztq7MO8yxZwYb/NpwBxg2S3sJBFPYU0=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=bEcGEnWfenLAsgpYGU/4A5mLq23RTNy+jBkuBRfaRxgpHuxUXKAGeYyT+M0dzMihyN\r\n         /F83d9aaPBOVQe4B8DE/K1dI/hnPZWGyROJRAyACUDXIqRAXDCgahYnK+7uGdsDN4eJ7\r\n         ePjd75Z8NCJJtbYoLRPdwNa1WLaXnnGEkS/Jkm9J6nXmM1kyIfpEsACfbZIkXB3N8gTk\r\n         SNox3YP9MLdWV+HWqNn/JQhe4XSZ+oomcP3Xe8weFD+bhXGtg+xv3At8ZKunyj+Ob0KG\r\n         rAJsnxoeJZbAKZezJNaPdq6M93uWWNTlnDA5r5KtQv8YKGrk+VwLI1ttVCe1UxeaFJQO\r\n         gkgw==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=DpeXQzKc;\r\n       spf=pass (google.com: domain of crdemopersonas-kev.b1987@yahoo.com designates 74.6.135.216 as permitted sender) smtp.mailfrom=crdemopersonas-kev.b1987@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-kev.b1987@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-kev.b1987@yahoo.com designates 74.6.135.216 as permitted sender) client-ip=74.6.135.216;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=DpeXQzKc;\r\n       spf=pass (google.com: domain of crdemopersonas-kev.b1987@yahoo.com designates 74.6.135.216 as permitted sender) smtp.mailfrom=crdemopersonas-kev.b1987@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792157376; bh=v5mK+pKGbfS9Ztq7MO8yxZwYb/NpwBxg2S3sJBFPYU0=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=DpeXQzKc1dLexuZ3oBN7zlxg1pCayfxB1r+gMSEItnGn2Tyy5bWKqIJZ6y/Vu7dz0B5A6ocUyC0PMlJqVLnrMTEqpQlCcCOVSrSHhVCCCgNHKNtLpyXDeRMihiuBE6lDRfsAEGB2r44gBfBGAWvEQXggdIoAz2Y4edy9dCQnTNi+v0JFsKG1nJbTI2f3SePwOIFD4Ig6M+CCTEQ+bRpKsVSaSd0PUCrJUf2NTZRda++oLh6tjxnFDEjodjpRtmedFPN9gCk01TAy2ja+bBCg68MO5gh9n+QHKrgaIsEw94PV00O1gc7bE12OEVSMBMUoqAcBgR+HOccPkrIVWYwanA==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792157376; bh=OPbU3VxaPQDrmuWjcLM7bh7UAU3Os58+ZHCCuAIJBfl=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=pUCXgaPvxVEn0fKXXEpGsiJeZTc987N1JOykjug+s8rwxR4qsb1su2zaTEWX9e2S2uuDKhgWu4k6tuixKyuPBGAwZIEtCV+zXYunrNEJZE3MRIrbEn1DXf4N/LoSjiJ6noKNhO4m9Yr9T8R7OxqHoynhZUNMCQsxwzMPEb1/TF74PuLfCj2z1OUN4SzVwYaEzUpiYe2q+qfdp7HR9Lr0wWg0yHUS2T5W0+IrooofPkCCc24Zrpr022/VEbTEnGVnSzE52zyrIRvY4v6uqb4/VWgRNz8CEBeI5kGp8WDAAeCtUs9pwrudccEiHmD36tZTd5zXlkMs0CHuhacKTi2xXg==",
+      "x-ymail-osg": "X-YMail-OSG: nslQNBQVM1ni2LBwRe.NCsBpxGrxlzhiwseOY8Whjzes2o9NrM7.K3ikaDb.66R\r\n 5Iq4XQ2qq7cu_2.GsWUjt3MBkOgKqno9metlx2vJof_TxUU7pjwh7_ORwLub4OU9z_fsr0JDNPzN\r\n T7nFF6C4rDorXkAfN4aErT04EU78.ey5qPP9zN54xnlVGk93g3NQc0BHrvX07g27hl87iYw5_cZq\r\n RGWQE0oIe9popUJRVsi2Yp13j.zJKEJGVdNpttKDO6xozU_J8Pj8XslUlReWaljlVp0uRJhCJ1Bv\r\n HAO9lRgbQQEIfy133Mmaa2JA73r1Sn3c1yeVIvq7OtL3fHCc_SQB.AGWfis1GChFmx5Xx8QqnfOa\r\n 1rX.wL_w7W_eJ.QddYxd_7H4nkRuf5cCXsXlpWxX2_T9WEZYaeX_QCt_Rsh72xb5kMicnwdQRooU\r\n cDSrLJImNxXze2B7f1wfylQGf6PimR5KRbdhXrkhI3icLk0k.JBBSbObMBqeANL9Auu76g6Ede1M\r\n sOGhFdA7LhCYt1AxhbM03hkCFXuqCpb8_U1bXw6f_wit_5E2xJ0Ug0LISfCUZEUAAa0PolPoHIAI\r\n 8cf1ioL_VcEHmhAWTtjlFT58K4uNqyDauoayowsveTOmoANJE9x._i_OeSbYud.DtPe462A3Qn6S\r\n P8HCb8QKsuhIshjQ0kES8y8xEb8Rh2swpqunPqujkYkEfVgarQcjlstvu4LM4jc2utEejIfbE2vT\r\n DOJr80M5TP_aZO7aGxPcaqDcyY_kLM8yR25vUvJmJwGYESOVASc6jtveSmOCbsfYBhUcFSUwl8Xf\r\n wlnB9WTJWGJW7xj7O_Qw0gvt4qm3zEaLPun6KVmLiwoH9cKlZK0Bq9pW.nlh4D4B3mcTQyArAlu4\r\n ceSXfqJvp6w3MnFYJ.VV7Vyl0i6OcYHlqduMDDbdqO0YWLVuUe1_ZmZeeMy0xiGZ90rMTzgneeuQ\r\n .hWTe2PJkomHLaIKNo3e4ZSaJReKIreZM8IdCIRMv8YEM.YZ10xXkwL_.nGtYe2rrF0Zv.hUxc9Y\r\n 8R0ACJ.Q.MLcRBzkIpEwB3bAabOH381sPnret2okXyn0_rolT8SQD8sbKNZeZ1ASrlmOg3S6_XX8\r\n qKYYCdFQ3xZCEi2oeqfqsgLOpGTq.QDSZPLaX65Co7M7b0sO9incfKbC4Lhu8Hov0tH46lonKxzV\r\n 6hIqqoijbr60dNX8tjOboAd.oOPZDKaeLHdlrtNi1bYUrZUtkYsSXNaYG0nJbsx_yHRlpGhPbXq6\r\n MMGXaas0ybFewm2pf6Ws5RVkN_B_FhuEZ_ZPwxZyDGayfBKjMO8UuJm9ZNpIFsj5g6Uhe6boquno\r\n UAIaDOweVSSFItuHLg8ueTQYyqJUajVHVoziI9t3lxgcM17nWjsMS7T8Vzpk42913RQYMlQyEECJ\r\n 05BPQfmDX6pATkFh5FcoMttmAzaCZUYFOk.Q7UeepzGiMWUO_.Ht3VWBVgzkQFm2jconBGB0GT.k\r\n 2gmVt93KyG2OybDk.3BfjfF93sLj_bdt_RMbeZl.0Lek_P1SfTmW2DoU4S6LS0soczsWGtqf8HBz\r\n H13igaOKpeVgQ_rx4EZoumVoLkIzzGnO9cokrrNR_ktoAHtyEG4Ua_TjARsTc6rqONidTieH5yqk\r\n q8M4vCCMUIJDF.tZXvT3rDnERaTZp1sONcgThrA21b8950r.axfNZvEy9jlaNTigRXv4qQUShabh\r\n oomXmQXDXdL85VF9dxb8VkeNA_gjQt1DbcaVns._YCXI82WKfXNqlMSoCkh_K80Vxra7eJ1tKQCc\r\n D5dGHcNQqguqkH7O1.s.ad5_fGIdFWNGGFv6UjbGaswzVQF5Yk400wZtnOWFDPJHNZJQ.b4a8LNZ\r\n E4qRsa9gabnMZp1Leb_rqBintukucQG9IxsUWjboRu04USZnb0clb3lMKm5UEkTUf1WzLJlcDANa\r\n m9t461_VUlTsmVWA8NsifTQFpke_utiMCZT9GDhXPPcuA5hYcKgPJVh98YWKVSpKzibrHAxBYYTp\r\n z6kcWkNjfXPdAVcdTnmC5LYWW2.I6PFO3hHsHSLIu5GmlTt6fBBsa_fxlKvcvYnbf5ip8q6uzV2W\r\n Yl380Of7RDm6Bg6.jqnXHPMU6chStuCpCquU4i3acWnzAGzyWnWp5nyxvEmSVrhxClMitmjSw4C0\r\n QjLZHxmIfpg_uXxjvnlLWQJeEE8GGtoYnX1BV6jlo60OdFrTlmFg1Bjq7NYhknkwJ4VBRyoQYBa0\r\n -",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-kev.b1987@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: 67334332-794f-4350-b6b0-e06948b75743",
+      "date": "Date: Fri, 16 Oct 2026 13:27:35 +0000 (UTC)",
+      "from": "From: \"kev.b1987\" <crdemopersonas-kev.b1987@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <1011785158.581182.1792157255703@mail.yahoo.com>",
+      "references": "References: <1011785158.581182.1792157255703.ref@mail.yahoo.com>",
+      "subject": "Subject: renewal",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_581181_1082728039.1792157255702\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1113"
+    },
+    "html": "<html><head></head><body><div class=\"ydpd5b5205cyahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div id=\"ydpd5b5205cyiv5539217629\"><div><div style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\" class=\"ydpd5b5205cyiv5539217629yahoo-style-wrap\"><div dir=\"ltr\"><div></div><div><div>hey my insurance is up for renewal next month and honestly its way too expensive. can u guys get me a better rate. my policy is with you guys i think, i got it through my old work?</div><div><br></div><div>thx</div><div>Kev</div></div><br></div></div></div></div></div></body></html>",
+    "text": "hey my insurance is up for renewal next month and honestly its way too expensive. can u guys get me a better rate. my policy is with you guys i think, i got it through my old work?\nthxKev\n",
+    "textAsHtml": "<p>hey my insurance is up for renewal next month and honestly its way too expensive. can u guys get me a better rate. my policy is with you guys i think, i got it through my old work?<br/>thxKev</p>",
+    "subject": "renewal",
+    "references": "<1011785158.581182.1792157255703.ref@mail.yahoo.com>",
+    "date": "2026-10-16T13:27:35.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-kev.b1987@yahoo.com",
+          "name": "kev.b1987"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">kev.b1987</span> &lt;<a href=\"mailto:crdemopersonas-kev.b1987@yahoo.com\" class=\"mp_address_email\">crdemopersonas-kev.b1987@yahoo.com</a>&gt;</span>",
+      "text": "\"kev.b1987\" <crdemopersonas-kev.b1987@yahoo.com>"
+    },
+    "messageId": "<1011785158.581182.1792157255703@mail.yahoo.com>"
+  },
+  {
+    "id": "1a14222629eb4aa4",
+    "threadId": "1a14222629eb4aa4",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8315,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 00:35:11 +0000",
+      "x-received": "X-Received: by 2002:a05:622a:955:10b0:535:a5f9:752a with SMTP id d75a77b69052e-535a5f97885mr221152561cf.73.1792110912096;\r\n        Thu, 15 Oct 2026 17:35:12 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792110912; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=mM9r0Qu2K2IYnAGNHuPJP+Kfe9uStP5jpI73UCBm6lVl1tinPPcXRnJHDf7S4tl5cI\r\n         JGwsmEmCD4hd0vZrnb3mlaKu9l326P0b20bRREvUb1YYT507vzmo9rrn8oT0i2OaKaxq\r\n         9SID8AHcDqoPNEx7A+hdc+Rx1ooLLsrnNBhJnBx1mwzWEfytJu5DWKjmCoMQUzE//Cda\r\n         unSpPU/cnHrsecuxEiIi3FN67l9ATcD4/M+sROj1fOg1k6mMsAjm+y9ViopRamCc8QuA\r\n         d1aA5TzzPkeBdsM9VCPIDXdzz67DennQ9pax5AmZENl6ATYaYShAW4fkTApYIt1F3K2Q\r\n         EYHQ==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=Nh4lDWyIt1qwoK/B7W3KrSVKhKK7AbQvpnO78XQZvvk=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=cWeSiKqZv8yGFPg8HcFbJVk0gn4pZ4H0UMOqESDYDQOgtGE0UYk5QE8dKMiOK7PEfG\r\n         lSU6cosbxwplC3rCxaBT9xxoiwuR2ohTGRouxxI3vyvyR/3emzBKjtt7Rjhlnnd62yo/\r\n         m6xhD0wjxq2duV7/audqrEylB6BTJGdZiyuYLqZhiiBhMHSsx7Jj8hQx8SzlG1Yg98K2\r\n         9m35W00jGWVrYpgrzUowijb48gun1LHnEZECPDfoWblHvwxjYO3hmFFuqWXHgPWyZh77\r\n         0PiJgIVSHj+RnwsqTpjAcRMNH5DcPpFr2ZjqZJYlXASxepUk1HiUzqmmRuB7pkbr0kro\r\n         xb0A==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=IFDBdmvP;\r\n       spf=pass (google.com: domain of crdemopersonas-ltremblay@yahoo.com designates 74.6.129.218 as permitted sender) smtp.mailfrom=crdemopersonas-ltremblay@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-ltremblay@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-ltremblay@yahoo.com designates 74.6.129.218 as permitted sender) client-ip=74.6.129.218;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=IFDBdmvP;\r\n       spf=pass (google.com: domain of crdemopersonas-ltremblay@yahoo.com designates 74.6.129.218 as permitted sender) smtp.mailfrom=crdemopersonas-ltremblay@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110911; bh=Nh4lDWyIt1qwoK/B7W3KrSVKhKK7AbQvpnO78XQZvvk=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=IFDBdmvPY78bVR7t7IjOxJFQVZPQDaA+xEMQszsClxViEYB+vXj5aEg3BHGXKiTdEs2vfI+E29X1GBGGbl5lFLLFLIdW4T/EtvhsWxqnSGubgA92P3v4zcLNEI4YG3cGeU3FoHl8fQKWM4xjals7lM9/tsgTFssFfvK0uXPwad2QGOZ9UbG9sw4ZKOmzYAzhRWwCr0jWdGkJqfsgXa1PSSOj4cwLbtxEZR7R+tL1+biwL3Wj0MvngBREiT/taVfz7QRNiKkEe31OmiilUNyuH7OM9wap4MJuglQw580lizKmyPTYsGCIjfQ+uDBELJMvhz+PF+aGi6gfMsDr3QXfng==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110911; bh=VDR8OaF/ZUPPrV5jO6t8uFyEbqoJp1hQNrSWFHo3tpF=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=izuZ/cx7lV+J+2Cdzokp1HV1n0Jo8M13Ftl0bj84ZPMXzkcpH1QLcIIhWL5h1ZIC+l1IENc+keVKnea6S4Lb1upfHIY7XW2ScncS+jxNPMpbyxfsL3HbKhfqCBQ9StNtqWAQ1F+nlA5C38f4ZWlvqhQmucRb9Q2zrVEwW7uNEr6Uz4dy/UBBcP4NUuBvODzQNGviTE2e+XBbbGVX9ZPDAA/3o2iGqUE5GVxJefTos6zQooGd/PCqXCUWbzfrnYABVrtZzBXleV1QiupURi2/OAigJ4G+DztgM7T52FgObyKB1kUlC7oKou6pqb5Hlyr8sz3Wl/DgklrKQRFpehfFYQ==",
+      "x-ymail-osg": "X-YMail-OSG: WyuYOhcVM1k0zxuRvkz3Xx8aTvd9u5PA1QHo1Jz9r5Xstd84mrV94fRvEbqBOAR\r\n sr40meDAVcysJXcjwhvqKei5.IneYTY.vJZVoyUtwTTnTnxSqJD53BUvL7LvGs8vAyxiCvrmWeZi\r\n zB9uAHZilTmqFxBNmxE5uNBkLOMPjoxZVsY8ljVSgPlL8QpQ9cSeDTPXl9KHNliPQp5VKQwnMarZ\r\n Sw04.RU1gmWZeoAYb8E6EK28u1e_LWe9pmJZ6Kope17q.drkfQWZ9_6jMQDiPZkpY9Pq58qbCOLu\r\n FntJBGiGH3m7Vb_ieY0RUOcNvEkT.xTcfZLiCpZXZnYXH08asgFtLpNJfSPmTJ2bUQofpi2KEYdV\r\n Gdaigtb.6Crrfcqaym8P7jb8cMXFAvmppfojHfBSHLZZebEhjaquGOSsrSNuwrCTgUFtnNdtKGVh\r\n 7oaDoYbdzp4n7eBRNp4C6cEhy4fPpyCashS98Oalg5TdbTenL7uSdU81Y1O7NQrPXxsuG.ql5eLs\r\n zTW.j8U4bDTdUQEYyUkCfTySxBHExhI5ufEq_71m0YFgRA9zETMsdJV4mdhjCny8XU1rL93lZ.wD\r\n DTQ1y3vpwUfDhK3OrMcl3DuxbyEeXVUX8EV.8KMBRS8dzxfQod2POCQF85H_FfPNTkn_6Qk83s4x\r\n 602GprgxdiDYuJZXCBNQ61BQRI9iNYup2Jmun4qsjVK2jW9UIWi8GAtxPn18jcQDuubRlhuBFKlY\r\n NQvI5fkViFKwBs3Slka6HHbBQPHe8lBb037iLD2GbRUX9FQNxObxQwOjjQ.8azTb0D337G0BKmJz\r\n aDf8TxZkKGZppB8sjDKtmRB1aKxSyc2seNPkh2ee8Jx3U_SHVTXc1D9WCGyn4MR8t6U4agAOxSVt\r\n cSheCRPC.JFZXh7b6dn0kiaaMbrh7fqfX2j84kr8iy8hdpJa8AEssJEKX_OBRLBwPcoTS7BUx9mf\r\n Gxvpzop_ZFwAoQgPmP5dQ3rDZcUZNzCwTgXQ.dvhj7uhHDVFj3YXcm0sNMiiVPVtUxE6GmWi4fjs\r\n sjZP.6K0TvPCDQnbVWJmVcNlh.ItlbIv1dr3LxtF7UR7D0Z7qz8Tx65nuQabcYT5UcEAt5pv.AVC\r\n 68JnJpe3VTEOOdFXmo3pOVyhOIvKgnpI1p9UflnLiTr5fuGZYV9AJwp52zhmpHxOz5lJ0jCyYncc\r\n ekdsAsY0Gt728PLeMwC2X5d4leeBV7ZzV0Gfd5MA2zEehB7GPHTA7bYLbW6EM8CdASO8Qnc352vg\r\n DHOUYlR.23BNV3G_3y7EN8jSTtjOf0OEfLT0bOTGK_ZYqsBe8kXX.RSsv.1MCoErX4Nh7gWT1N7I\r\n a1PIKc08vejD69WPRkU0FbXS_QRwkz9jgMW77ecSel.Ji4vXJoINCkRqIOHmOo34p8hLCR4akq9v\r\n F9moz.yPHBE.SBdPabfB6dZ7Uwubn7Cl39goDgcNw106uE__uqNFsvnampUjBJd4CCp3FcC9uTGM\r\n 80V8BgTFExVQVSRVrJjif2MI9sh1xwrlGxiUeKShcfJjd.yd3vcY3WdciHEIPqcFK9OVg2ca_eU_\r\n URK6DZ2Jc7NgL58hmczK700YW1vaXBupoaP_mwO.O0DtaocKFx0XCP.9pf5mIvA.LXOH0ebcsVGb\r\n 56xFwvLtTKnbJspW7bdmWBSS3tYYaT3BNWsOshcacn5ZZcE9AkE2IS7KItigY8sQMFcdowFr6XoF\r\n 8RXSfE3lXWM2X3JgO2fTpsXAP0fvxj0PBRCTH8txqeRiD_GGoysjpku7hXfCtvQzj0rkv1NXtH9V\r\n z5P7tnNWzS4XZHl1ImZlBg3w48OSxMCAHfY2W1a9K0NS7V5subN5nTNku5.NK.eDuaJrYP4t9jZJ\r\n 4MgbYhz8Qf0Xe9egTOEl5jQ.uRujxO_1s8LEv3EqWo8Wjhiaa.AhgrSSPHd3pd69J.ifAnSm3xyX\r\n KqY7Y7ASlbmLIlc2api.7NKxlVFS9.HJbhQbnNBNCUut8p3h75b3d6PsUYVtt4_66s7x4ypREcMu\r\n 94MOnbgpiu1WIqd7pgDdIDBN7frXb2UTM7cIRQtlsj4SJJ.3MFGp3wjyCLgtqEPkJXhQJAMciFIK\r\n PoyiEpPUurtBz9nExr4vxX69SbUUSOvwCbpxxsqxvR8fo_ykWPQlTBtnRjvzVFJ4P9fVK4jVW1gt\r\n XjCNWpiLlm.vp6lWJQ2_I6bILxdE_V_Ro2VBhpNPP_0A1WNkfAX4bibLmlv3ZrLjtAg--",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-ltremblay@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: 3eb03001-47ce-4f26-95b0-70c34db9c2e9",
+      "date": "Date: Fri, 16 Oct 2026 00:33:10 +0000 (UTC)",
+      "from": "From: Louise Tremblay <crdemopersonas-ltremblay@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <655009972.511926.1792110790500@mail.yahoo.com>",
+      "references": "References: <655009972.511926.1792110790500.ref@mail.yahoo.com>",
+      "subject": "Subject: quick question",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_511925_1731598399.1792110790499\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1241"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div></div><div><div>Hello,</div><div><br></div><div>My son is driving my car now. Marc moved back home after school, he's been here about two weeks and he takes the Corolla to his job most days. Does he need to be on the insurance or is it fine since it's my car? He has his full G licence since last year.</div><div><br></div><div>Let me know what you need from me.</div><div><br></div><div>Merci,</div><div>Louise Tremblay</div></div><br></div></div></body></html>",
+    "text": "Hello,\nMy son is driving my car now. Marc moved back home after school, he's been here about two weeks and he takes the Corolla to his job most days. Does he need to be on the insurance or is it fine since it's my car? He has his full G licence since last year.\nLet me know what you need from me.\nMerci,Louise Tremblay\n",
+    "textAsHtml": "<p>Hello,<br/>My son is driving my car now. Marc moved back home after school, he&apos;s been here about two weeks and he takes the Corolla to his job most days. Does he need to be on the insurance or is it fine since it&apos;s my car? He has his full G licence since last year.<br/>Let me know what you need from me.<br/>Merci,Louise Tremblay</p>",
+    "subject": "quick question",
+    "references": "<655009972.511926.1792110790500.ref@mail.yahoo.com>",
+    "date": "2026-10-16T00:33:10.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-ltremblay@yahoo.com",
+          "name": "Louise Tremblay"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Louise Tremblay</span> &lt;<a href=\"mailto:crdemopersonas-ltremblay@yahoo.com\" class=\"mp_address_email\">crdemopersonas-ltremblay@yahoo.com</a>&gt;</span>",
+      "text": "\"Louise Tremblay\" <crdemopersonas-ltremblay@yahoo.com>"
+    },
+    "messageId": "<655009972.511926.1792110790500@mail.yahoo.com>"
+  },
+  {
+    "id": "1a142216b2d7e074",
+    "threadId": "1a142216b2d7e074",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8984,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 00:34:08 +0000",
+      "x-received": "X-Received: by 2002:a05:6214:5f84:b0:91b:5d3b:4ace with SMTP id 6a1803df08f44-91b5d3b4e73mr276948376d6.55.1792110848599;\r\n        Thu, 15 Oct 2026 17:34:08 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792110848; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=lrBVuetSGHXEVfGK7rB+U3P/Tt33qcyr+9ObV/gAQ0qBYWu040l6HcM52waVMDPKmN\r\n         KjlwfZyv3EzFg5a3SgVKcdo9YV16qjfaANVrSVfH8XRDc2UySCYW3xDshcLJUF7XmJVz\r\n         9prrNsMiNdABq2qK3C6ime+OEovU2EmQ4DQmYEIcOw38igZI7xfjpdZ7XyThf44Ae9S1\r\n         HpdcLlvgcZGIW76hIygBoB/lz0+8ikk6RQl+iraGmVA+57eAofegPsuL6jdobPo7aHx2\r\n         6aPv6omE9qcfadTKvzvDbGRk/HFxktFC+NdFuk30aDAXh72JrCfRSv9l1GsScPfvrOZo\r\n         DHqw==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=RO6hm0XKMzaktYqa1DzaOxml/D+4YLkR0By1ybnbXrM=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=Of4loLpJqnyC4sgnhmNAVO7u/EAEvMiO/7i52OjR6Jz1X6uDJhxxPn5PZWefRzajkZ\r\n         kObVbi8Zy1Th35XHqegCwVZX49jN4sD8wiYQ9zobtq4ctTw5cMrUHhmz7NO/RrN6s9AM\r\n         Mwd4moNuqW/EVYU2i7bONHeaFFxK9MTNMNZ2y0CGIrdklrswdQVQpQAlh1Eb4ydmsRd1\r\n         KnSm3Rlwenvh0HcanylYyEBb1yDcRxAwejYfijHiVE/VfYDFcNg9r4UDMww5AKtSIBjw\r\n         U8gt8woJPnvp/LShSCVYt8wp/OQbMhMr+UX9v4il7Z0E2o0yq0bPwDk4GGCiJwFxnsxL\r\n         k35w==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=fCqXX2kL;\r\n       spf=pass (google.com: domain of crdemopersonas-rmercer@yahoo.com designates 74.6.129.109 as permitted sender) smtp.mailfrom=crdemopersonas-rmercer@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-rmercer@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-rmercer@yahoo.com designates 74.6.129.109 as permitted sender) client-ip=74.6.129.109;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=fCqXX2kL;\r\n       spf=pass (google.com: domain of crdemopersonas-rmercer@yahoo.com designates 74.6.129.109 as permitted sender) smtp.mailfrom=crdemopersonas-rmercer@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110848; bh=RO6hm0XKMzaktYqa1DzaOxml/D+4YLkR0By1ybnbXrM=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=fCqXX2kLON6thJ07WXH2E1qEszEf1+EWu0YBMW9SFQ8j8OL58CVQ0AUC2uTLEikb01aUzl3jjP1tk77AGsteJ70CqHYdJnVGMT8yjIlFm03LqN6iD7e6l7SKN3uN8emNlnn0Wh/iuFJs3bTPpljGwBK/J1wx2lqXNYJVVHGvGmuDnBgv9ay8Ei2DdMgoyT9Mi646k6cy7osuHvSUrJs9Yfz1lr8nMe1KD7kvzBD6KFErSRTV+Ur6hBsb7GVMeKlhP6i8MhKr9Vw24ogvIfIuQBhrZllWbnCjeBz4N4Rtln1Vm+C6LPQnPlaxLPCtMtAb2WguL+TxfJM3KlXQNL+7ZQ==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110848; bh=bx7q3lAeHycaTSjcWUYLY4VttN+sbs+A9q8pSBOXG/Z=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=mMZAf6wbu0ReDHa+vwNkJH6oZQI+5J3OG5EjTzaNpK/ZpkPktlufcgcvPpxfKEKwao+Wwqu5Pmk6en2B0buKU7E82K2l/Fl6b2uTCsguzkFfQbBdJDtXtGV4LoUeQP6euOuJBPrBYZqrnYV5Qyy5e9tIegELLzhLWOsRvVCAe2C9erIoHwRHKM1QDrYi1mpHxLo7n0ThpGNu0EV0qa6rfNhoHM0tXxQJjEtsK7mAxijGFyNJNKZFlaTTS2j/xQUz5qsmx8GPXfhWBYgjR2Mj0eMtIN6ynSC+nhfqABy31gQfkG6NLPVcxSE19k5QBNFWy+r/gaPZEZKgljDgXxDLZg==",
+      "x-ymail-osg": "X-YMail-OSG: yvM2o0IVM1mlgW50ljXUFfoIoCeFOSjQSmV_jgGSUPZuwoT_SPgnd7O8v4O5t7P\r\n .QP54Nnou6u4l58RStz87TnVR83E8DMOvX5AIoRoWxTqkxQtsNOPZ_Fr495ZVCNWlxOQOFC7f0Hf\r\n 1oGhgTHJB3EKlsGXZZ01f9.RnU9s7SLFdOJ3ASNY9TlgxSz5E2aIgtIpHk5fnpagqeWORcPAdhxF\r\n o6qTaOx4gQ9CdAVkRghDVEzoVGJir1lcPTXV6oADymYQIKA8sanrajmsjKS4oZ4wkR2RH71I.Sxh\r\n hAbMx8QL9i9Oc77FVg9E3WiWSz5WhmVRcgi_AYfHvjzuHzRMccIgrRe7tUgchpY2Ac3CSWTT8J1N\r\n SRxX4It6Hg0y642ThbYoDPyAzoVHWFbEZEaQCTjiNTuPsKBYrB.p1CVaezhAjr1iqUcSwy6in9Ei\r\n y4hTojp3RUBT169Vka5CvgCSdZq37HcL80YHvszAXM4ae1E_Z8rwE2qYjOmBZbgPCHxNxLjGAS3A\r\n U_8cWf901Mb9LjLb3NqVENEINpAyOSj0._D_sxFRMw_rH1HLCdLkd21zEayNprNqoTulguABR5z3\r\n achGqDqku3RV52r0DtWCPQQXPtQjKGw5k_Robk0QuG1ZYzZrjtWF7iHHOlWC_IvaaMkcb47QSRDT\r\n VacUNgYUNu90OlPJUSfOhrP2ZChK6LOhYQv8CygnsCwUMIhbugOd0JcazQnfqj5ZP52LqaW7k0.b\r\n 5cLbAYvT4KGkd5x3179EMu1xv.wh7CdrQ84NJDlFOTjpXVMj_6opTISmuhPjdgIc4ho.DiBaa0oH\r\n 60qQog5FO0a2rr_6wklXPioke4vU24qnwvS5OTfKgkvwxvukMqXkW2ZyxlUW6a_pt7jOB0use9nc\r\n DYA125x.oMCw_OPascNJRdIZpt0P.eiSw_pFLPc8d8Rd3Ek1SMMt61wSSL7XzJJjF0fMavXXZ9We\r\n PuF.ny9WRqTjFa9VMB.PlDvv7swcFcDjQv3tB2754Duecg5eb7t5PI5GIvH7q12MMBAuEB487TJd\r\n FCFYTBtIOYIAiEKkQc8RWFJvNioZmxQ73ChzdEk1Sb4cgpbf1BQ.rcyWqArOVfgS89M4v81t6TqT\r\n E.4YKVJPuKqrqAGc7XoVkKgg9QC6ITcYfeZyf.F3V0rpmBlC0zqU0qZAxgYh9nQvCk5fBxFhyk6R\r\n AZucH2eQ_Eodg_zF1MATwSXAnU.7jxFZM05WMsHkExNqEorHitnWHJ8kBZhnyoHTUNF9XLX5te1M\r\n sEJL7stlNwBATb7qq.Ja6fEz3JojeRR2mJ9Oz4_0jmDuXxwZbM6ugtVfejsY7kelMx4YkHQj8sjL\r\n XD33fWm2LsihoOI8yG_lUdw.ApzCJZhd6SirMwYWyxR7.0KFgZz15GJPJbdZjxjTjoXzqWjllZJG\r\n F12Agywbjg1GyV5N3H1lMVMDABjYoBelV7vd.0Qsk1k5dqZwe0cotHDxICY9JtOmTiIgB0VrJ.Ba\r\n HO_XwbKctXkfTys4qbVbrGKREjs8TJIzqCRXfZEWTBWRapIiinPb15WNlsbG4LB8XwjvrRhlsoE8\r\n iYBX4lqGuJZwi1o1c4zHqli9LikbXH6oC2o8tYQkuzXB97.EANvrvSwLh6EOyGp.sieD4Y1g7F2C\r\n XYxxACt42hhUYXubwj_ld3ynOhQ1uYojUMZGNpVggHKlZbXCX.KGLCm4FAWXjD9ttd57dCcGnQbM\r\n gYnSXoTyzErN6qwE2k13KyVQzs2r7TCPtcxwzkhn3B9VYJlPvdzUWCU3kAFIEe8xv7OmazorwJt8\r\n MaxvzaFVz0cAGUYGs_F9tTUDbJo5oAD0UL3juXTN.P_UyahL0KjUUo.5ENN7voAMi6o9S1KzyRn7\r\n juGjAQbppLx4X_F9kMGrNUj.TmgqIIlM5gYyCuLM7efV7jk_SQfRmRa0hfM9G.ErPULrVaXSf3lC\r\n Lo5RitYUuBnF8KR_DAGvmh.3aSZ3rMoXFXW28Lyf5pFgabzfm8Tud3XqzlqX.7GjuIsQ3PY5SA0u\r\n caK1DU95HeE3ViJ_1go_2mCsudH.xJ5X0t6O08DmY8fTPBKJJtL_.H07O1FDIVJX3I8Ih.XmfsOY\r\n txMVOZ5Cu5qzvSj5uRUyBs9016q2IGaVe_fdLhrw3Rx3xtGo1TfY6w0ZPttwLdRkeoVGKZKh0aya\r\n zF0TyQaUjiaEnmEHsPM1hihbYI0FB.xVi2OQj5XweO2rkBGa9k0NbEaU0Ql7lru_NHw--",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-rmercer@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: aad52020-abb3-4a8e-b8de-325a4015921f",
+      "date": "Date: Fri, 16 Oct 2026 00:32:07 +0000 (UTC)",
+      "from": "From: Ryan Mercer <crdemopersonas-rmercer@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <2067435806.161687.1792110727551@mail.yahoo.com>",
+      "references": "References: <2067435806.161687.1792110727551.ref@mail.yahoo.com>",
+      "subject": "Subject: New car + question about the house",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_161686_621723870.1792110727551\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1910"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi Amir,</div><div><br></div><div>Hope you're well. Couple of things.</div><div><br></div><div>We finally bought the RAV4. It's a 2025 Toyota RAV4 Hybrid XLE, picking it up from the dealer on Saturday October 24. VIN is 2T3B6RFV8SW012345 (I'll double check that, the salesman wrote it by hand). Please add it to our auto policy BVA-4471829. We're keeping the CR-V and the Camry for now. Jenna's mom might take the Camry eventually but not yet. It's financed through the dealer if you need that.</div><div><br></div><div>Also unrelated, we had the whole roof redone in September, new asphalt shingles, about $18k. Does that change anything on the house insurance? Someone at work told me we'd get a better rate.</div><div><br></div><div>Thanks,</div><div>Ryan</div></div><br></div></div></body></html>",
+    "text": "Hi Amir,\nHope you're well. Couple of things.\nWe finally bought the RAV4. It's a 2025 Toyota RAV4 Hybrid XLE, picking it up from the dealer on Saturday October 24. VIN is 2T3B6RFV8SW012345 (I'll double check that, the salesman wrote it by hand). Please add it to our auto policy BVA-4471829. We're keeping the CR-V and the Camry for now. Jenna's mom might take the Camry eventually but not yet. It's financed through the dealer if you need that.\nAlso unrelated, we had the whole roof redone in September, new asphalt shingles, about $18k. Does that change anything on the house insurance? Someone at work told me we'd get a better rate.\nThanks,Ryan\n",
+    "textAsHtml": "<p>Hi Amir,<br/>Hope you&apos;re well. Couple of things.<br/>We finally bought the RAV4. It&apos;s a 2025 Toyota RAV4 Hybrid XLE, picking it up from the dealer on Saturday October 24. VIN is 2T3B6RFV8SW012345 (I&apos;ll double check that, the salesman wrote it by hand). Please add it to our auto policy BVA-4471829. We&apos;re keeping the CR-V and the Camry for now. Jenna&apos;s mom might take the Camry eventually but not yet. It&apos;s financed through the dealer if you need that.<br/>Also unrelated, we had the whole roof redone in September, new asphalt shingles, about $18k. Does that change anything on the house insurance? Someone at work told me we&apos;d get a better rate.<br/>Thanks,Ryan</p>",
+    "subject": "New car + question about the house",
+    "references": "<2067435806.161687.1792110727551.ref@mail.yahoo.com>",
+    "date": "2026-10-16T00:32:07.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-rmercer@yahoo.com",
+          "name": "Ryan Mercer"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Ryan Mercer</span> &lt;<a href=\"mailto:crdemopersonas-rmercer@yahoo.com\" class=\"mp_address_email\">crdemopersonas-rmercer@yahoo.com</a>&gt;</span>",
+      "text": "\"Ryan Mercer\" <crdemopersonas-rmercer@yahoo.com>"
+    },
+    "messageId": "<2067435806.161687.1792110727551@mail.yahoo.com>"
+  },
+  {
+    "id": "1a1421e6d5be1bf6",
+    "threadId": "1a1421e6d5be1bf6",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8771,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic311.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 00:30:52 +0000",
+      "x-received": "X-Received: by 2002:a05:622a:5a0d:b0:532:caba:3ade with SMTP id d75a77b69052e-5359fb287d2mr338335421cf.28.1792110652554;\r\n        Thu, 15 Oct 2026 17:30:52 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792110652; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=m5ebq5wRfHNKGRz3oyfhbkylliUgVY9aQhI84TAEjsXG2usARs+TfVUERIEOgz6Q7d\r\n         obb9MRTlb8n4NWP4TP9Wj8A6I5jG6W/Y4tuLmXLCD/fmQBun5bBHERBYVN1ZqUmcJzcc\r\n         qCtBIY0kMWX/ibvELMv9ef2y1BdWfFlqqumaWz1RDO4J/qKrbplWp+I5LDwTozm6GGfB\r\n         p602mF9NHPCW45n13b1Jgyom7B8zLHRifUJDX19JRO2w5iz2ddY/k1wy+BJ3ne13W0QJ\r\n         ZdtKSqZGwwc5r8AY8Go8iRDQksyn0SHfezBcrNizLjwUf6FEcgwMm7XCHeSfmXF/ONSZ\r\n         hJ3w==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=9+EATcxXAsQamDd1SRh6JzmyIH2Y+V+yPTXq7ra1HD0=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=LK39f5pNu1sih3fSMkenh0P1RtgILEEFXIK1GGCB2D+GlRnVkIYHhAAN9mfLyZAw9w\r\n         YBfCoc4yHoUyvtpTidHbmrphuXkWg9vEGK8q4MF2UYpy0NFak2K99WrpZ/5sT8t0FukP\r\n         ah2ewpq8QiMDEUI6tbBxL3osYazfK0wK7hSk1ISCDA0pssiKZ737IZSFklY2nDKw7PwF\r\n         R2CH3aWO1aKy7evpK0F7txvh/ggl1X7pQ4TXCxEdfHw88n6l6w7v0wgZOCtWTs3XPVPI\r\n         usTtDQQGecoEegJMRqExYpvk6yzSZq4tHIAvXjW9h0VT4c3WvUtDHCjGLiL85lXjZxtZ\r\n         7LRw==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=\"q1N1U0U/\";\r\n       spf=pass (google.com: domain of crdemopersonas-dokafor@yahoo.com designates 74.6.131.218 as permitted sender) smtp.mailfrom=crdemopersonas-dokafor@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-dokafor@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-dokafor@yahoo.com designates 74.6.131.218 as permitted sender) client-ip=74.6.131.218;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=\"q1N1U0U/\";\r\n       spf=pass (google.com: domain of crdemopersonas-dokafor@yahoo.com designates 74.6.131.218 as permitted sender) smtp.mailfrom=crdemopersonas-dokafor@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110652; bh=9+EATcxXAsQamDd1SRh6JzmyIH2Y+V+yPTXq7ra1HD0=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=q1N1U0U/bhVtOI6Bw7zHQda+edQkO29+CDV86KKDnxX/4IidsR3Brc0/bpfZkikO4iozK4mfxrmB8OpVTC91FGvQchLSxCMSG2rc6Lu412YNUr4gNEOJO2pK7mosx5ryb8ASRmmdnp1Ra8IFm4Nw1vS1LAt7KuJHBAVLorVqS5LKi+6Yl+KM+rsL7xHlUMFYwLrnf8a9uyG2HTYlmYZL/A+PCcNJkiEbg/R2A2JwHRxvv3EtQUrwbxTFKNq0uXOG+b2Af3aA+UUq5sHmOJZs4tYc4vvqBBfkfaoHBgX3/3xn5/mgWcn0LL9OKUFVIKaNZXzcg91IDwuIPmLUKRakHg==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110652; bh=zus3Xm9BF+OyaHg89cQlnwGOWEtvdRdSVuHwVbJ/kk3=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=rKx/YMrHyIizTfsYNVDXNFTG4ItvE92hY2UKZLknn8zHV//tGiZXAlke5FKrf/UWDhz5KIA0zBwX0BhWMWSSV18YSeFeEs31X3Zya/QfHnERi+9JdyBeM6JKkFy25H/WlGplaMjHjwkpVqx61G3dltP33mZSAh2ouFOAi9hPOctvhPYW/ZApfh9U1psyNREdhLvPUW2M3r/eL0YAOEck1KSVvNIkfbogZT8baHDl8GRPdzG26iaVnzSswk0rpt2j4mp/mPmKsZoDE/Q4UJgoWI6IbC+uDG5RzEf+AizEHXG4d4wnLYWogEG2AMe1oQ9v31krHYs+2+8Pp+zQ8h6xQQ==",
+      "x-ymail-osg": "X-YMail-OSG: 6FLhpFUVM1nhgy7Zh00npcAEh9m_Ul89fIMY2hFFbi_1RXtIOCvtsf0_DSjQHG6\r\n fcyORsI6G_8KYjtAsFPp4CR6pEw4_KSrTStrpBOgLKKa8g8aTdwj9yyR4wLag02HPNUr_YpfTh1u\r\n XjMhecBJziGgNFKwHJ7WZm2u5I3lju3zCXkO1l.dixtH9O1L6VEuoGKgX1n50q3g1hCcZFBvQ1Mf\r\n IeibP7GEYNdGRVZG61tdveqDuombUm.m.P4jDGENQhqe0xvOgU_bsRLuaSu06PPWo6pGYiTBO5m2\r\n 4js2STY4oyJpxMQg6cRjKFEO.7RnC7ULU83Ekp6YlBvLymS_NsORuQ4oJVDPrw_9mgdSCzUTXfyc\r\n 08UHjb6FgsJrv5bZNt.UgU5kl3kx9uJnlfQMCnVeR7eUm.bR8Vxj2njydG5Mch.JW5Ki6U8e8xj7\r\n eM0HPIHONP53RtTwJtR2YeeT67sLX0Ct_Q4m979InzFhQsLHcUsJ8WIeJ2mC1uSXnZ6Xm.9JwI6z\r\n nLB5bhJ.T.GzSmqYjfll2RhiWbaXs.qt4wgMXyDU3NuJ2MKScPVqkx2p8T73XYdpRw1rgXjH.GrK\r\n bFxCeN4zBJrF99dIseBfU1DPNZFl5dbOr0b7vIca6yq_25JSpu.emqkXeJCwnhXj1lYD6bdHsn5p\r\n ayM470bzFbZniLezxxSlvXjk6wrWgYCMhX3p8InaVTMbY9i2qxrVpO1ZJs4sG66zUgnMqxVvvXMt\r\n Oxx_EWhQgOaG5nI53qgiXe6ie7VXaSLsFoNoUlLCVjfheKnF2_NAH8m5ZuuWXWMwiff6LujjvYEE\r\n .wsc52I9FGpsl7MG10H_YnILt6oCs1LJJfyIXd6ltC3_FjJRJFuzp5hku2tSdP67mWtMdMLx.bw8\r\n CgQTyFqCZDDx4oOdquFnAZ19VeUYaJ1ROAMgPfC5bhwTfae1Frmm.6jT_m.gSJzKd52F3jE5GJxu\r\n PmOdS5joxxjijt36EPFNLgIhD1HzL_ITmrkSv4wnVshYya8RGcrzRcgpo.kNaoZlSiC7u8qJvZsR\r\n zPFOEmx.E9k2P2Csd9x6MO7ZQNKmZBGcryqTmanEO0aKl7U9n679LRXkjCribzSRFKaQt7s.k_cx\r\n tQr5SBJksKLEkjt6PgoJGaToS3.dGtOotC4JPiWOn0tt2sZToo9_ddRTm.Wg.3z3h4zxZe7NEKmP\r\n axnKgjIirV9vOkDjHSn0v6tMz_Mr6nmz1oPRAw2FQBIieXjz2T4VsUnK.eb4sqdRK5OwlWvWTnii\r\n Xp0_uMTL_MvtscjFRbVLOHBvZs3dN4nXv2YCGeg3WCvd2RC19fdjKjJHiTLS9DwRvAWvhPx6gbdI\r\n ZNlTrOdj7_xtH.Y1QM.USHyWfVjyNTbOnVX.vVb1tTmF2jlBKMxQwg4IfJPZ5dGi_8mcn9Wn_Tbk\r\n _efhjaWFShT5VCSmWr1D0OQ7PyYgELzQzVWJdvEdzykIVry3n8SMpwUz46AjveN6gS5I4mYKtHB_\r\n ynSqjWT2VeXlDjPLWVAFgloQl_S.zakWoCm2a22ZN9gYwfLx4rD4UqPaz1etah05ZpaETEWuxrGn\r\n TLs.mZUInYicwNZc.g0Fk.zT40lV7oPvB2p_3IiSOegz2KoiDR6IdETqTHyi7rioykBinUkpjfhx\r\n qhXQ.hBc_KdrklaYbMZOnO3sLNHZCy4bIZ0hXbQfKJ6O9T8N8ukhXu_BLdZzjyklCHSV9Q5LFWEA\r\n Zbjzwqd18pEH_nt_EMhYv1j0u7pstthp_v8KnsRsm7wVga8Op4IOLilpRfgbqUKnzspondikD9JC\r\n iq2C6fZM1dGIGQP2s1oFnxNueh8feoLRpTncA90VDInQOjDjziUhTQari8839nRYJk_pHUfyzwaz\r\n pcZ5y5UeDkwmd9kO7DkasvFCaJEHpWH9Y_nWRFPqDBaGR5RyzzVQBG76BfIOPAg49TrOCnUspDjs\r\n rjFLg1bynUhdeI8bzX5g63buyCq1e7K0YcPdbjM9ZoFNy94pf0Iyb9AYxdM7sJ4qWEVaCIr9yqf1\r\n 37EoF.xHqzn4ohRmwUWpMK7llSOk8RwSsQnlT9XxSdQEP_kYyLRX3NiN6hFecC1B7kbd5O33ZeOW\r\n eisKwHWgfVBkWEVk_PSxg89geafiC0M04YS1jUHy8hPhX3tt03gmEuIlxDpmCyrFwnD_Uc9Us_ew\r\n ctcMLfnG3VI6u1yoP2g9YOt6L6Mr5t5u7fkgCtEPNKG7.YGBzKrpIwBPM2R4u.9ZWy9A9pR_NRA-\r\n -",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-dokafor@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: f381f6cf-def4-498d-ab77-683fef260c54",
+      "date": "Date: Fri, 16 Oct 2026 00:28:51 +0000 (UTC)",
+      "from": "From: Daniel Okafor <crdemopersonas-dokafor@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <1309987418.508271.1792110531619@mail.yahoo.com>",
+      "references": "References: <1309987418.508271.1792110531619.ref@mail.yahoo.com>",
+      "subject": "Subject: water coming through my ceiling",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_508270_1911228591.1792110531618\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1683"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi Amir,</div><div><br></div><div>The unit above me (1507) had a leak and water has been coming through my bathroom and hallway ceiling since Tuesday night (Oct 13). The building manager came and shut the water off. There's a big brown stain, the drywall is soft, and the laminate in the hallway is lifting.</div><div><br></div><div>The property manager says the condo corporation's insurance might cover some of it, but that I should \"open a claim with my own insurance too\"? I'm confused about whose insurance pays for what. Can you help?</div><div><br></div><div>Pictures attached.</div><div><br></div><div>Daniel Okafor</div><div>Unit 1407</div></div><br></div></div></body></html>",
+    "text": "Hi Amir,\nThe unit above me (1507) had a leak and water has been coming through my bathroom and hallway ceiling since Tuesday night (Oct 13). The building manager came and shut the water off. There's a big brown stain, the drywall is soft, and the laminate in the hallway is lifting.\nThe property manager says the condo corporation's insurance might cover some of it, but that I should \"open a claim with my own insurance too\"? I'm confused about whose insurance pays for what. Can you help?\nPictures attached.\nDaniel OkaforUnit 1407\n",
+    "textAsHtml": "<p>Hi Amir,<br/>The unit above me (1507) had a leak and water has been coming through my bathroom and hallway ceiling since Tuesday night (Oct 13). The building manager came and shut the water off. There&apos;s a big brown stain, the drywall is soft, and the laminate in the hallway is lifting.<br/>The property manager says the condo corporation&apos;s insurance might cover some of it, but that I should &quot;open a claim with my own insurance too&quot;? I&apos;m confused about whose insurance pays for what. Can you help?<br/>Pictures attached.<br/>Daniel OkaforUnit 1407</p>",
+    "subject": "water coming through my ceiling",
+    "references": "<1309987418.508271.1792110531619.ref@mail.yahoo.com>",
+    "date": "2026-10-16T00:28:51.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-dokafor@yahoo.com",
+          "name": "Daniel Okafor"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Daniel Okafor</span> &lt;<a href=\"mailto:crdemopersonas-dokafor@yahoo.com\" class=\"mp_address_email\">crdemopersonas-dokafor@yahoo.com</a>&gt;</span>",
+      "text": "\"Daniel Okafor\" <crdemopersonas-dokafor@yahoo.com>"
+    },
+    "messageId": "<1309987418.508271.1792110531619@mail.yahoo.com>"
+  },
+  {
+    "id": "1a1421aa757ce420",
+    "threadId": "1a1421aa757ce420",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 11329,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 00:26:45 +0000",
+      "x-received": "X-Received: by 2002:a05:620a:400b:b0:93a:1ca:f14a with SMTP id af79cd13be357-93ebd1b7bfcmr3014675485a.17.1792110405423;\r\n        Thu, 15 Oct 2026 17:26:45 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792110405; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=FBuCZ9grNhCy/aa0gf9Xymtr4fjEf3zb3LGvkfLpMemuUmRBQPHgUGDylWwswPBrEi\r\n         HhOU3l6CxkLW+1V0RhYsXy3zYUrP+VLUX/T9rxtpVROBqzSSQUrYTfcK5GPG6g4O/gFn\r\n         2nUi53SNCYz4vhNsGe4/i94mdPvdotIu4xge6fSWlIIBEayP3Aw8kiIdc2e38TZlHLXF\r\n         3Oe7yVQwrRfX+mt2wP7PuKsUVjTExPp6QwLwX3cR7BatY0ue7C7gYOB3Qty4ej235Tcj\r\n         ga/33C9ja8bsJL9MGvGNPbvjpfzfMNRRL+Bk6nvYOdqHla/STlNyX8j+lKUoCHbHvaSw\r\n         WZMg==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=br/MQPwUplREJLUELYZ6ZegGRabRHNZ9Pbw65YdCjxo=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=q2jeG85LOeDAFpjACKv3pgZJnjJNwNfZ6Bh0udZwtcjGDu3DR9sQdyyXQu/Vnkbe8P\r\n         qQkuH2fGnWY1qUe9RxdeBGEbYr3IQiVJRlKxkkGApRWXuhfu4IlNYEhKNHxdzxPjV7ZW\r\n         tRbQE0GuK23BSy2A7AgiAZ4akgxjS+a+Hdz/O8o1qGKlWgFM5wfREocW1Mw4rY586Jz+\r\n         5hK4jSaqT4WPzSvFGJu7GZmE7wZUjPCnUkNJA4mRMTS9eQBWtHCanYYr+UenZUfYl3n2\r\n         hPEvClZRW2M4hAFStnd8TlMp+hj84p9Fc5k21/I/zQB9F3Yw2VyyI1y9cdeakWuPlsFe\r\n         LReQ==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=OoT8bgtA;\r\n       spf=pass (google.com: domain of crdemopersonas-gsutherland@yahoo.com designates 74.6.132.42 as permitted sender) smtp.mailfrom=crdemopersonas-gsutherland@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-gsutherland@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-gsutherland@yahoo.com designates 74.6.132.42 as permitted sender) client-ip=74.6.132.42;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=OoT8bgtA;\r\n       spf=pass (google.com: domain of crdemopersonas-gsutherland@yahoo.com designates 74.6.132.42 as permitted sender) smtp.mailfrom=crdemopersonas-gsutherland@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110405; bh=br/MQPwUplREJLUELYZ6ZegGRabRHNZ9Pbw65YdCjxo=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=OoT8bgtA0KZDlp3p1/R4ZPzF9OynNJ6e8xw5U1Wwiu00vBg+DCx7+uJWvxNAs1Y1oBsKL+RoA8FdStjET7eel5ALAJxs3KV29ooUkgpbEydYNVuvlrWgpJgLAlZzO6Cp2MYoLbVRW26xmwTJz/40xDkQnIKARvMelB6VQDzccQ9HW7H+T0yYcVnHol7CzRg7lsjPltuat+j4OnmpZz6aMc5KMnmcIaWPBt17yz1RlNHQopeUF6Q9scGr4CENxlPYkpS6+hhks75Ej61KlOoRVn3g2e+s7n3Wyi20s+m8z571DGEK+CfJkvYbQWCqur2A0TstOp5SOVRw+GDkAH7Anw==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110405; bh=1vPEuao9A+H0ySZodgW2Xo1Z0d01agyWOb/3wucE+bq=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=jddY/M1lzPM9yZx7x7mu3tBbL4cTzuIHgsRVhHSt0ImEqRzJ1ga26Ceyp5ZGQb+BtcxkoekXds2Kh5zsUkX4HVkgu9uGO6FUS7dC97rPsSCxd38lfe5/ihr1E+t2QQgeIQ24MGr3NXV46JPawbLW0Yl89KOLEGQigWpCIrvJAhiHNZRZVV+AvsaUKivDmRojvNiJjx+wUtbz9xQRxD2e4YnkKrDOUivDdODhGEu5aZaMvXYV61kD3WSDDN07vZxUBuW4AWJn0Bo6IMOkcWzQbqw2G0UxKprNn9CvPaHDhm5+Q1K6YalC4xDa167gj/U/WfnL/nIX66cx1f6J/aijcQ==",
+      "x-ymail-osg": "X-YMail-OSG: wCmTUYMVM1npaXYs_JeSK7AdHq7BCEMEGJDj0tqRNicf7FldkgSe1RaauOhOHzU\r\n UJ6Z9TWKrT6ldCKqfrj5IQTBKuhvVn_RqdM7wb.xktTmtqwqX2lmgw2oewYGLzeU1YzsLjJFZrTN\r\n S2ZP5jmGQCmknusJZeFkb3cOCqgpRWOdwuhxzNH4sJemGz5xZlhy8Czl55H3s0GjK1zBzNEu.CTz\r\n jI7HvvHu1JQr1UNfuqA7TDM0Ybi4ZHM_r.x7FN6T_RwqQAOEMQ.rsOSOt8p3sBbZFcP4MKENsFvr\r\n OX2rh9vsLLSF0wNVexV6yfDlear7RH2TBoGWDNLtRVgY6yT9ZzIVM0FNPPxkp9esZuDT19.FYvxA\r\n TXbZhaAw2M5p.hfxA5AlJTKrljxVLWPb2PqiW76Iax62YzRVA7B_XcUjaZDRDMXe0FZVwE2p2UCV\r\n YdIiBSCbjBvqXT2K5h20Lg.w0QOb4aQVD0kjbTgxuJz4a2YxNPWWRUzFYxoRjArpGbEKhw.zXk6I\r\n 4SaHtiXa44KmkM9XBm1c_TziAxBMwXAc1rtUVVb8tyigofGmaP.1S0GpWv4ezqXJSPtILMKNFzp_\r\n nckLNMrMkFj24M01xykdykjdwYQw8rDundbsMKGbUBKWJlh9NNOPWrt10CPU_wuCM7UwHt9YK39w\r\n hM_QQyX41IS0heoozEFU9nMNzg56GDnF.cESoDMWLC.OoZoNV9HggMEg7Tboo2tI3OrNonSdKps7\r\n sxnimy6MNpCQF3x3xyCZqcEaW0qG8tVzFqexXE8hWXLBcfXBcIY5ndUxgaMWtJgWK1yKhI18lpGU\r\n E1rT5M9SaaK0kXXo3M9EHEoAzy4pO4uYGUh0f3zFoewR6Vd.UFdL7zGLmkGoRoxN1Yh56Hbhjv69\r\n HWA.1rZNGuVnThGzHreILTpjt7ISjE.9mHsZreHCLBry3SGIE0yk5ZaqdDnINlwT2MPi5oD5Ea3G\r\n BrimMhdH5aUMlELWlNRgrVcMQWiOWyjfwtQrV2pLbjc1K_ZUYh10c7OtMZjzjITpWbh0u_de7Ocq\r\n L9X2F4lp3Bs8Zgy9jOjozLJhATnrRb883r2_W4qcfWz5LaQhmUNWa7QgaN_5i7_EFYjJOVjXWBhY\r\n Do0tKUTvLFQwnJN7_YfQuZAFy54oMRJM7SBsAwIEfPJ_z8aPO7drRUHpXwvvbo9XKDO33aRE.1E7\r\n MMP4vpYzNclyFz9R6GtCMmFiNGvG_MdXgXx0_Pv0CJU5MgQSSaHjnvG4D3xEvyxmA9Qu9NpdC.jz\r\n f_dPeygcQbB9JyDPy.KKHB5zFKVGDLqIswm6OlsYyNEOVEIIpJrxxTLJWv6FCzdtr3KwmuI8CJI8\r\n IYZoqYiFk_vpdhLEuIrk5LN6U3Tba1IAN0owy2MujG7IvkjQ7djxtHRjrHW_Z7rgcY8lyefC873Z\r\n 34S7rwMgRmdaENtqiX8AxzPYeFKEMEvNH7bO.owBhAkzfW3cvGHMnt9FVrDSuJ3OYIS6865hr0xO\r\n e7SQmIS2TtzCLIZ_G3oXde6tWTpoRq6bxvrCx2Et401FPB1KzqG8UjozR6Lpc30iiRtVFTqSHOLm\r\n uQBnQV00NUGpza6zDd0xxsxUUAI_I7GM1QdcW8NYY5OTpwqX21dCcLJ8W9dXQpSMA1EQxx4PdDxc\r\n aYQ6Rk3wAttc.fnahqmm8Sd6Z5fDt_I.94l6oYYvXa6KBWVgsyiY111TXu8JFVnTV5HXw1npES4Z\r\n _5kr15M9r7stxM0MNwZoFJQUEnsHRvPqNjw_PT_dny4b.RHKWbQ9szhIRX9sLpN.l9M4HvaAG60L\r\n LpvQkeNaKuethbqYCu7A.D_lXFcAfTze.fF2I7jolyxvI27ffJ7ADgbnjTdSMKaHURqsg8XzwLdj\r\n 2P.i5mQmRig3Z9alw2iU60YZfHVQ._jHMB0tlMw5ent4yV6XXKV45Y9JpG4J7pK863HhMfeAFpNZ\r\n mM3OD_K23_GXr4XU2QSg97xeIWCVwodmKjZ6F9fze_E4rKe2M5fNVOeajKecyNB2RFbhD.TVC3H1\r\n cITw0nBFLL_axGeC3AyX7hHzkKl3pYKyBwQrLJ396FJ2UdN3nQBEan2in2foj2huhUo_9K90ttQN\r\n E2HnTWivY4cfeVX3TaOyJMbXA.NJmtuZJ4Bu8jPTP0iyMnlsMa.a7CG.81fOHDwap4i5eGvYapMW\r\n ..9IGiF7ONrtAXx9LD8O9Kh6xQ2MFGw2JNAd7tzdz1w--",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-gsutherland@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: 8b795659-9ab0-49f4-a885-d44313c0f055",
+      "date": "Date: Fri, 16 Oct 2026 00:26:43 +0000 (UTC)",
+      "from": "From: Greg Sutherland <crdemopersonas-gsutherland@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <372954231.505990.1792110403116@mail.yahoo.com>",
+      "references": "References: <372954231.505990.1792110403116.ref@mail.yahoo.com>",
+      "subject": "Subject: FW: RE: RE: 14 Ambergate Cres - inspection report",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_505989_1626990483.1792110403114\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 4202"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi team, see below. Thx</div><div><br></div><div>Greg</div><div><br></div><div>---------- Forwarded message ---------</div><div>From: Greg Sutherland &lt;gsutherland@kestrelbay.example&gt;</div><div>Date: Wed, Oct 14, 2026 at 4:51 PM</div><div>Subject: RE: RE: 14 Ambergate Cres - inspection report</div><div>To: Sandra Pellegrino &lt;callanderreid.service@gmail.com&gt;</div><div><br></div><div>Hi Sandra,</div><div><br></div><div>Sorry for the delay, we've been buried since the hailstorm. Report is attached. Overall the property is in decent shape. The inspector flagged loose eavestroughs on the north side and a missing GFCI outlet in the kitchen, both are recommendations only, no action needed for us.</div><div><br></div><div>The one item we do need: the inspector noted an above-ground fuel oil tank in the basement that appears to be out of use (furnace was converted to gas). To keep policy KB-HO-0551903 in force past the December 1, 2026 renewal, we'll need either proof of removal by a TSSA-registered contractor or a current TSSA inspection certificate for the tank, by November 13, 2026. Without one of those we'll have to issue a notice of non-renewal.</div><div><br></div><div>Let me know if the insured has questions.</div><div><br></div><div>Greg Sutherland</div><div>Senior Underwriter, Personal Lines</div><div>Kestrel Bay Insurance</div><div>416-555-0187</div><div><br></div><div>On Tue, Oct 6, 2026 at 2:14 PM Sandra Pellegrino &lt;callanderreid.service@gmail.com&gt; wrote:</div><div>&gt; Hi Greg,</div><div>&gt;</div><div>&gt; Just following up on the inspection for Heather Gill, 14 Ambergate Cres, Brampton. Any word on the report? Client is asking.</div><div>&gt;</div><div>&gt; Thanks,</div><div>&gt; Sandra Pellegrino, CSR</div><div>&gt; Callander &amp; Reid Insurance Brokers</div><div>&gt;</div><div>&gt; On Mon, Sep 21, 2026 at 9:30 AM Greg Sutherland &lt;gsutherland@kestrelbay.example&gt; wrote:</div><div>&gt;&gt; Hi Sandra, inspection is booked for Sept 28. Will send the report when it's in.</div></div><br></div></div></body></html>",
+    "text": "Hi team, see below. Thx\nGreg\n---------- Forwarded message ---------From: Greg Sutherland <gsutherland@kestrelbay.example>Date: Wed, Oct 14, 2026 at 4:51 PMSubject: RE: RE: 14 Ambergate Cres - inspection reportTo: Sandra Pellegrino <callanderreid.service@gmail.com>\nHi Sandra,\nSorry for the delay, we've been buried since the hailstorm. Report is attached. Overall the property is in decent shape. The inspector flagged loose eavestroughs on the north side and a missing GFCI outlet in the kitchen, both are recommendations only, no action needed for us.\nThe one item we do need: the inspector noted an above-ground fuel oil tank in the basement that appears to be out of use (furnace was converted to gas). To keep policy KB-HO-0551903 in force past the December 1, 2026 renewal, we'll need either proof of removal by a TSSA-registered contractor or a current TSSA inspection certificate for the tank, by November 13, 2026. Without one of those we'll have to issue a notice of non-renewal.\nLet me know if the insured has questions.\nGreg SutherlandSenior Underwriter, Personal LinesKestrel Bay Insurance416-555-0187\nOn Tue, Oct 6, 2026 at 2:14 PM Sandra Pellegrino <callanderreid.service@gmail.com> wrote:> Hi Greg,>> Just following up on the inspection for Heather Gill, 14 Ambergate Cres, Brampton. Any word on the report? Client is asking.>> Thanks,> Sandra Pellegrino, CSR> Callander & Reid Insurance Brokers>> On Mon, Sep 21, 2026 at 9:30 AM Greg Sutherland <gsutherland@kestrelbay.example> wrote:>> Hi Sandra, inspection is booked for Sept 28. Will send the report when it's in.\n",
+    "textAsHtml": "<p>Hi team, see below. Thx<br/>Greg<br/>---------- Forwarded message ---------From: Greg Sutherland &lt;gsutherland@kestrelbay.example&gt;Date: Wed, Oct 14, 2026 at 4:51 PMSubject: RE: RE: 14 Ambergate Cres - inspection reportTo: Sandra Pellegrino &lt;<a href=\"mailto:callanderreid.service@gmail.com\">callanderreid.service@gmail.com</a>&gt;<br/>Hi Sandra,<br/>Sorry for the delay, we&apos;ve been buried since the hailstorm. Report is attached. Overall the property is in decent shape. The inspector flagged loose eavestroughs on the north side and a missing GFCI outlet in the kitchen, both are recommendations only, no action needed for us.<br/>The one item we do need: the inspector noted an above-ground fuel oil tank in the basement that appears to be out of use (furnace was converted to gas). To keep policy KB-HO-0551903 in force past the December 1, 2026 renewal, we&apos;ll need either proof of removal by a TSSA-registered contractor or a current TSSA inspection certificate for the tank, by November 13, 2026. Without one of those we&apos;ll have to issue a notice of non-renewal.<br/>Let me know if the insured has questions.<br/>Greg SutherlandSenior Underwriter, Personal LinesKestrel Bay Insurance416-555-0187<br/>On Tue, Oct 6, 2026 at 2:14 PM Sandra Pellegrino &lt;<a href=\"mailto:callanderreid.service@gmail.com\">callanderreid.service@gmail.com</a>&gt; wrote:&gt; Hi Greg,&gt;&gt; Just following up on the inspection for Heather Gill, 14 Ambergate Cres, Brampton. Any word on the report? Client is asking.&gt;&gt; Thanks,&gt; Sandra Pellegrino, CSR&gt; Callander &amp; Reid Insurance Brokers&gt;&gt; On Mon, Sep 21, 2026 at 9:30 AM Greg Sutherland &lt;gsutherland@kestrelbay.example&gt; wrote:&gt;&gt; Hi Sandra, inspection is booked for Sept 28. Will send the report when it&apos;s in.</p>",
+    "subject": "FW: RE: RE: 14 Ambergate Cres - inspection report",
+    "references": "<372954231.505990.1792110403116.ref@mail.yahoo.com>",
+    "date": "2026-10-16T00:26:43.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-gsutherland@yahoo.com",
+          "name": "Greg Sutherland"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Greg Sutherland</span> &lt;<a href=\"mailto:crdemopersonas-gsutherland@yahoo.com\" class=\"mp_address_email\">crdemopersonas-gsutherland@yahoo.com</a>&gt;</span>",
+      "text": "\"Greg Sutherland\" <crdemopersonas-gsutherland@yahoo.com>"
+    },
+    "messageId": "<372954231.505990.1792110403116@mail.yahoo.com>"
+  },
+  {
+    "id": "1a1421a0e316a492",
+    "threadId": "1a1421a0e316a492",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8868,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.bf2.yahoo.com with HTTP; Fri, 16 Oct 2026 00:26:06 +0000",
+      "x-received": "X-Received: by 2002:a05:6214:459e:b0:91b:9330:2703 with SMTP id 6a1803df08f44-91b93302edcmr196045346d6.1.1792110366554;\r\n        Thu, 15 Oct 2026 17:26:06 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792110366; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=Sffw5p+AN8wvuB1b35hkObQ1VOIM6RuslU6HmD/3u9dEuzmagIIgSajVDhwwGKC0kH\r\n         N+PsWCzvGZAQGUJjXO2XpO9elmbK2o2FdcjXFF0UPf9J9bGmQo52zL80q1pXAml9oX+p\r\n         gJYQQCXm1WKS2xtYZicXJYlqrEVPP6WDtY+6z8V5kzGjofDZgdhy2+8TbExIyleuLjY+\r\n         mwL/Jpsy1Hb5PgjVp5OkSbL6tHOlsMUr6VXs48k+td7f21VGQ2JPGLZkLIh1nTI3c6bD\r\n         f8gO/8Hpo+b5lVqcY9ipbsbd3LYwZTyzDNcivuxBHMTsqYXAoiAYFFL28QNwTvQrNSd9\r\n         Qy8w==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=bd2AUsVrn/SO9Xl3hyMB/BqlHyCDhsIY8hDVEC8s/oc=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=bpFKU5bf+Qsln7iHS5K64qwd601MFbLpwwfWOuP3H7GDTtZzFlWa9rKWn6YAY59cpr\r\n         Z2zGsfbkIuO2qWH4mLe9+6dxQ5wK2PUdvcN1zn1oyqdM2WN7gYURCuHG90yDUl24Rs67\r\n         fsPq8tbYdrMFtRnkUbWN/8g2K35/nZy+P5o5JRR0VexE4YxJqY1Mw4TpDmMVH7iXKmVT\r\n         dyl4puoBq19uh6N2ANvjvXVL2AyWN7XenPZzO6wJh2QJ/91AeJnatWwv/ycGLeS4EBfR\r\n         7Jgf8llLuwNm0AFVOZXbVZS/0qJaQROftDoeKVkmYSDu7lZ73kukHIo/q60DS9pr9cX+\r\n         KcKw==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=rD2WSwir;\r\n       spf=pass (google.com: domain of crdemopersonas-hgill@yahoo.com designates 74.6.133.124 as permitted sender) smtp.mailfrom=crdemopersonas-hgill@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-hgill@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-hgill@yahoo.com designates 74.6.133.124 as permitted sender) client-ip=74.6.133.124;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=rD2WSwir;\r\n       spf=pass (google.com: domain of crdemopersonas-hgill@yahoo.com designates 74.6.133.124 as permitted sender) smtp.mailfrom=crdemopersonas-hgill@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110366; bh=bd2AUsVrn/SO9Xl3hyMB/BqlHyCDhsIY8hDVEC8s/oc=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=rD2WSwirTKOhBk/J0xZdY34SGQ6VVhyBPG4reIYtMuI/TO+fd3V2PgZ9GI+7mRT9D9oVNwZZr1uKsw0Owsu/2qOF2rRsrjDwYMKNaEBLiCsNjsgp/07VmrH2z6Qn+NxbTcySOvwQiCjgwf8On0mh18ZGC1I2h19hgQMs9JSwXuk9Yg6GjBIrYxHZU+19TpqvFWfInFZiUoAuDycE9oHOaLsSVr1qIJJczNa5VpbBm6MHZTbeiMfgG8PVaDkQ14cFl4sIvaFVjkkxnwjs6CLnE6yknHu3VJ3j1PaSs071KEDLW1qLxMdw4dq+WfAbqn4gmmk6PN/2wWLdRqg7kSQsJA==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792110366; bh=3BVzWk+bdh14SXPyCSc/4KuTttQnsVfRnBHt+eeN51P=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=iYOS67l2dTLeTL0prqYbNbKXfCAAnpLhZ5QDQcjzqWhRCqUw4mTNVg50fLBlYiNOul/n+p4suakCe1xg0VUz39VqRvQDHLbXQDn5jH8Tth38R7iCFtRuo0GQwGB9S0pDmjAzpA3mqCUUj5eP7nGbh/lt4nnVb2dJoePZdoOW1egdOvuCt0RFU8RCLkFk6XLfdsQdU88YVyL5TPYDOCU4YWwSaACR+WFZxo/B+oY84VwKGF4mYeNrf/4jo7xCLCDY+9cH8pyjjD10skbcfpSM0fRmrn8GrmVWEktzGxizm0ZXyDGnK53hD+u0Je794XqOXRiHXfK129jpI1w97R/7vw==",
+      "x-ymail-osg": "X-YMail-OSG: 1TWwrJIVM1lFIcEq5VTdJGxS_2nMju27T7Qg.mgvIROW_HL7.A2rR_C7v5JwWOE\r\n 1V3AnZvdHroSJ7RoDWyFeBtLdX3Gh_gfqcLe2yr9AA3VD1qfl84I5hIh4FlCDPQcGsFqzAr3DNKL\r\n I3OnwvZCE6DJVn1ymn0YQ60.swLMrVgLMEwLKni_4Rhaz7cltm2aX991nvooLH8Rn7C6S9pRT_Xk\r\n UuBrzhEEEV4J0jKLKzIJXpCJ24awXrfiyUQEB8W8hx1AFvVmRc09TRlm9.VPfcVwoh_i.nU7kysF\r\n U_u9QwzvoR4oUEiAmAYex8SHCDHL68hz6_ttSkq5JTGPyT8TEUgroQQW_RlyeHXKP9M8DzPCCTMJ\r\n yA9xkYqYol7N2Ft_QgsdB0HDSduBQrfQ7o_cBKw7GYOB_xJ2MEh7r2MTLXI_4UC9UbPICsnlmVXU\r\n 3oDtqhseaHs6dOiUDasd6vwjFp6GWNBrPOmW1esKlOEJoT2ffgUudjmQUkcA.2Zanh4Qetumzpvo\r\n JszUcbFAt9M1Qrp6ZCU8SB6NMO4rm9IpbfTt3bg.wa1nxnsiT0mb8KlraMkU3y3UA0YXsx.Abmau\r\n r1UAVg_9QAXsxqTGdVJEXW_Ykwif3.KzNTsLeGi7jSp2DtSjXuHlIWluOYZR12nEmx3pJHEVDtAz\r\n j_uhZt2NDIC5MJ5TBa2sTzTveCyOq7AByevwQy5FoYOhZvr7RK5TZB4FdN18hs6ucRKIxLTVRPmY\r\n QOssW2NyR6vVx44ms53pRejVQo4WW.XP7oNvoBN8T3AUKIbZUyYmDo_U2AcmJDZale6sp4ay1SZ4\r\n 0uJCgFuvbrQT0emEluYONwqZ.JwDJAX0EeZSxpNzTimfYeAFTylpWhFAEJxgTvzw47J5hSXHK9Tk\r\n A3.W0nHpmtPWbZD6tz4tRUXeZMUlQPWfFKa7XrLJ8aE6ICV7_0YJGfpfkK1JzMTf6j2__nKJ2lLD\r\n 7hwgmIx_f5DibGN2N9ZbTNItfCBau5SDmd9u6o3E3oYEuW8MpFnsjd8aQtfJWj6r5AlNj.9Z9rqP\r\n zxx5sRASjBD54jrLO59gGrbiLJlPzjbdvnMVIap7cdFrNapktoodKjguu5gKp96QudbZhuN4MNbP\r\n 5gjwtOsdsciS4PYEUXmu3d8nW35wp9IJm60i81XEjvsZ4bNs7fnjAiuOvCWjSwtvTuVt1K4aNw0D\r\n fvBX0WA3Yq5OcWRTSKfk42Vr8oXv_8Ihzg_DRV8A_Pf5Blx87a5QNtRgmxNolyd3FUUnB2F9RBG0\r\n K9Rap4y8cO7iUrtIw8A0MyWvLrHo8W6PRy0C5tSDlOdoLaKVPKUFpp3R5baqwzQbX8aFy1YxlMG_\r\n hIDGWB3dXhY2mLrBKHBFVwdDEMT1BR.zm1lqgYGu_9_4ofMCboUMCVsHbX6mKQr0VJRCNMDt9ciN\r\n w_.f2tfBXE4c91PMYxFiOr_2AAZPkTQTPVxt_NoKsLZscYWuODU5QdpFLLxeIDyLTIRdpFPQF2YG\r\n BrLA4Xiv8tes882MfK9NReZXnGWJnrFKovj5ziNvG97QxNpLOLzYX254y_UUbNfsAVjviocb_iqQ\r\n bTzdunAuuZkpPETgxQH_8oXpfr9j1F_Rrlt5WtdclxBnz6KfXGiMHTABP9ywpG6JCs8acjC5qfn8\r\n Jji2bXY6ONpflM4sOlXjp.l82gOV1RdFDzwSXen.B869ExNlDUlb0wLK3HJtWeWgvasTvLgV.txm\r\n 7yOGx5gVsHPIRZNMvPuu8mTGGRXfstB04IsYDNBQGc36cTThbGDrYQo7u2NEzd3JuatZrRoUr6Dj\r\n 5k_h0DcFt1HUshznEAtUKP5QtdjAO_UpaaLu467sriSo1p7lEu76yQ5VLIzU0HxYQRtZl8ObR9vd\r\n 8gDxIwty_JStj8qrHhJog75B_A3JAp5BhQzOG9pDtTDFXxi47L1glbKCcVGsXdkLz1ZEf3ZvNnPQ\r\n 9ngGi7hY3qY3usWpznEAjGiJYb3nQW0DUG8mymwo6ATfbE1Y.otxA4BLQtHfn720h25JUbz2ooBt\r\n Zs5sJTLGz2WUON6RQhIkEJnPjj0PWiWAqB7oqkrmDH0.p7V_bx2d6xwr7QE7vTD4EA9gAcRIfYw6\r\n 7JN3UQ3PpSU48QZ7l0ToNKs.4m9qdMlvE8mUJspcV4MBOdeDzKp8v3dUhvP6K0vEZu9grq.Z4CKi\r\n G6DjT_PN8_4ioG0Q2elWt7CsKRWNAl54pO71GYT6sV0kwNyc-",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-hgill@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: 97265300-6c43-462b-8c51-907a08f77019",
+      "date": "Date: Fri, 16 Oct 2026 00:26:01 +0000 (UTC)",
+      "from": "From: Heather Gill <crdemopersonas-hgill@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <508623442.507771.1792110361780@mail.yahoo.com>",
+      "references": "References: <508623442.507771.1792110361780.ref@mail.yahoo.com>",
+      "subject": "Subject: accident yesterday??",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_507770_1113877395.1792110361779\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1845"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>hi sorry i dont know who to email about this. somebody rear ended me yesterday morning on the 401 eastbound near dixie, stop and go traffic and he just didnt stop. nobody hurt thank god but the back of the tucson is pushed in and the hatch wont close</div><div><br></div><div>police told us to go to the collision reporting centre which we did. other guy is Brian Leclerc, his insurance is something with Lake in the name, i have a pic of his pink slip</div><div><br></div><div>do i call you guys or the insurance company directly?? and do i get a rental. i need the car for work</div><div><br></div><div>this was wed oct 14 around 7:45am</div><div><br></div><div dir=\"ltr\" data-setdir=\"false\">Heather</div><div><br></div><div>Sent from my iPhone</div></div><br></div></div></body></html>",
+    "text": "hi sorry i dont know who to email about this. somebody rear ended me yesterday morning on the 401 eastbound near dixie, stop and go traffic and he just didnt stop. nobody hurt thank god but the back of the tucson is pushed in and the hatch wont close\npolice told us to go to the collision reporting centre which we did. other guy is Brian Leclerc, his insurance is something with Lake in the name, i have a pic of his pink slip\ndo i call you guys or the insurance company directly?? and do i get a rental. i need the car for work\nthis was wed oct 14 around 7:45am\nHeather\nSent from my iPhone\n",
+    "textAsHtml": "<p>hi sorry i dont know who to email about this. somebody rear ended me yesterday morning on the 401 eastbound near dixie, stop and go traffic and he just didnt stop. nobody hurt thank god but the back of the tucson is pushed in and the hatch wont close<br/>police told us to go to the collision reporting centre which we did. other guy is Brian Leclerc, his insurance is something with Lake in the name, i have a pic of his pink slip<br/>do i call you guys or the insurance company directly?? and do i get a rental. i need the car for work<br/>this was wed oct 14 around 7:45am<br/>Heather<br/>Sent from my iPhone</p>",
+    "subject": "accident yesterday??",
+    "references": "<508623442.507771.1792110361780.ref@mail.yahoo.com>",
+    "date": "2026-10-16T00:26:01.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-hgill@yahoo.com",
+          "name": "Heather Gill"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Heather Gill</span> &lt;<a href=\"mailto:crdemopersonas-hgill@yahoo.com\" class=\"mp_address_email\">crdemopersonas-hgill@yahoo.com</a>&gt;</span>",
+      "text": "\"Heather Gill\" <crdemopersonas-hgill@yahoo.com>"
+    },
+    "messageId": "<508623442.507771.1792110361780@mail.yahoo.com>"
+  },
+  {
+    "id": "1a142016abbea2ee",
+    "threadId": "1a142016abbea2ee",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 8752,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "received": "Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.bf2.yahoo.com with HTTP; Thu, 15 Oct 2026 23:59:10 +0000",
+      "x-received": "X-Received: by 2002:ad4:5c83:0:b0:914:56d6:d035 with SMTP id 6a1803df08f44-91b557bb543mr389029596d6.38.1792108751541;\r\n        Thu, 15 Oct 2026 16:59:11 -0700 (PDT)",
+      "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1792108751; cv=none;\r\n        d=google.com; s=arc-20260327;\r\n        b=ndDODsbb1qzSVkyYFA5Hx8hnqIqiEOWjWpOTtuu45zagpiPfhYivF/MaW2mXelAU20\r\n         9pSL4FvY0LK31n/XSRYl+DsQA6ZyPoCmA43Xn5wMMaWaMsD16L14noBL5CJzKLGMhVSp\r\n         p+7m6hPDMnNTbPbjz1FzOoau201PgQXE12LRC63WXgZt7T0D9r3+yD+Gqxrc4yjU/nNH\r\n         Hpv1KeqsdkgTdCucaFvjI683qDTJa60PY4mH/d9BD0ECo3bL5pgfudYKhxvc9km0h9MB\r\n         iNRREJcXLB0BbMGxHUnsYmXS+IWXYui6l6G4kw7nkYJos4blGzsLLvBwDdfulWzzdzYh\r\n         1EFQ==",
+      "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;\r\n        h=mime-version:subject:references:message-id:to:from:date\r\n         :dkim-signature;\r\n        bh=RRA8/10MqU4ha9wl1B+9GHI5v7EJFWWLooOpa1PRQI8=;\r\n        fh=sPAyZgVU6mf8ei+QxXgtdnaquipyNTh1FWCkdI1ddlI=;\r\n        b=ctIyH4VHYVbcHOUn74ympv6lNsI0ks3PzBFaBr8QufoOXekkt559zQdmrj3KvGKS9h\r\n         hyVAUOcK8If5v/1nfdJmSpUnPIg8+w0BhcyVWU4zIUXTOc88ED/VGhgsQzQsqa17zne1\r\n         Q0Zfs1qhDctSFJGmXKaOUdeJXcXTIByvoPyD6b4c1/nBHqlVfFXY3Bv6O46Rt1QNQOQP\r\n         p3abZOM9xCDusxsCUGyP5JCpm0Rd9TQgPl7YMr+QkuIOJSn7vgpFnJjhvjmEEgFLoI35\r\n         8rpwAAonynCiMCThHSowRJAizJdvZ0MleldQTqzDyiAMwgD5y++6UNTVvVvrdvy97m7y\r\n         wlug==;\r\n        dara=google.com",
+      "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ZKvlPaUU;\r\n       spf=pass (google.com: domain of crdemopersonas-dokafor@yahoo.com designates 74.6.130.42 as permitted sender) smtp.mailfrom=crdemopersonas-dokafor@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "return-path": "Return-Path: <crdemopersonas-dokafor@yahoo.com>",
+      "received-spf": "Received-SPF: pass (google.com: domain of crdemopersonas-dokafor@yahoo.com designates 74.6.130.42 as permitted sender) client-ip=74.6.130.42;",
+      "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ZKvlPaUU;\r\n       spf=pass (google.com: domain of crdemopersonas-dokafor@yahoo.com designates 74.6.130.42 as permitted sender) smtp.mailfrom=crdemopersonas-dokafor@yahoo.com;\r\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com",
+      "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792108750; bh=RRA8/10MqU4ha9wl1B+9GHI5v7EJFWWLooOpa1PRQI8=; h=Date:From:To:References:Subject:From:Subject:Reply-To; b=ZKvlPaUUWAAIE/gtShHcEH46dpAjAwgoo335K8IqtTNY6S/qKtr2RJ3rcum0+XC6jBnTKZ55JbXrQyk02qkjmecVxIvYq21+16dKPrwObq2hIjMdY15oeAZfqTrEv38FbnxXXBe6mkdbS4Cki3Cj+v8gnKELmrzRP7YLeQxxn4LbuqUJnzLteeDD5Aj5sD669xAhqC9QABiQouyjmZRWUiGRAvLnh4rSBI3+UjPAycwRgsit9hKkgj20933iyA5ittuyTHVlLgMOuunBIlgCVBf5ClCIDzZ2pDdnO3nRusVQ3JewlmB7bYCFRG8v+UFr5awpxmZyUoolEEuK8qs7hQ==",
+      "x-sonic-dkim-sign": "X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1792108750; bh=CWKIsfySDuz4LMmXrk6agzl+MLDQaizurMPKEHU56aK=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=J9nr4iMUWwwk3nxbMWCcR/txtUHJvEdqzpMXWgKeAf3KTQWRjpPjumc4S9H3h4RqAB89KeBvNrc+2j7G/ONuUz7KCUgLoEl2oUWJcveRpPwayXAYYTH33Uxi7rAPbawk2pBlfGlTa7WnyoOcObBVKINiUcumjkjNdIRq8mERtleN7tsJg4p5us2DxXkxmJuojObGpswjQs8VAqaBArtFEBZV0COm1AGnUL9wTi/H7AojFc6+AOUzzBHU+qpg0/RFGrcq4spbmgTNIlZk0dZdaMRHJ1ognF9RL66j2RLuMMaMwneftO/qBKAzpPtBudZCACfMS3+e8IS4gwkjAISpaQ==",
+      "x-ymail-osg": "X-YMail-OSG: UwdZ2FgVM1moMy9MofR_Wdy3XTOKIDDPhnwqrdVUlBBtaRCs1YBIwqwe9.U1YTO\r\n zy9tMB.sqWt3GrmSRVlPKqTXBlACwIC76EfC9P0V5k5F5RmShHPziBo35gJ.8ChQpzI949Klf7QE\r\n 7t77Ud1SVRBR0C.0QvmS6tbdHWCTUygQZgOHTSWIkrprHEhl2eydh0J0QEHlJYskV3giEcg3_nTX\r\n cvygjtTQi5RjUQTQqVKb.mOEh8Xd9oEDZKT2q56t59A2KSDf1LUu8rg5XB9r5qqCwoVqNPaXj_7_\r\n PjWgD60LDl98rnyf.GAudAASMAje0AJNd7X.JdOSh81LTJxCFNv07r3uDKTIOqissHdqbO1u9leO\r\n LOYzpFEJ77QT37CYQZJteuYcQ5CnHIjN3D_HzR4uX211FgsarauBiRwwnW9kr4MyIrOZkmMLhBGH\r\n E0TPZAE0i.zIGAm4qlRF6j0DHN2ynUr5LTvNp3oxqf_Hs3FZ6MI2I8ntRd2q7ai4kwyI_so_Av2r\r\n qx_GmIazAfNyTlSwMea0t6Diw1Jzz4.VRxTYdYwkTsueZeO_11wKmReafTERanY.jGIh5.76RdjD\r\n xD3K0EU4udVCxSbU3pF5LBHLxgW.q72hal2QCJZitSdxY0Y.Dq7gSCGDQjP.orb37FoTTVHxWyf7\r\n SOFgPEWfxjnJkkpz64ndi6B_Z3nnqaJSiA8uHTx6w8kIJQqeZNB1Su29T2SWtb72rIdcPjrcnlwg\r\n m3nQPw4IOOVdvpmPamtUMP0OQ.7hu20l11NhsBW0OUkS45OVh2wM9AggDbeqUB2bPRBn8YMwLAAm\r\n C7etXRiWo53QWPmnIJCNgLcVAW60KL9Bhh_lNn9bFJVWeyoovFWXUruSjNQtU05ss0A6UL1WgjvZ\r\n 5oB_gaCtrAEW8KPxsv3PCkdlzPcDYh100Bw3UzvM78Kl3i7nY63oQxN85TaCuPLsiIqkcSUbCiZo\r\n 1_29lOZNGxzWiQ.qwv.Wb12Gzf1ZhyLlcoNWMVjLyJ3abdQOjep3WGPiH6wRa3we5fklHed7Kuwd\r\n c1V9qrwwD_n4qdS_q8aVyn3yHeoFvzy.7Z8CKD4FKcZPYgAySqj4QNBxaiwgMK8yi7RG0SMJPcUo\r\n 6.Dz8EDNWiHXmyggwSXLAEz4DICacyyxDoMaVbLppHkSd32AYhrz.LcbJueWamIRg930WMH3o7f4\r\n Y9viVJq5uM0a4kJyuIyo01b5CwgE_vU85YdyOVNuTq4cZtOs0XoECNK7FO.Sb3rg51v.sbyq9cUR\r\n QlPRjsHOQUYu7hnJmUWq41j1mlJ.2Ng6dp3tsaGSyKquWZKMXFaxob9zPuJcI5yUzJzho9HB68T.\r\n PgJ04PY49vO4mBV3MbUmkYr.sA3k6RGd8W2Q9CD6WbkaYYLCreyDsT7sHhaTjQovPk1D3pdUoTtl\r\n MxFm35UQtBpjsllxGUS.JPsjCvv..OgTwPSEdyiL1tbif._mJsxz14bENLTstiTWio99B1h5wFzM\r\n A3QmU4AA_IEv1afvr5NN0OWXo1VHHGVGqv.yFzSM_JNCgWmwQgRqLwnG.8_onWmowIpUut_26f6W\r\n gNnwkBKy4PqKKu75NzWybs01b5FB6n2Rxr9KDpxV98_tMhV1U5SW3bCuKj2cE403nO.ss9SVECDG\r\n oQHzUWcbnDC37RVc3l8N95M8BjHHpucA9CaEbajmP4z6a9Q8uadwTE22vdElnMVDxFgczrhQdaFM\r\n Fi2qJINuHY7VH5gsPI5EXILozWEBmOQXLoyPJC_umZHyRHupOntME8ct5izEsEl3w0euTE6PzQY3\r\n MpC_gnqtkI4to2lSE7AxJyC.g0_gCkUw3.0xoadesGoxQaM8M9vcaGZWU1Be68wHboCK.P7TYHvk\r\n mQMQVacEoHFPUjjUdGj6jM2xwBttPo3rWRO.waA7oLR16Ujza5xxYygcQc3BLK8DJ4m8ZQbB1Cl6\r\n m.O0hRP6gb7uB6FR5DEyl2mASZ.us5LA_mxsd.tIy_LKQfRTt1utK69aErV6ABZTNPaitNpj.o2c\r\n McfkkwOf7OX9Vml14IjVkTj2yzYGiMiLHHPII3y5eaAF1XAERZM5y0FXudv9kryKp6dU6Lp7fe4h\r\n UPS_hqAClEqHM1XsKuvEU7Xvzm9rjfukfb8EgEh1I94BYLLs9jhQb0lnotF9U9NV57tRGbHKjKZy\r\n sUa3VJInjrlEOVoFEx.2gxOAZK7iGAl8MCd_eHXI-",
+      "x-sonic-mf": "X-Sonic-MF: <crdemopersonas-dokafor@yahoo.com>",
+      "x-sonic-id": "X-Sonic-ID: 494545c1-8302-49c9-aad8-e91a3538b871",
+      "date": "Date: Thu, 15 Oct 2026 23:59:08 +0000 (UTC)",
+      "from": "From: Daniel Okafor <crdemopersonas-dokafor@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <1621307907.370892.1792108748077@mail.yahoo.com>",
+      "references": "References: <1621307907.370892.1792108748077.ref@mail.yahoo.com>",
+      "subject": "Subject: RE: RE: Your Kestrel Bay renewal - KB-AU-0098213",
+      "mime-version": "MIME-Version: 1.0",
+      "content-type": "Content-Type: multipart/alternative; \r\n\tboundary=\"----=_Part_370891_1766398995.1792108748076\"",
+      "x-mailer": "X-Mailer: WebService/1.1.26740 YMailNovation",
+      "content-length": "Content-Length: 1700"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Oh also forgot to mention, I'm moving December 1. Bought a house in Hamilton, so I'm selling the condo. Does that change the car quote? And I guess I need home insurance for the new place, can you set that up too?</div><div><br></div><div>Daniel</div><div><br></div><div>On Thu, Oct 15, 2026 at 8:40 AM Daniel Okafor &lt;d.okafor@example.com&gt; wrote:</div><div>&gt; Hi,</div><div>&gt;</div><div>&gt; I got the renewal package for my car insurance and the premium went from $2,140 to $2,610. That's like 22% more and I haven't had any tickets or claims. Is this right? Can you shop it around before Nov 15?</div><div>&gt;</div><div>&gt; Thanks</div><div>&gt; Daniel</div></div><br></div></div></body></html>",
+    "text": "Oh also forgot to mention, I'm moving December 1. Bought a house in Hamilton, so I'm selling the condo. Does that change the car quote? And I guess I need home insurance for the new place, can you set that up too?\nDaniel\nOn Thu, Oct 15, 2026 at 8:40 AM Daniel Okafor <d.okafor@example.com> wrote:> Hi,>> I got the renewal package for my car insurance and the premium went from $2,140 to $2,610. That's like 22% more and I haven't had any tickets or claims. Is this right? Can you shop it around before Nov 15?>> Thanks> Daniel\n",
+    "textAsHtml": "<p>Oh also forgot to mention, I&apos;m moving December 1. Bought a house in Hamilton, so I&apos;m selling the condo. Does that change the car quote? And I guess I need home insurance for the new place, can you set that up too?<br/>Daniel<br/>On Thu, Oct 15, 2026 at 8:40 AM Daniel Okafor &lt;<a href=\"mailto:d.okafor@example.com\">d.okafor@example.com</a>&gt; wrote:&gt; Hi,&gt;&gt; I got the renewal package for my car insurance and the premium went from $2,140 to $2,610. That&apos;s like 22% more and I haven&apos;t had any tickets or claims. Is this right? Can you shop it around before Nov 15?&gt;&gt; Thanks&gt; Daniel</p>",
+    "subject": "RE: RE: Your Kestrel Bay renewal - KB-AU-0098213",
+    "references": "<1621307907.370892.1792108748077.ref@mail.yahoo.com>",
+    "date": "2026-10-15T23:59:08.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-dokafor@yahoo.com",
+          "name": "Daniel Okafor"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Daniel Okafor</span> &lt;<a href=\"mailto:crdemopersonas-dokafor@yahoo.com\" class=\"mp_address_email\">crdemopersonas-dokafor@yahoo.com</a>&gt;</span>",
+      "text": "\"Daniel Okafor\" <crdemopersonas-dokafor@yahoo.com>"
+    },
+    "messageId": "<1621307907.370892.1792108748077@mail.yahoo.com>"
+  },
+  {
+    "id": "pinned-e04",
+    "threadId": "pinned-e04",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 2476,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "x-test-data": "X-Test-Data: E04 pinned test item written by Claude, not received by email",
+      "date": "Date: Thu, 15 Oct 2026 12:40:00 +0000 (UTC)",
+      "from": "From: Daniel Okafor <crdemopersonas-dokafor@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <pinned-e04@callanderreid.test>",
+      "subject": "Subject: RE: Your Kestrel Bay renewal - KB-AU-0098213",
+      "mime-version": "MIME-Version: 1.0"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi,</div><div><br></div><div>I got the renewal package for my car insurance and the premium went from $2,140 to $2,610. That's like 22% more and I haven't had any tickets or claims. Is this right? Can you shop it around before Nov 15?</div><div><br></div><div>Thanks</div><div>Daniel</div><div><br></div><div>On Fri, Oct 9, 2026 at 10:02 AM Callander &amp; Reid Insurance Brokers &lt;callanderreid.service@gmail.com&gt; wrote:</div><div>&gt; Dear Daniel,</div><div>&gt;</div><div>&gt; Your renewal documents for Kestrel Bay Insurance policy KB-AU-0098213, effective November 15, 2026, are attached. Please review them and let us know if anything has changed with your vehicle, drivers, or address.</div><div>&gt;</div><div>&gt; Kind regards,</div><div>&gt; Callander &amp; Reid Insurance Brokers</div></div></div></div></body></html>",
+    "text": "Hi,\nI got the renewal package for my car insurance and the premium went from $2,140 to $2,610. That's like 22% more and I haven't had any tickets or claims. Is this right? Can you shop it around before Nov 15?\nThanks\nDaniel\nOn Fri, Oct 9, 2026 at 10:02 AM Callander & Reid Insurance Brokers <callanderreid.service@gmail.com> wrote:> Dear Daniel,>> Your renewal documents for Kestrel Bay Insurance policy KB-AU-0098213, effective November 15, 2026, are attached. Please review them and let us know if anything has changed with your vehicle, drivers, or address.>> Kind regards,> Callander & Reid Insurance Brokers\n",
+    "textAsHtml": "<p>Hi,<br/>I got the renewal package for my car insurance and the premium went from $2,140 to $2,610. That&apos;s like 22% more and I haven&apos;t had any tickets or claims. Is this right? Can you shop it around before Nov 15?<br/>Thanks<br/>Daniel<br/>On Fri, Oct 9, 2026 at 10:02 AM Callander &amp; Reid Insurance Brokers &lt;callanderreid.service@gmail.com&gt; wrote:&gt; Dear Daniel,&gt;&gt; Your renewal documents for Kestrel Bay Insurance policy KB-AU-0098213, effective November 15, 2026, are attached. Please review them and let us know if anything has changed with your vehicle, drivers, or address.&gt;&gt; Kind regards,&gt; Callander &amp; Reid Insurance Brokers</p>",
+    "subject": "RE: Your Kestrel Bay renewal - KB-AU-0098213",
+    "date": "2026-10-15T12:40:00.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-dokafor@yahoo.com",
+          "name": "Daniel Okafor"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Daniel Okafor</span> &lt;<a href=\"mailto:crdemopersonas-dokafor@yahoo.com\" class=\"mp_address_email\">crdemopersonas-dokafor@yahoo.com</a>&gt;</span>",
+      "text": "\"Daniel Okafor\" <crdemopersonas-dokafor@yahoo.com>"
+    },
+    "messageId": "<pinned-e04@callanderreid.test>"
+  },
+  {
+    "id": "pinned-e10",
+    "threadId": "pinned-e10",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 2429,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "x-test-data": "X-Test-Data: E10 pinned test item written by Claude, not received by email",
+      "date": "Date: Thu, 15 Oct 2026 14:12:00 +0000 (UTC)",
+      "from": "From: Dana Whitfield <crdemopersonas-dwhitfield@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <pinned-e10@callanderreid.test>",
+      "subject": "Subject: BVA-2290471 Tremblay - info required",
+      "mime-version": "MIME-Version: 1.0"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hi Sandra,</div><div><br></div><div>As part of our annual review of policy BVA-2290471 (insured: Louise Tremblay), please send a copy of the winter tire purchase or installation invoice by November 30, 2026. The insured currently receives the winter tire discount, and it will be removed at the next billing if we don't receive proof.</div><div><br></div><div>Also, our records show a household member at the same address, Marc Tremblay (age 19), holding an Ontario licence. Please confirm whether he operates the insured vehicle, and if so, submit a change to add him as a driver.</div><div><br></div><div>Thank you,</div><div><br></div><div>Dana Whitfield</div><div>Underwriter, Personal Auto</div><div>Birchview Assurance</div></div></div></div></body></html>",
+    "text": "Hi Sandra,\nAs part of our annual review of policy BVA-2290471 (insured: Louise Tremblay), please send a copy of the winter tire purchase or installation invoice by November 30, 2026. The insured currently receives the winter tire discount, and it will be removed at the next billing if we don't receive proof.\nAlso, our records show a household member at the same address, Marc Tremblay (age 19), holding an Ontario licence. Please confirm whether he operates the insured vehicle, and if so, submit a change to add him as a driver.\nThank you,\nDana Whitfield\nUnderwriter, Personal Auto\nBirchview Assurance\n",
+    "textAsHtml": "<p>Hi Sandra,<br/>As part of our annual review of policy BVA-2290471 (insured: Louise Tremblay), please send a copy of the winter tire purchase or installation invoice by November 30, 2026. The insured currently receives the winter tire discount, and it will be removed at the next billing if we don&apos;t receive proof.<br/>Also, our records show a household member at the same address, Marc Tremblay (age 19), holding an Ontario licence. Please confirm whether he operates the insured vehicle, and if so, submit a change to add him as a driver.<br/>Thank you,<br/>Dana Whitfield<br/>Underwriter, Personal Auto<br/>Birchview Assurance</p>",
+    "subject": "BVA-2290471 Tremblay - info required",
+    "date": "2026-10-15T14:12:00.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-dwhitfield@yahoo.com",
+          "name": "Dana Whitfield"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Dana Whitfield</span> &lt;<a href=\"mailto:crdemopersonas-dwhitfield@yahoo.com\" class=\"mp_address_email\">crdemopersonas-dwhitfield@yahoo.com</a>&gt;</span>",
+      "text": "\"Dana Whitfield\" <crdemopersonas-dwhitfield@yahoo.com>"
+    },
+    "messageId": "<pinned-e10@callanderreid.test>"
+  },
+  {
+    "id": "pinned-e12",
+    "threadId": "pinned-e12",
+    "labelIds": [
+      "UNREAD",
+      "IMPORTANT",
+      "CATEGORY_PERSONAL",
+      "INBOX"
+    ],
+    "sizeEstimate": 1543,
+    "headers": {
+      "delivered-to": "Delivered-To: callanderreid.service@gmail.com",
+      "x-test-data": "X-Test-Data: E12 pinned test item written by Claude, not received by email",
+      "date": "Date: Fri, 16 Oct 2026 15:20:00 +0000 (UTC)",
+      "from": "From: Tamsin Lee <crdemopersonas-tlee@yahoo.com>",
+      "to": "To: \"callanderreid.service@gmail.com\" <callanderreid.service@gmail.com>",
+      "message-id": "Message-ID: <pinned-e12@callanderreid.test>",
+      "subject": "Subject: New van - please add to policy",
+      "mime-version": "MIME-Version: 1.0"
+    },
+    "html": "<html><head></head><body><div class=\"yahoo-style-wrap\" style=\"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;\"><div dir=\"ltr\" data-setdir=\"false\"><div><div>Hello,</div><div><br></div><div>We've taken delivery of a new service van and need it added to our commercial auto policy, KB-CA-3318806, as of November 9, 2026.</div><div><br></div><div>2025 Ram ProMaster 2500, VIN 3C6LRVDG9SE501928</div><div><br></div><div>It will be driven by our journeyman, Owen Fraser.</div><div><br></div><div>Please send the updated pink slips, and the invoice for the change, to me directly.</div><div><br></div><div>Regards,</div><div><br></div><div>Tamsin Lee</div><div>Bookkeeper</div><div>Fraser &amp; Daughters Plumbing Inc.</div></div></div></div></body></html>",
+    "text": "Hello,\nWe've taken delivery of a new service van and need it added to our commercial auto policy, KB-CA-3318806, as of November 9, 2026.\n2025 Ram ProMaster 2500, VIN 3C6LRVDG9SE501928\nIt will be driven by our journeyman, Owen Fraser.\nPlease send the updated pink slips, and the invoice for the change, to me directly.\nRegards,\nTamsin Lee\nBookkeeper\nFraser & Daughters Plumbing Inc.\n",
+    "textAsHtml": "<p>Hello,<br/>We&apos;ve taken delivery of a new service van and need it added to our commercial auto policy, KB-CA-3318806, as of November 9, 2026.<br/>2025 Ram ProMaster 2500, VIN 3C6LRVDG9SE501928<br/>It will be driven by our journeyman, Owen Fraser.<br/>Please send the updated pink slips, and the invoice for the change, to me directly.<br/>Regards,<br/>Tamsin Lee<br/>Bookkeeper<br/>Fraser &amp; Daughters Plumbing Inc.</p>",
+    "subject": "New van - please add to policy",
+    "date": "2026-10-16T15:20:00.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "callanderreid.service@gmail.com",
+          "name": ""
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><a href=\"mailto:callanderreid.service@gmail.com\" class=\"mp_address_email\">callanderreid.service@gmail.com</a></span>",
+      "text": "callanderreid.service@gmail.com"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "crdemopersonas-tlee@yahoo.com",
+          "name": "Tamsin Lee"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Tamsin Lee</span> &lt;<a href=\"mailto:crdemopersonas-tlee@yahoo.com\" class=\"mp_address_email\">crdemopersonas-tlee@yahoo.com</a>&gt;</span>",
+      "text": "\"Tamsin Lee\" <crdemopersonas-tlee@yahoo.com>"
+    },
+    "messageId": "<pinned-e12@callanderreid.test>"
+  }
+]

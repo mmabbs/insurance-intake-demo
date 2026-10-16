@@ -110,7 +110,7 @@
       "category": "other",
       "urgency": "Normal",
       "client_name": "Mercer, Ryan & Jenna",
-      "client_name_accept": ["Jenna Mercer", "Mercer, Jenna", "Ryan & Jenna Mercer", "Ryan and Jenna Mercer"],
+      "client_name_accept": ["Jenna Mercer", "Mercer, Jenna", "Ryan Mercer", "Mercer, Ryan", "Ryan & Jenna Mercer", "Ryan and Jenna Mercer"],
       "policy_number": null,
       "cant_tell_policy": true,
       "effective_date": null,
@@ -119,7 +119,7 @@
       "bms_policy": "BVA-4471829",
       "lookup_code": "MERCRYA-01",
       "epic_code_suggested": "AUID",
-      "notes": "Not a policy change: a document request. 'Pink slip' is Ontario's name for the auto insurance card. AUID (Auto ID) is from the ACN handout (applied-epic-field-list section 02). Jenna is a named insured on the account, so her name alone is accepted."
+      "notes": "Not a policy change: a document request. 'Pink slip' is Ontario's name for the auto insurance card. AUID (Auto ID) is from the ACN handout (applied-epic-field-list section 02). Jenna is a named insured on the account, so her name alone is accepted. Ryan's name alone is accepted too, as in E02 (added 2026-10-16 after run 1 named Ryan; the key had applied the named-insured rule to Jenna only)."
     },
     {
       "id": "E08",

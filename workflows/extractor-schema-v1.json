@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "description": "Two or three plain sentences a broker can read: what the email is asking for, and why you chose this category, client, and policy. Write this first."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["policy change", "renewal question", "claim notice", "underwriter request", "other"],
+      "description": "What kind of work the email is. 'policy change': a client asks to change an existing policy, such as adding, removing, or replacing a vehicle, adding or removing a driver, or changing an address. 'renewal question': a question about an upcoming or recent renewal, such as its price, its terms, or shopping it around. 'claim notice': a client reports a loss or damage, such as an accident, a leak, or a theft. 'underwriter request': an insurance company writes to the brokerage asking for documents, information, or a change on a policy. 'other': anything else. If an email asks for more than one thing, choose the request that needs action on a policy."
+    },
+    "urgency": {
+      "type": "string",
+      "enum": ["High", "Normal", "Low"],
+      "description": "How soon the brokerage must act. 'High' for claims, and for anything that threatens the client's coverage, such as an insurer warning that a policy will be cancelled or not renewed. 'Normal' for ordinary requests. 'Low' for anything that can wait with no consequence."
+    },
+    "client_name": {
+      "type": ["string", "null"],
+      "description": "The brokerage's client the email is about, not necessarily the sender. When staff write for a company, the client is the company. When an insurer writes, the client is the insured person named in the email. Write a person as 'Last, First' and a company by its full name. null when the email doesn't say who the client is."
+    },
+    "policy_number": {
+      "type": ["string", "null"],
+      "description": "The policy number exactly as the email writes it. null when the email gives none. Never guess or make one up."
+    },
+    "cant_tell_policy": {
+      "type": "boolean",
+      "description": "true when the email gives no policy number, or gives more than one without saying which one the request is about. Otherwise false."
+    },
+    "effective_date": {
+      "type": ["string", "null"],
+      "description": "The one date the request turns on, as YYYY-MM-DD: when a change takes effect, the date of loss for a claim, the renewal date for a renewal question, or the reply deadline for an underwriter request. Work out relative dates such as 'yesterday' or 'Tuesday' from the date the email was received. null when the email gives no date."
+    },
+    "requested_change": {
+      "type": "string",
+      "description": "One or two sentences on what the client or insurer wants done, with the specifics a broker would need: vehicle, VIN, driver, address, or document."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "How sure you are of the category, client, and policy together. 'low' if any of them is a guess."
+    }
+  },
+  "required": ["reason", "category", "urgency", "client_name", "policy_number", "cant_tell_policy", "effective_date", "requested_change", "confidence"]
+}
