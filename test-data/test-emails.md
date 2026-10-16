@@ -2,9 +2,9 @@
 
 Synthetic test data. Callander & Reid, its clients, both carriers (Birchview Assurance, Kestrel Bay Insurance), and every person, address, VIN, and policy number here are made up. Email addresses use reserved test domains (`example.com`, `.example`), and phone numbers use the 555-01xx range set aside for fiction.
 
-The emails are sent from plus-address aliases on one sender Gmail account, so the real From address differs from the persona address shown here. The display name matches. The answer key doesn't score the From address.
+The emails are sent from Yahoo disposable addresses on one free account, such as `crdemopersonas-hgill@yahoo.com`, each carrying the persona's name. Free accounts allow 3 disposable addresses at a time, so they're swapped between batches. The real From address differs from the persona address shown here. The display name matches. The answer key doesn't score the From address.
 
-Twelve emails, numbered in send order. Each subject is unique, because the scoring script matches emails to `answer-key.json` by subject. Paste each subject and body exactly as written.
+Twelve emails, numbered by ID. Only the two orders below matter; the rest can go in any order. Each subject is unique, because the scoring script matches emails to `answer-key.json` by subject. Paste each subject and body exactly as written.
 
 **Order matters for two pairs:**
 
@@ -13,16 +13,16 @@ Twelve emails, numbered in send order. Each subject is unique, because the scori
 
 | # | Persona | Subject | Category |
 |---|---|---|---|
-| E01 | Harpreet Gill | accident yesterday?? | claim notice |
-| E02 | Raj Mehta | New car + question about the house | policy change |
+| E01 | Heather Gill | accident yesterday?? | claim notice |
+| E02 | Ryan Mercer | New car + question about the house | policy change |
 | E03 | Louise Tremblay | quick question | policy change |
 | E04 | Daniel Okafor | RE: Your Kestrel Bay renewal - KB-AU-0098213 | renewal question |
 | E05 | Greg Sutherland, Kestrel Bay underwriter | FW: RE: RE: 14 Ambergate Cres - inspection report | underwriter request |
 | E06 | Brenda Kowalski, Northshore Landscaping | Add new truck to fleet | policy change |
-| E07 | Priya Mehta | pink slips | other |
+| E07 | Jenna Mercer | pink slips | other |
 | E08 | "Kev" | renewal | renewal question |
 | E09 | Daniel Okafor | water coming through my ceiling | claim notice |
-| E10 | Anika Rao, Birchview underwriter | BVA-2290471 Tremblay - info required | underwriter request |
+| E10 | Dana Whitfield, Birchview underwriter | BVA-2290471 Tremblay - info required | underwriter request |
 | E11 | Daniel Okafor | RE: RE: Your Kestrel Bay renewal - KB-AU-0098213 | policy change |
 | E12 | Tamsin Lee, Fraser & Daughters Plumbing | New van - please add to policy | policy change |
 
@@ -30,7 +30,7 @@ Twelve emails, numbered in send order. Each subject is unique, because the scori
 
 ## E01
 
-**From (persona):** Harpreet Gill <harpreet.gill@example.com>
+**From (persona):** Heather Gill <heather.gill@example.com>
 
 **Subject:**
 
@@ -49,7 +49,7 @@ do i call you guys or the insurance company directly?? and do i get a rental. i 
 
 this was wed oct 14 around 7:45am
 
-Harpreet
+Heather
 
 Sent from my iPhone
 ```
@@ -58,7 +58,7 @@ Sent from my iPhone
 
 ## E02
 
-**From (persona):** Raj Mehta <raj.mehta@example.com>
+**From (persona):** Ryan Mercer <ryan.mercer@example.com>
 
 **Subject:**
 
@@ -73,12 +73,12 @@ Hi Amir,
 
 Hope you're well. Couple of things.
 
-We finally bought the RAV4. It's a 2025 Toyota RAV4 Hybrid XLE, picking it up from the dealer on Saturday October 24. VIN is 2T3B6RFV8SW012345 (I'll double check that, the salesman wrote it by hand). Please add it to our auto policy BVA-4471829. We're keeping the CR-V and the Camry for now. Priya's mom might take the Camry eventually but not yet. It's financed through the dealer if you need that.
+We finally bought the RAV4. It's a 2025 Toyota RAV4 Hybrid XLE, picking it up from the dealer on Saturday October 24. VIN is 2T3B6RFV8SW012345 (I'll double check that, the salesman wrote it by hand). Please add it to our auto policy BVA-4471829. We're keeping the CR-V and the Camry for now. Jenna's mom might take the Camry eventually but not yet. It's financed through the dealer if you need that.
 
 Also unrelated, we had the whole roof redone in September, new asphalt shingles, about $18k. Does that change anything on the house insurance? Someone at work told me we'd get a better rate.
 
 Thanks,
-Raj
+Ryan
 ```
 
 ---
@@ -178,7 +178,7 @@ Kestrel Bay Insurance
 On Tue, Oct 6, 2026 at 2:14 PM Sandra Pellegrino <callanderreid.service@gmail.com> wrote:
 > Hi Greg,
 >
-> Just following up on the inspection for Harpreet Gill, 14 Ambergate Cres, Brampton. Any word on the report? Client is asking.
+> Just following up on the inspection for Heather Gill, 14 Ambergate Cres, Brampton. Any word on the report? Client is asking.
 >
 > Thanks,
 > Sandra Pellegrino, CSR
@@ -225,7 +225,7 @@ Northshore Landscaping Ltd.
 
 ## E07
 
-**From (persona):** Priya Mehta <priya.m@example.com>
+**From (persona):** Jenna Mercer <jenna.m@example.com>
 
 **Subject:**
 
@@ -236,7 +236,7 @@ pink slips
 **Body:**
 
 ```
-Hi! It's Priya (Raj's wife). Can you email me the pink slips for both cars? I cleaned out the glovebox and I think I threw them out with the old receipts 🤦‍♀️
+Hi! It's Jenna (Ryan's wife). Can you email me the pink slips for both cars? I cleaned out the glovebox and I think I threw them out with the old receipts 🤦‍♀️
 
 Thank you!!
 ```
@@ -293,7 +293,7 @@ Unit 1407
 
 ## E10
 
-**From (persona):** Anika Rao <arao@birchview.example>
+**From (persona):** Dana Whitfield <dwhitfield@birchview.example>
 
 **Subject:**
 
@@ -312,7 +312,7 @@ Also, our records show a household member at the same address, Marc Tremblay (ag
 
 Thank you,
 
-Anika Rao
+Dana Whitfield
 Underwriter, Personal Auto
 Birchview Assurance
 ```
