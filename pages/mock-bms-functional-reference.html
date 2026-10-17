@@ -1,0 +1,564 @@
+<!doctype html>
+<!--
+  FUNCTIONAL REFERENCE: Claude-built, not developer-reviewed.
+  Mock broker management screen for the insurance intake demo.
+  Field labels follow Applied Epic (see applied-epic-field-list.md). All data is fictional.
+  Reads two n8n webhooks from the "Mock Epic data" workflow. Read-only. Known limitations: pages/README.md.
+-->
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Callander &amp; Reid BMS (Functional Reference)</title>
+<style>
+  :root {
+    --chrome: #dfe3e8;
+    --title: #24384f;
+    --title-text: #ffffff;
+    --pane-head-top: #5d7290;
+    --pane-head-bottom: #40546f;
+    --grid-head-top: #f4f5f7;
+    --grid-head-bottom: #e1e4e8;
+    --line: #c5cad1;
+    --line-soft: #e4e7eb;
+    --row-alt: #f8f9fb;
+    --row-hover: #eef4fb;
+    --sel: #cfe2f6;
+    --new: #fff1b8;
+    --text: #1d2329;
+    --muted: #5b6670;
+    --link: #1f4f8f;
+    --field-bg: #f6f7f9;
+    --banner-bg: #fff8d6;
+    --banner-line: #e3c766;
+    --error-bg: #fde8e6;
+    --error-line: #e0a19a;
+    --ok: #3c8d3f;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font: 12px/1.35 "Segoe UI", Tahoma, Arial, sans-serif;
+    color: var(--text);
+    background: var(--chrome);
+  }
+  button, input, select { font: inherit; }
+
+  .demo-banner {
+    padding: 4px 10px;
+    background: var(--banner-bg);
+    border-bottom: 1px solid var(--banner-line);
+    font-size: 11px;
+  }
+  .demo-banner strong { letter-spacing: .04em; }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 10px;
+    background: var(--title);
+    color: var(--title-text);
+  }
+  .titlebar .app { font-weight: 600; font-size: 13px; }
+  .titlebar .user { margin-left: auto; opacity: .85; }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    background: linear-gradient(#f7f8fa, #e6e9ed);
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar .sep { width: 1px; height: 18px; background: var(--line); margin: 0 4px; }
+  .btn {
+    padding: 2px 10px;
+    border: 1px solid #a9b0b8;
+    border-radius: 2px;
+    background: linear-gradient(#ffffff, #e9ecef);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .btn:hover { background: linear-gradient(#ffffff, #dde3ea); }
+  .toolbar input, .toolbar select {
+    padding: 2px 4px;
+    border: 1px solid #a9b0b8;
+    background: #fff;
+  }
+  .toolbar input { width: 200px; }
+
+  .layout { flex: 1; display: flex; min-height: 0; }
+  nav {
+    width: 150px;
+    flex-shrink: 0;
+    padding: 6px 0;
+    background: #eef0f3;
+    border-right: 1px solid var(--line);
+    overflow-y: auto;
+  }
+  nav a, nav span {
+    display: block;
+    padding: 5px 12px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav a:hover { background: var(--row-hover); }
+  nav a.active { background: var(--sel); font-weight: 600; border-left: 3px solid var(--title); padding-left: 9px; }
+  nav span { color: #9aa2ab; cursor: default; }
+  nav .group { margin: 8px 12px 2px; font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; }
+
+  main { flex: 1; min-width: 0; overflow: auto; padding: 8px; }
+
+  .pane { background: #fff; border: 1px solid var(--line); margin-bottom: 8px; }
+  .pane-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 8px;
+    background: linear-gradient(var(--pane-head-top), var(--pane-head-bottom));
+    color: #fff;
+    font-weight: 600;
+  }
+  .pane-head .count { font-weight: 400; opacity: .85; }
+  .pane-body { padding: 8px; }
+  .grid-wrap { overflow: auto; max-height: 55vh; }
+
+  table.grid { width: 100%; border-collapse: collapse; }
+  table.grid th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 3px 6px;
+    background: linear-gradient(var(--grid-head-top), var(--grid-head-bottom));
+    border: 1px solid var(--line);
+    border-top: 0;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.grid td {
+    max-width: 380px;
+    padding: 3px 6px;
+    border-right: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  table.grid tbody tr { cursor: pointer; }
+  table.grid tbody tr:nth-child(even) td { background: var(--row-alt); }
+  table.grid tbody tr:hover td { background: var(--row-hover); }
+  table.grid tbody tr.sel td { background: var(--sel); }
+  table.grid tbody tr.is-new td { animation: arrive 10s ease-out; }
+  @keyframes arrive { 0%, 60% { background: var(--new); } }
+  td.code { font-weight: 600; letter-spacing: .02em; }
+  td.pri-high, td.pri-urgent { font-weight: 600; }
+  a.acct { color: var(--link); text-decoration: none; }
+  a.acct:hover { text-decoration: underline; }
+  .empty { padding: 16px; color: var(--muted); text-align: center; }
+
+  .acct-header {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px 16px;
+  }
+  .acct-name { grid-column: 1 / -1; font-size: 16px; font-weight: 600; }
+
+  .fields {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr) 120px minmax(0, 1fr);
+    gap: 5px 8px;
+    align-items: start;
+  }
+  .fields label { padding-top: 3px; color: var(--muted); text-align: right; }
+  .fields .val {
+    min-height: 22px;
+    padding: 2px 6px;
+    background: var(--field-bg);
+    border: 1px solid #cfd4da;
+  }
+  .fields .wide { grid-column: 2 / -1; }
+  .fields .note { min-height: 70px; white-space: pre-wrap; }
+
+  .error {
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    background: var(--error-bg);
+    border: 1px solid var(--error-line);
+  }
+
+  .statusbar {
+    display: flex;
+    gap: 16px;
+    padding: 3px 10px;
+    background: #e9ecef;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .statusbar .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); margin-right: 5px; }
+  .statusbar .dot.bad { background: #c0392b; }
+  .statusbar .news { color: var(--text); font-weight: 600; }
+
+  @media (max-width: 700px) {
+    nav { display: none; }
+    .fields { grid-template-columns: 100px minmax(0, 1fr); }
+    .fields .wide { grid-column: 2; }
+    .toolbar input { width: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  <strong>FUNCTIONAL REFERENCE</strong> · A mock broker management screen built for a demo. Field labels follow Applied Epic; this is not Applied Epic. All clients and policies are fictional.
+</div>
+
+<div class="titlebar">
+  <span class="app">Callander &amp; Reid Insurance Brokers · Broker Management</span>
+  <span class="user">Sandra Pellegrino (CSR)</span>
+</div>
+
+<div class="toolbar">
+  <button class="btn" type="button" data-go="#/home">Home</button>
+  <span class="sep"></span>
+  <label for="locate">Locate</label>
+  <input id="locate" type="search" placeholder="Lookup code, name, or policy #">
+  <button class="btn" type="button" id="locate-btn">Find</button>
+  <span class="sep"></span>
+  <label for="show">Show</label>
+  <select id="show">
+    <option value="open">Open activities</option>
+    <option value="all">All activities</option>
+    <option value="closed">Closed activities</option>
+  </select>
+  <button class="btn" type="button" id="refresh-btn">Refresh</button>
+</div>
+
+<div class="layout">
+  <nav aria-label="Areas">
+    <a href="#/home" data-nav="home">Home</a>
+    <a href="#/accounts" data-nav="accounts">Accounts</a>
+    <div class="group">Not in this mock</div>
+    <span title="Not part of this functional reference">Policies</span>
+    <span title="Not part of this functional reference">Claims</span>
+    <span title="Not part of this functional reference">Marketing</span>
+    <span title="Not part of this functional reference">Procedures</span>
+    <span title="Not part of this functional reference">Reports</span>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<div class="statusbar">
+  <span id="conn"><span class="dot"></span>Connecting…</span>
+  <span id="counts"></span>
+  <span id="news" class="news"></span>
+</div>
+
+<script>
+  // Where the rows come from: the published "Mock Epic data" workflow in n8n.
+  const BASE = 'http://localhost:5678/webhook/';
+  const REFRESH_MS = 5000;
+  const NEW_HIGHLIGHT_MS = 10000;
+  const TZ = 'America/Toronto';
+
+  const state = {
+    clients: [],
+    activities: [],
+    lastJson: '',
+    seenIds: null,          // null until the first load, so existing rows aren't flagged as new
+    newIds: new Map(),      // id -> time first seen
+    selectedId: null,
+    show: 'open',
+    lastOk: null,
+    error: null,
+    news: '',
+    newsAt: 0,
+  };
+
+  const $ = (sel) => document.querySelector(sel);
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  // An empty table comes back as status 200 with an empty body, not as "[]".
+  async function getRows(path) {
+    const res = await fetch(BASE + path, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`${path} answered HTTP ${res.status}`);
+    const text = await res.text();
+    if (!text.trim()) return [];
+    const data = JSON.parse(text);
+    return Array.isArray(data) ? data : [data];
+  }
+
+  // Dates arrive in UTC; show them in Toronto time so a midnight date doesn't slip a day.
+  function fmtDate(iso, withTime) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return String(iso);
+    const date = d.toLocaleDateString('en-US', { timeZone: TZ, month: 'numeric', day: 'numeric', year: 'numeric' });
+    if (!withTime) return date;
+    const time = d.toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
+    return time === '12:00 AM' ? date : `${date} ${time}`;
+  }
+
+  const enteredOn = (a) => a.entered_on || a.createdAt;
+  const isClosed = (a) => String(a.status || '').toLowerCase().startsWith('closed');
+
+  function accounts() {
+    const byCode = new Map();
+    for (const c of state.clients) {
+      if (!byCode.has(c.lookup_code)) byCode.set(c.lookup_code, { ...c, policies: [] });
+      byCode.get(c.lookup_code).policies.push(c);
+    }
+    return [...byCode.values()];
+  }
+  const accountName = (code) => state.clients.find((c) => c.lookup_code === code)?.account_name || '';
+
+  function visibleActivities(list) {
+    const shown = list.filter((a) =>
+      state.show === 'all' ? true : state.show === 'closed' ? isClosed(a) : !isClosed(a));
+    return shown.sort((x, y) => new Date(enteredOn(y)) - new Date(enteredOn(x)));
+  }
+
+  function association(a) {
+    const parts = [a.associated_to, a.policy_number].filter(Boolean);
+    return parts.join(' · ');
+  }
+
+  function activityRows(list, cols) {
+    if (!list.length) {
+      return `<tr><td class="empty" colspan="${cols.length}">No activities to show.</td></tr>`;
+    }
+    return list.map((a) => {
+      const cls = [a.id === state.selectedId ? 'sel' : '', state.newIds.has(a.id) ? 'is-new' : ''].join(' ');
+      const cells = cols.map((col) => {
+        switch (col) {
+          case 'Code': return `<td class="code">${esc(a.code)}</td>`;
+          case 'Priority': return `<td class="pri-${esc(String(a.priority || '').toLowerCase())}">${esc(a.priority)}</td>`;
+          case 'Follow up/Start': return `<td>${esc(fmtDate(a.follow_up_start, true))}</td>`;
+          case 'Description': return `<td title="${esc(a.description)}">${esc(a.description)}</td>`;
+          case 'Account Name': return `<td><a class="acct" href="#/account/${encodeURIComponent(a.lookup_code || '')}">${esc(accountName(a.lookup_code) || a.lookup_code)}</a></td>`;
+          case 'Who/Owner': return `<td>${esc(a.who_owner)}</td>`;
+          case 'Entered On': return `<td>${esc(fmtDate(enteredOn(a), true))}</td>`;
+          case 'Entered By': return `<td>${esc(a.entered_by)}</td>`;
+          case 'Association': return `<td>${esc(association(a))}</td>`;
+          case 'Status': return `<td>${esc(a.status)}</td>`;
+          default: return '<td></td>';
+        }
+      }).join('');
+      return `<tr class="${cls}" data-activity="${esc(a.id)}">${cells}</tr>`;
+    }).join('');
+  }
+
+  function activityGrid(title, list, cols) {
+    const shown = visibleActivities(list);
+    return `
+      <div class="pane">
+        <div class="pane-head">${esc(title)} <span class="count">(${shown.length})</span></div>
+        <div class="grid-wrap">
+          <table class="grid">
+            <thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead>
+            <tbody>${activityRows(shown, cols)}</tbody>
+          </table>
+        </div>
+      </div>
+      ${activityDetail(shown)}`;
+  }
+
+  // Field order follows Epic's Add Activity steps (applied-epic-field-list.md, section 08).
+  function activityDetail(shown) {
+    const a = shown.find((x) => x.id === state.selectedId);
+    if (!a) return '';
+    const field = (label, value, extra = '') =>
+      `<label>${esc(label)}</label><div class="val ${extra}">${esc(value)}</div>`;
+    return `
+      <div class="pane">
+        <div class="pane-head">Activity Detail</div>
+        <div class="pane-body fields">
+          ${field('Code', a.code)}
+          ${field('Priority', a.priority)}
+          <label>Description</label><div class="val wide">${esc(a.description)}</div>
+          ${field('Who/Owner', a.who_owner)}
+          ${field('Follow up/Start', fmtDate(a.follow_up_start, true))}
+          ${field('Status', a.status)}
+          ${field('Association', association(a))}
+          ${field('Account', `${accountName(a.lookup_code)} (${a.lookup_code || ''})`)}
+          ${field('Entered', `${fmtDate(enteredOn(a), true)}${a.entered_by ? ' by ' + a.entered_by : ''}`)}
+          <label>Note</label><div class="val wide note">${esc(a.note)}</div>
+        </div>
+      </div>`;
+  }
+
+  function viewHome() {
+    return activityGrid('Activities', state.activities,
+      ['Code', 'Priority', 'Follow up/Start', 'Description', 'Account Name', 'Who/Owner', 'Entered On', 'Entered By']);
+  }
+
+  function viewAccounts() {
+    const rows = accounts().map((acc) => {
+      const open = state.activities.filter((a) => a.lookup_code === acc.lookup_code && !isClosed(a)).length;
+      return `<tr data-account="${esc(acc.lookup_code)}">
+        <td class="code">${esc(acc.lookup_code)}</td>
+        <td>${esc(acc.account_name)}</td>
+        <td>${esc(acc.client_type)}</td>
+        <td>${esc(acc.producer)}</td>
+        <td>${acc.policies.length}</td>
+        <td>${open}</td>
+      </tr>`;
+    }).join('');
+    return `
+      <div class="pane">
+        <div class="pane-head">Accounts <span class="count">(${accounts().length})</span></div>
+        <div class="grid-wrap">
+          <table class="grid">
+            <thead><tr><th>Lookup Code</th><th>Account Name</th><th>Client Type</th><th>Producer</th><th>Policies</th><th>Open Activities</th></tr></thead>
+            <tbody>${rows || '<tr><td class="empty" colspan="6">No accounts loaded.</td></tr>'}</tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
+  function viewAccount(code) {
+    const acc = accounts().find((a) => a.lookup_code === code);
+    if (!acc) return `<div class="pane"><div class="empty">No account with lookup code ${esc(code)}.</div></div>`;
+    const info = (label, value) => `<div><span style="color:var(--muted)">${esc(label)}:</span> ${esc(value)}</div>`;
+    const policies = acc.policies.map((p) => `<tr>
+        <td>${esc(p.policy_type)}</td>
+        <td>${esc(p.policy_number)}</td>
+        <td title="${esc(p.line_description)}">${esc(p.line_description)}</td>
+        <td>${esc(fmtDate(p.effective))}</td>
+        <td>${esc(fmtDate(p.expiry))}</td>
+        <td>${esc(p.ico_carrier)}</td>
+      </tr>`).join('');
+    return `
+      <div class="pane">
+        <div class="pane-head">Account</div>
+        <div class="pane-body acct-header">
+          <div class="acct-name">${esc(acc.account_name)}</div>
+          ${info('Lookup Code', acc.lookup_code)}
+          ${info('Client Type', acc.client_type)}
+          ${info('Producer', acc.producer)}
+          ${info('Contact', acc.contact)}
+          ${info('Email', acc.contact_email)}
+        </div>
+      </div>
+      <div class="pane">
+        <div class="pane-head">Policies <span class="count">(${acc.policies.length})</span></div>
+        <div class="grid-wrap">
+          <table class="grid">
+            <thead><tr><th>Policy Type</th><th>Policy Number</th><th>Description</th><th>Effective</th><th>Expiry</th><th>ICO/Carrier</th></tr></thead>
+            <tbody>${policies}</tbody>
+          </table>
+        </div>
+      </div>
+      ${activityGrid('Activities', state.activities.filter((a) => a.lookup_code === code),
+        ['Entered On', 'Priority', 'Code', 'Description', 'Who/Owner', 'Follow up/Start', 'Association', 'Status'])}`;
+  }
+
+  function route() {
+    const [, view, arg] = (location.hash || '#/home').split('/');
+    return { view: view || 'home', arg: arg ? decodeURIComponent(arg) : '' };
+  }
+
+  function render() {
+    const { view, arg } = route();
+    const scroll = $('#main').scrollTop;
+    const body = view === 'accounts' ? viewAccounts() : view === 'account' ? viewAccount(arg) : viewHome();
+    const err = state.error
+      ? `<div class="error"><strong>Can't reach the data.</strong> ${esc(state.error)}. Check that n8n is running and the "Mock Epic data" workflow is published.</div>`
+      : '';
+    $('#main').innerHTML = err + body;
+    $('#main').scrollTop = scroll;
+    document.querySelectorAll('nav a').forEach((a) =>
+      a.classList.toggle('active', a.dataset.nav === (view === 'account' ? 'accounts' : view)));
+    renderStatus();
+  }
+
+  function renderStatus() {
+    const ok = !state.error;
+    const when = state.lastOk ? state.lastOk.toLocaleTimeString('en-US', { timeZone: TZ }) : 'never';
+    $('#conn').innerHTML = `<span class="dot ${ok ? '' : 'bad'}"></span>${ok ? 'Connected' : 'Not connected'} · refreshed ${esc(when)}`;
+    const open = state.activities.filter((a) => !isClosed(a)).length;
+    const n = state.activities.length;
+    $('#counts').textContent = `${accounts().length} accounts · ${n} ${n === 1 ? 'activity' : 'activities'} (${open} open)`;
+    $('#news').textContent = state.news;
+  }
+
+  function setNews(text) {
+    state.news = text;
+    state.newsAt = Date.now();
+  }
+
+  async function load() {
+    try {
+      const [clients, activities] = await Promise.all([getRows('epic-clients'), getRows('epic-activities')]);
+      state.error = null;
+      state.lastOk = new Date();
+      const now = Date.now();
+      if (state.seenIds) {
+        const fresh = activities.filter((a) => !state.seenIds.has(a.id));
+        fresh.forEach((a) => state.newIds.set(a.id, now));
+        if (fresh.length) {
+          const a = fresh[0];
+          setNews(fresh.length === 1
+            ? `New activity: ${a.code || ''} · ${accountName(a.lookup_code) || a.lookup_code || ''}`
+            : `${fresh.length} new activities`);
+        }
+      }
+      state.seenIds = new Set(activities.map((a) => a.id));
+      for (const [id, t] of state.newIds) if (now - t > NEW_HIGHLIGHT_MS) state.newIds.delete(id);
+      if (state.news && now - state.newsAt > NEW_HIGHLIGHT_MS) state.news = '';
+
+      const json = JSON.stringify([clients, activities]);
+      const changed = json !== state.lastJson;
+      state.clients = clients;
+      state.activities = activities;
+      state.lastJson = json;
+      // Re-draw only when the data changed, so scrolling and the highlight animation aren't reset.
+      if (changed || !$('#main').innerHTML) render(); else renderStatus();
+    } catch (e) {
+      state.error = e.message || String(e);
+      render();
+    }
+  }
+
+  // Clicks: activity rows open the detail pane, account rows open the account.
+  $('#main').addEventListener('click', (e) => {
+    if (e.target.closest('a.acct')) return;
+    const act = e.target.closest('tr[data-activity]');
+    if (act) {
+      const id = Number(act.dataset.activity);
+      state.selectedId = state.selectedId === id ? null : id;
+      render();
+      return;
+    }
+    const acc = e.target.closest('tr[data-account]');
+    if (acc) location.hash = `#/account/${encodeURIComponent(acc.dataset.account)}`;
+  });
+
+  function locate() {
+    const q = $('#locate').value.trim().toLowerCase();
+    if (!q) return;
+    const hit = state.clients.find((c) =>
+      [c.lookup_code, c.account_name, c.policy_number].some((v) => String(v || '').toLowerCase().includes(q)));
+    if (hit) location.hash = `#/account/${encodeURIComponent(hit.lookup_code)}`;
+    else { setNews(`No account matches "${$('#locate').value.trim()}"`); renderStatus(); }
+  }
+  $('#locate-btn').addEventListener('click', locate);
+  $('#locate').addEventListener('keydown', (e) => { if (e.key === 'Enter') locate(); });
+  $('#show').addEventListener('change', (e) => { state.show = e.target.value; render(); });
+  $('#refresh-btn').addEventListener('click', load);
+  document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => { location.hash = b.dataset.go; }));
+  window.addEventListener('hashchange', () => { state.selectedId = null; render(); });
+
+  render();
+  load();
+  setInterval(load, REFRESH_MS);
+</script>
+</body>
+</html>
