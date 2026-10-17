@@ -1,0 +1,166 @@
+{
+  "name": "Mock Epic data",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "epic-clients",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a77f60fc-abce-42cb-85c7-bfc11825c1c2",
+      "name": "Webhook",
+      "webhookId": "09370019-39a1-4303-810e-52635ba42199"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "id": "0ae4ee11-a616-4fe1-8d41-3a6d3d1d90cc",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oWARmRld1D3QiwIK",
+          "mode": "list",
+          "cachedResultName": "clients",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/oWARmRld1D3QiwIK"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "c7bcaff7-1960-4d90-8c61-2fa61afb510d",
+      "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "path": "epic-activities",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        240
+      ],
+      "id": "44d4e020-4e4b-44f9-af0f-ef98f8ca9611",
+      "name": "Webhook1",
+      "webhookId": "09370019-39a1-4303-810e-52635ba42199"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        240
+      ],
+      "id": "11964673-b8e4-4bcd-8d9c-131f098fdea3",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oFI6lnVwZTetOoNQ",
+          "mode": "list",
+          "cachedResultName": "activities",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/oFI6lnVwZTetOoNQ"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        240
+      ],
+      "id": "09b71e1c-6ccf-4eab-be17-e5bbc12d5816",
+      "name": "Get row(s)1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "21f06c5c-1c16-4c14-a04e-999ffae6d5c8",
+  "meta": {
+    "instanceId": "5272b2b72c7351f30248768af67323c3f8e737d74309fdfd6ec5a73dbcdbfb58"
+  },
+  "nodeGroups": [],
+  "id": "3nyzhGZx8FAxDKHD",
+  "tags": []
+}
