@@ -58,6 +58,16 @@ def node_of_type(run, type_suffix):
     sys.exit(f"No {type_suffix} node in this run.")
 
 
+# The workflow has more than one Claude model node, so find the one wired into the extractor.
+def model_feeding(run, target_name):
+    by_name = {n["name"]: n for n in run["workflowData"]["nodes"]}
+    for source, outputs in run["workflowData"]["connections"].items():
+        for link in (outputs.get("ai_languageModel") or [[]])[0]:
+            if link["node"] == target_name and by_name[source]["type"].endswith(".lmChatAnthropic"):
+                return by_name[source]
+    sys.exit(f"No Claude model node is connected to {target_name}.")
+
+
 def main():
     raw_path = pathlib.Path(sys.argv[1])
     label = sys.argv[2] if len(sys.argv) > 2 else ""
@@ -67,7 +77,7 @@ def main():
 
     runs = run["data"]["resultData"]["runData"]
     extractor = node_of_type(run, ".informationExtractor")
-    model_node = node_of_type(run, ".lmChatAnthropic")
+    model_node = model_feeding(run, extractor["name"])
     model = model_node["parameters"]["model"]["value"]
     answers = runs[extractor["name"]][0]["data"]["main"][0]
     model_calls = runs[model_node["name"]]

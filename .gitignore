@@ -16,3 +16,6 @@ results/*-raw.json
 # Screen recordings (too large for git; keep them on disk)
 *.mov
 *.mp4
+
+# Python
+__pycache__/

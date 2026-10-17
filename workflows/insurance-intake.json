@@ -6,7 +6,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        0,
+        -48,
         0
       ],
       "id": "83884ac3-d3b3-48cd-929d-0f60a17d8eab",
@@ -26,7 +26,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        224,
+        448,
         0
       ],
       "id": "34f474d2-82b6-4a0e-b9b6-b2a8d20d614f",
@@ -41,31 +41,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "claude-haiku-5-5",
-          "mode": "list",
-          "cachedResultName": "Claude Haiku 5.5"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
-      "typeVersion": 1.6,
-      "position": [
-        384,
-        208
-      ],
-      "id": "c19a9a2d-ab7d-40b9-89f0-47dc77a55095",
-      "name": "Anthropic Chat Model",
-      "credentials": {
-        "anthropicApi": {
-          "id": "GuX7z784lTzkEamu",
-          "name": "Anthropic account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "text": "=Received: {{ DateTime.fromISO($json.date).setZone('America/Toronto').toFormat('cccc, LLLL d, yyyy, h:mm a') }}\nFrom: {{ $json.from.text }}\nSubject: {{ $json.subject }}\n\n{{ $json.text }}",
         "schemaType": "manual",
         "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"reason\": {\n      \"type\": \"string\",\n      \"description\": \"Two or three plain sentences a broker can read: what the email is asking for, and why you chose this category, client, and policy. Write this first.\"\n    },\n    \"category\": {\n      \"type\": \"string\",\n      \"enum\": [\"policy change\", \"renewal question\", \"claim notice\", \"underwriter request\", \"other\"],\n      \"description\": \"What kind of work the email is. 'policy change': a client asks to change an existing policy, such as adding, removing, or replacing a vehicle, adding or removing a driver, or changing an address. 'renewal question': a question about an upcoming or recent renewal, such as its price, its terms, or shopping it around. 'claim notice': a client reports a loss or damage, such as an accident, a leak, or a theft. 'underwriter request': an insurance company writes to the brokerage asking for documents, information, or a change on a policy. 'other': anything else. If an email asks for more than one thing, choose the request that needs action on a policy.\"\n    },\n    \"urgency\": {\n      \"type\": \"string\",\n      \"enum\": [\"High\", \"Normal\", \"Low\"],\n      \"description\": \"How soon the brokerage must act. 'High' for claims, and for anything that threatens the client's coverage, such as an insurer warning that a policy will be cancelled or not renewed. 'Normal' for ordinary requests. 'Low' for anything that can wait with no consequence.\"\n    },\n    \"client_name\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The brokerage's client the email is about, not necessarily the sender. When staff write for a company, the client is the company. When an insurer writes, the client is the insured person named in the email. Write a person as 'Last, First' and a company by its full name. null when the email doesn't say who the client is.\"\n    },\n    \"policy_number\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The policy number exactly as the email writes it. null when the email gives none. Never guess or make one up.\"\n    },\n    \"cant_tell_policy\": {\n      \"type\": \"boolean\",\n      \"description\": \"true when the email gives no policy number, or gives more than one without saying which one the request is about. Otherwise false.\"\n    },\n    \"effective_date\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The one date the request turns on, as YYYY-MM-DD: when a change takes effect, the date of loss for a claim, the renewal date for a renewal question, or the reply deadline for an underwriter request. Work out relative dates such as 'yesterday' or 'Tuesday' from the date the email was received. null when the email gives no date.\"\n    },\n    \"requested_change\": {\n      \"type\": \"string\",\n      \"description\": \"One or two sentences on what the client or insurer wants done, with the specifics a broker would need: vehicle, VIN, driver, address, or document.\"\n    },\n    \"confidence\": {\n      \"type\": \"string\",\n      \"enum\": [\"high\", \"medium\", \"low\"],\n      \"description\": \"How sure you are of the category, client, and policy together. 'low' if any of them is a guess.\"\n    }\n  },\n  \"required\": [\"reason\", \"category\", \"urgency\", \"client_name\", \"policy_number\", \"cant_tell_policy\", \"effective_date\", \"requested_change\", \"confidence\"]\n}",
@@ -74,7 +49,7 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        448,
+        672,
         0
       ],
       "id": "d88db774-5892-4572-9da9-1a5fe76d89da",
@@ -82,41 +57,38 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "=Today's date: {{ $now.toFormat('yyyy-MM-dd') }}\n\nTHE EMAIL\nFrom: {{ $('Get many messages').item.json.from.value[0].name }} <{{ $('Get many messages').item.json.from.value[0].address }}>\nSent: {{ $('Get many messages').item.json.date }}\nSubject: {{ $('Get many messages').item.json.subject }}\n\n{{ $('Get many messages').item.json.text }}\n\nWHAT SORTING FOUND\nCategory: {{ $json.output.category }}\nUrgency: {{ $json.output.urgency }}\nClient: {{ $json.output.client_name }}\nPolicy number: {{ $json.output.policy_number }}\nCan't tell which policy: {{ $json.output.cant_tell_policy }}\nDate the request turns on: {{ $json.output.effective_date }}\nWhat they want done: {{ $json.output.requested_change }}\nWhy sorting read it this way: {{ $json.output.reason }}",
-        "hasOutputParser": true,
-        "messages": {
-          "messageValues": [
-            {
-              "type": "=SystemMessagePromptTemplate",
-              "message": "=You are the intake assistant for Callander & Reid Insurance Brokers, an independent brokerage in Ontario. A request from the shared service inbox has already been sorted. Your job is to draft the activity a CSR would log in the brokerage's management system, and a follow-up email when the brokerage needs something before it can act.  Rules: 1. Use only what the email and the sorting results say. If a detail is missing, say it's missing. Never fill a gap with a guess. 2. Never say a change is done, a claim is open, or coverage is in place. The insurer confirms those, not the brokerage's intake. 3. Never make up names, email addresses, phone numbers, claim numbers, policy numbers, or deadlines. 4. If the sorting results say they can't tell which policy the request is about, say so in the note and ask which policy in the follow-up. 5. Write the way an experienced Ontario CSR writes: short, plain, specific. Canadian spelling."
-            }
-          ]
-        },
-        "batching": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.9,
-      "position": [
-        816,
-        0
-      ],
-      "id": "e646de80-9bba-4f3d-bc35-f3ad72aa3fc9",
-      "name": "Basic LLM Chain"
-    },
-    {
-      "parameters": {
         "schemaType": "manual",
-        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"description\": {\n      \"type\": \"string\",\n      \"description\": \"The activity's one-line Description, in the style brokers use in Applied Epic: the date the request turns on as M/D/YYYY, then a short action, then the policy number. Examples: '11/1/2026 Add 2024 Toyota RAV4 - BVA-4471829', 'Notice of Loss 10/14/2026 - Rear-end collision - KB-AU-0551902', 'Renewal question - premium increase - KB-CO-0098214'. Leave out the date when the email gives none. Leave out the policy number when there is none. At most 80 characters.\"\n    },\n    \"follow_up_needed\": {\n      \"type\": \"boolean\",\n      \"description\": \"true only when the brokerage needs information or documents from someone before it can act. false when the email already has everything needed, or when the next step is the brokerage's own work.\"\n    },\n    \"follow_up_recipient\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"Exactly 'sender', 'client', or null. Who has what is missing. 'sender' when the person who wrote the email has it. 'client' when the brokerage's client has it but someone else wrote, such as an insurer asking for a client's document. null when follow_up_needed is false.\"\n    },\n    \"follow_up_subject\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"The follow-up email's subject line, naming the policy number when there is one. null when follow_up_needed is false.\"\n    },\n    \"follow_up_body\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"The follow-up email's body, from Sandra Pellegrino, CSR at Callander & Reid Insurance Brokers. Greet the recipient by first name, say in one sentence what the brokerage is working on, ask only for what is missing as a short numbered list, and sign off with Sandra's name, title, and the brokerage name. Canadian spelling. Plain and warm, under 120 words. Never say a change is done or coverage is in place, and never make up claim numbers, phone numbers, or deadlines. null when follow_up_needed is false.\"\n    },\n    \"note\": {\n      \"type\": \"string\",\n      \"description\": \"The activity note a CSR would enter: who wrote in and when, what they asked for, the details a broker needs (vehicle, VIN, driver, address, date of loss, document), what is missing, and the next step. Two to five plain sentences in one paragraph, with no line breaks, past tense for what happened, no greeting or sign-off. State only what the email says. Never say a change is done or coverage is in place. If you drafted a follow-up email, end the note by saying who it asks and for what.\"\n    }\n  },\n  \"required\": [\n    \"description\",\n    \"follow_up_needed\",\n    \"follow_up_recipient\",\n    \"follow_up_subject\",\n    \"follow_up_body\",\n    \"note\"\n  ]\n}"
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"lookup_code\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"The client's Lookup Code, copied exactly from the client file. null when there is no client file.\"\n    },\n    \"policy_number\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"The one policy this request is about, copied exactly from the client file's list. If the email doesn't name it but only one policy on file fits the request (for example, the only auto policy for a vehicle question), use that one. null when more than one still fits, or there is no client file.\"\n    },\n    \"description\": {\n      \"type\": \"string\",\n      \"description\": \"The activity's one-line Description, in the style brokers use in Applied Epic: the date the request turns on as M/D/YYYY, then a short action, then the policy number from the policy_number field. Examples: '11/1/2026 Add 2024 Toyota RAV4 - BVA-4471829', 'Notice of Loss 10/14/2026 - Rear-end collision - KB-AU-0551902', 'Renewal question - premium increase - KB-CO-0098214'. Leave out the date when the email gives none. Leave out the policy number when there is none. At most 80 characters.\"\n    },\n    \"follow_up_needed\": {\n      \"type\": \"boolean\",\n      \"description\": \"true only when the brokerage needs information or documents from someone before it can act. false when the email already has everything needed, or when the next step is the brokerage's own work.\"\n    },\n    \"follow_up_recipient\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"Exactly 'sender', 'client', or null. Who has what is missing. 'sender' when the person who wrote the email has it. 'client' when the brokerage's client has it but someone else wrote, such as an insurer asking for a client's document. null when follow_up_needed is false.\"\n    },\n    \"follow_up_subject\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"The follow-up email's subject line, naming the policy number when there is one. null when follow_up_needed is false.\"\n    },\n    \"follow_up_body\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ],\n      \"description\": \"The follow-up email's body, from Sandra Pellegrino, CSR at Callander & Reid Insurance Brokers. Greet the recipient by first name, say in one sentence what the brokerage is working on, ask only for what is missing as a short numbered list, and sign off with Sandra's name, title, and the brokerage name. Canadian spelling. Plain and warm, under 120 words. Never say a change is done or coverage is in place, and never make up claim numbers, phone numbers, or deadlines. Never write any email address in the body; refer to people by name. null when follow_up_needed is false.\"\n    },\n    \"note\": {\n      \"type\": \"string\",\n      \"description\": \"The activity note a CSR would enter: who wrote in and when, what they asked for, the details a broker needs (vehicle, VIN, driver, address, date of loss, document), what is missing, and the next step. Two to five plain sentences in one paragraph, with no line breaks, past tense for what happened, no greeting or sign-off. State only what the email says. Never say a change is done or coverage is in place. If you drafted a follow-up email, end the note by saying who it asks and for what.\"\n    }\n  },\n  \"required\": [\n    \"lookup_code\",\n    \"policy_number\",\n    \"description\",\n    \"follow_up_needed\",\n    \"follow_up_recipient\",\n    \"follow_up_subject\",\n    \"follow_up_body\",\n    \"note\"\n  ]\n}"
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        960,
+        1184,
         208
       ],
       "id": "6b272ca4-6145-4c89-b52e-eec9b9d2e797",
       "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oWARmRld1D3QiwIK",
+          "mode": "list",
+          "cachedResultName": "clients",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/oWARmRld1D3QiwIK"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        -112
+      ],
+      "id": "163a05ac-6759-4fe0-89f3-4c1981eae6d8",
+      "name": "Get clients"
     },
     {
       "parameters": {
@@ -131,17 +103,82 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        704,
+        608,
         208
       ],
-      "id": "1b17cbb3-5049-4eb7-8db4-095361590ff5",
-      "name": "Anthropic Chat Model1",
+      "id": "c19a9a2d-ab7d-40b9-89f0-47dc77a55095",
+      "name": "Sort emails and pull out fields (Haiku 5.5)",
       "credentials": {
         "anthropicApi": {
           "id": "GuX7z784lTzkEamu",
           "name": "Anthropic account"
         }
       }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-5-5",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 5.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.6,
+      "position": [
+        880,
+        224
+      ],
+      "id": "1b17cbb3-5049-4eb7-8db4-095361590ff5",
+      "name": "Draft activity and follow-up email (Haiku 5.5)",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GuX7z784lTzkEamu",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Today's date: {{ $now.toFormat('yyyy-MM-dd') }}\n\nTHE EMAIL\nFrom: {{ $('Get many messages').item.json.from.value[0].name }} <{{ $('Get many messages').item.json.from.value[0].address }}>\nSent: {{ $('Get many messages').item.json.date }}\nSubject: {{ $('Get many messages').item.json.subject }}\n\n{{ $('Get many messages').item.json.text }}\n\nWHAT SORTING FOUND\nCategory: {{ $json.output.category }}\nUrgency: {{ $json.output.urgency }}\nClient: {{ $json.output.client_name }}\nPolicy number: {{ $json.output.policy_number }}\nCan't tell which policy: {{ $json.output.cant_tell_policy }}\nDate the request turns on: {{ $json.output.effective_date }}\nWhat they want done: {{ $json.output.requested_change }}\nWhy sorting read it this way: {{ $json.output.reason }}\n\nCLIENT FILE\n{{ (() => {\n  const s = $json.output;\n  const rows = $('Get clients').all().map(i => i.json);\n  const sender = String($('Get many messages').item.json.from.value[0].name || '').toLowerCase();\n  const key = r => r.account_name.split(',')[0].trim().toLowerCase();\n  let hit = rows.find(r => s.policy_number && r.policy_number === s.policy_number);\n  if (!hit && s.client_name) hit = rows.find(r => s.client_name.toLowerCase().includes(key(r)));\n  if (!hit && sender) hit = rows.find(r => sender.includes(key(r)));\n  if (!hit) return 'No client file found for this email.';\n  const policies = rows.filter(r => r.lookup_code === hit.lookup_code);\n  return 'Account: ' + hit.account_name + ' (' + hit.lookup_code + '), ' + hit.client_type + ' client. Contact: ' + hit.contact + '. Producer: ' + hit.producer + '.\\nPolicies on file:\\n' +\n    policies.map(p => '- ' + p.policy_number + ': ' + p.policy_type + ', ' + p.line_description + ', ' + p.ico_carrier + ', ' + String(p.effective).slice(0, 10) + ' to ' + String(p.expiry).slice(0, 10)).join('\\n');\n})() }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "=SystemMessagePromptTemplate",
+              "message": "=You are the intake assistant for Callander & Reid Insurance Brokers, an independent brokerage in Ontario. A request from the shared service inbox has already been sorted, and the client's file has been looked up. Your job is to draft the activity a CSR would log in the brokerage's management system, and a follow-up email when the brokerage needs something before it can act.\n\nRules:\n1. Use only what the email, the sorting results, and the client file say. If a detail is missing, say it's missing. Never fill a gap with a guess.\n2. The client file is the brokerage's own record. Never ask anyone for something already in it, such as a policy number, a vehicle on a policy, an address, or the insurer.\n3. If the email doesn't say which policy it's about, use the client file to narrow it. When only one policy on file fits, use it. When more than one fits, ask which one in the follow-up, naming the options by type (for example, \"your auto policy or your home policy\").\n4. If there is no client file, say so in the note. The sender may not be a client yet, or may be on file under another name.\n5. Never say a change is done, a claim is open, or coverage is in place. The insurer confirms those, not the brokerage's intake.\n6. Never make up names, email addresses, phone numbers, claim numbers, policy numbers, or deadlines.\n7. Write the way an experienced Ontario CSR writes: short, plain, specific. Canadian spelling.\n8. In Ontario, a \"pink slip\" is the proof-of-insurance card (the liability slip) a driver must carry in the vehicle. It is not a vehicle title or ownership document."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "e646de80-9bba-4f3d-bc35-f3ad72aa3fc9",
+      "name": "Draft the entry (Basic LLM Chain)"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"code\": {{ JSON.stringify(({ \"policy change\": \"CHGR\", \"renewal question\": \"RENL\", \"claim notice\": \"FNOL\", \"underwriter request\": \"UNDR\", \"other\": \"MISC\" })[$('Sort and pull out').item.json.output.category] || \"MISC\") }},\n  \"description\": {{ JSON.stringify($json.output.description) }},\n  \"who_owner\": \"Sandra Pellegrino\",\n  \"follow_up_start\": {{ JSON.stringify($now.plus({ days: ({ High: 1, Normal: 3, Low: 7 })[$('Sort and pull out').item.json.output.urgency] || 3 }).toISODate()) }},\n  \"priority\": {{ JSON.stringify($('Sort and pull out').item.json.output.urgency) }},\n  \"status\": \"Open\",\n  \"associated_to\": {{ JSON.stringify($json.output.policy_number ? \"Policy\" : \"Account\") }},\n  \"lookup_code\": {{ JSON.stringify($json.output.lookup_code) }},\n  \"policy_number\": {{ JSON.stringify($json.output.policy_number) }},\n  \"note\": {{ JSON.stringify($json.output.note) }}\n}",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1392,
+        0
+      ],
+      "id": "d3332528-2523-4996-8e30-f956980702d3",
+      "name": "Set activity fields"
     }
   ],
   "pinData": {
@@ -894,6 +931,11 @@
       "main": [
         [
           {
+            "node": "Get clients",
+            "type": "main",
+            "index": 0
+          },
+          {
             "node": "Get many messages",
             "type": "main",
             "index": 0
@@ -912,22 +954,11 @@
         ]
       ]
     },
-    "Anthropic Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Sort and pull out",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Sort and pull out": {
       "main": [
         [
           {
-            "node": "Basic LLM Chain",
+            "node": "Draft the entry (Basic LLM Chain)",
             "type": "main",
             "index": 0
           }
@@ -938,19 +969,46 @@
       "ai_outputParser": [
         [
           {
-            "node": "Basic LLM Chain",
+            "node": "Draft the entry (Basic LLM Chain)",
             "type": "ai_outputParser",
             "index": 0
           }
         ]
       ]
     },
-    "Anthropic Chat Model1": {
+    "Get clients": {
+      "main": [
+        []
+      ]
+    },
+    "Sort emails and pull out fields (Haiku 5.5)": {
       "ai_languageModel": [
         [
           {
-            "node": "Basic LLM Chain",
+            "node": "Sort and pull out",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft activity and follow-up email (Haiku 5.5)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Draft the entry (Basic LLM Chain)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft the entry (Basic LLM Chain)": {
+      "main": [
+        [
+          {
+            "node": "Set activity fields",
+            "type": "main",
             "index": 0
           }
         ]
@@ -962,7 +1020,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "3c534a8b-3c3c-4a53-95c1-c40d1256cc35",
+  "versionId": "69469856-cdac-4700-a805-afc60b45e1cd",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "5272b2b72c7351f30248768af67323c3f8e737d74309fdfd6ec5a73dbcdbfb58"

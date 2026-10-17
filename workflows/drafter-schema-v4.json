@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "lookup_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The client's Lookup Code, copied exactly from the client file. null when there is no client file."
+    },
+    "policy_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The one policy this request is about, copied exactly from the client file's list. If the email doesn't name it but only one policy on file fits the request (for example, the only auto policy for a vehicle question), use that one. null when more than one still fits, or there is no client file."
+    },
+    "description": {
+      "type": "string",
+      "description": "The activity's one-line Description, in the style brokers use in Applied Epic: the date the request turns on as M/D/YYYY, then a short action, then the policy number from the policy_number field. Examples: '11/1/2026 Add 2024 Toyota RAV4 - BVA-4471829', 'Notice of Loss 10/14/2026 - Rear-end collision - KB-AU-0551902', 'Renewal question - premium increase - KB-CO-0098214'. Leave out the date when the email gives none. Leave out the policy number when there is none. At most 80 characters."
+    },
+    "follow_up_needed": {
+      "type": "boolean",
+      "description": "true only when the brokerage needs information or documents from someone before it can act. false when the email already has everything needed, or when the next step is the brokerage's own work."
+    },
+    "follow_up_recipient": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Exactly 'sender', 'client', or null. Who has what is missing. 'sender' when the person who wrote the email has it. 'client' when the brokerage's client has it but someone else wrote, such as an insurer asking for a client's document. null when follow_up_needed is false."
+    },
+    "follow_up_subject": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The follow-up email's subject line, naming the policy number when there is one. null when follow_up_needed is false."
+    },
+    "follow_up_body": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The follow-up email's body, from Sandra Pellegrino, CSR at Callander & Reid Insurance Brokers. Greet the recipient by first name, say in one sentence what the brokerage is working on, ask only for what is missing as a short numbered list, and sign off with Sandra's name, title, and the brokerage name. Canadian spelling. Plain and warm, under 120 words. Never say a change is done or coverage is in place, and never make up claim numbers, phone numbers, or deadlines. Never write any email address in the body; refer to people by name. null when follow_up_needed is false."
+    },
+    "note": {
+      "type": "string",
+      "description": "The activity note a CSR would enter: who wrote in and when, what they asked for, the details a broker needs (vehicle, VIN, driver, address, date of loss, document), what is missing, and the next step. Two to five plain sentences in one paragraph, with no line breaks, past tense for what happened, no greeting or sign-off. State only what the email says. Never say a change is done or coverage is in place. If you drafted a follow-up email, end the note by saying who it asks and for what."
+    }
+  },
+  "required": [
+    "lookup_code",
+    "policy_number",
+    "description",
+    "follow_up_needed",
+    "follow_up_recipient",
+    "follow_up_subject",
+    "follow_up_body",
+    "note"
+  ]
+}
