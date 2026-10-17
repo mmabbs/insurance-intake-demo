@@ -2,7 +2,8 @@
 <!--
   FUNCTIONAL REFERENCE: Claude-built, not developer-reviewed.
   Mock broker management screen for the insurance intake demo.
-  Field labels follow Applied Epic (see applied-epic-field-list.md). All data is fictional.
+  Layout and labels follow real Applied Epic screenshots (Software Advice vendor images and the
+  Higginbotham Epic Configuration Guide, rev 04-21-26). No Applied logo or branding. All data is fictional.
   Reads two n8n webhooks from the "Mock Epic data" workflow. Read-only. Known limitations: pages/README.md.
 -->
 <html lang="en-CA">
@@ -10,30 +11,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Callander &amp; Reid BMS (Functional Reference)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --chrome: #dfe3e8;
-    --title: #24384f;
-    --title-text: #ffffff;
-    --pane-head-top: #5d7290;
-    --pane-head-bottom: #40546f;
-    --grid-head-top: #f4f5f7;
-    --grid-head-bottom: #e1e4e8;
-    --line: #c5cad1;
-    --line-soft: #e4e7eb;
-    --row-alt: #f8f9fb;
-    --row-hover: #eef4fb;
-    --sel: #cfe2f6;
+    --band: #2c2a72;
+    --band-text: #ffffff;
+    --menubar: #f1f1f1;
+    --nav-bg: #ececec;
+    --nav-active: #1ba4dd;
+    --page: #ffffff;
+    --line: #c9c9c9;
+    --rule: #d9d9d9;
+    --row-line: #e6e6e6;
+    --section-bar: #e8e8e8;
+    --text: #222222;
+    --head-text: #4d4d4d;
+    --muted: #6e6e6e;
+    --link: #1b75bb;
+    --navy: #1f2a5c;
+    --primary: #5148e6;
+    --sel: #d8eefa;
+    --sel-line: #8fcdee;
+    --hover: #f2f8fc;
     --new: #fff1b8;
-    --text: #1d2329;
-    --muted: #5b6670;
-    --link: #1f4f8f;
-    --field-bg: #f6f7f9;
     --banner-bg: #fff8d6;
     --banner-line: #e3c766;
     --error-bg: #fde8e6;
     --error-line: #e0a19a;
     --ok: #3c8d3f;
+    --bad: #c0392b;
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
@@ -41,216 +49,241 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    font: 12px/1.35 "Segoe UI", Tahoma, Arial, sans-serif;
+    font: 13px/1.4 "Open Sans", "Segoe UI", Arial, sans-serif;
     color: var(--text);
-    background: var(--chrome);
+    background: var(--page);
   }
-  button, input, select { font: inherit; }
+  button, input, select { font: inherit; color: inherit; }
+  svg.ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  svg.ic-sm { width: 18px; height: 18px; }
 
+  /* Labelled as a functional reference, per the vibe-coded prototypes policy. */
   .demo-banner {
-    padding: 4px 10px;
+    padding: 3px 10px;
     background: var(--banner-bg);
     border-bottom: 1px solid var(--banner-line);
     font-size: 11px;
   }
   .demo-banner strong { letter-spacing: .04em; }
 
-  .titlebar {
+  .menubar {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 6px 10px;
-    background: var(--title);
-    color: var(--title-text);
+    gap: 18px;
+    padding: 3px 10px;
+    background: var(--menubar);
+    border-bottom: 1px solid var(--rule);
+    font-size: 12px;
+    color: #333;
+    user-select: none;
   }
-  .titlebar .app { font-weight: 600; font-size: 13px; }
-  .titlebar .user { margin-left: auto; opacity: .85; }
 
-  .toolbar {
+  .band {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 10px;
-    background: linear-gradient(#f7f8fa, #e6e9ed);
-    border-bottom: 1px solid var(--line);
+    align-items: stretch;
+    background: var(--band);
+    color: var(--band-text);
+    min-height: 58px;
   }
-  .toolbar .sep { width: 1px; height: 18px; background: var(--line); margin: 0 4px; }
-  .btn {
-    padding: 2px 10px;
-    border: 1px solid #a9b0b8;
-    border-radius: 2px;
-    background: linear-gradient(#ffffff, #e9ecef);
-    color: var(--text);
-    cursor: pointer;
-  }
-  .btn:hover { background: linear-gradient(#ffffff, #dde3ea); }
-  .toolbar input, .toolbar select {
-    padding: 2px 4px;
-    border: 1px solid #a9b0b8;
-    background: #fff;
-  }
-  .toolbar input { width: 200px; }
-
-  .layout { flex: 1; display: flex; min-height: 0; }
-  nav {
-    width: 150px;
-    flex-shrink: 0;
-    padding: 6px 0;
-    background: #eef0f3;
-    border-right: 1px solid var(--line);
-    overflow-y: auto;
-  }
-  nav a, nav span {
-    display: block;
-    padding: 5px 12px;
-    color: var(--text);
-    text-decoration: none;
-  }
-  nav a:hover { background: var(--row-hover); }
-  nav a.active { background: var(--sel); font-weight: 600; border-left: 3px solid var(--title); padding-left: 9px; }
-  nav span { color: #9aa2ab; cursor: default; }
-  nav .group { margin: 8px 12px 2px; font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; }
-
-  main { flex: 1; min-width: 0; overflow: auto; padding: 8px; }
-
-  .pane { background: #fff; border: 1px solid var(--line); margin-bottom: 8px; }
-  .pane-head {
+  .brand {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 3px 8px;
-    background: linear-gradient(var(--pane-head-top), var(--pane-head-bottom));
-    color: #fff;
-    font-weight: 600;
+    padding: 0 18px 0 12px;
+    white-space: nowrap;
   }
-  .pane-head .count { font-weight: 400; opacity: .85; }
-  .pane-body { padding: 8px; }
-  .grid-wrap { overflow: auto; max-height: 55vh; }
+  .brand .mark {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: -.02em;
+  }
+  .brand .name { font-weight: 600; font-size: 14px; line-height: 1.15; }
+  .brand .name small { display: block; font-weight: 400; font-size: 10px; opacity: .8; letter-spacing: .06em; text-transform: uppercase; }
+  .tools { display: flex; align-items: stretch; overflow-x: auto; }
+  .tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 66px;
+    padding: 4px 8px;
+    border: 0;
+    background: transparent;
+    color: var(--band-text);
+    font-size: 12.5px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tool:hover { background: rgba(255, 255, 255, .1); }
+  .tool[aria-disabled="true"] { opacity: .55; cursor: default; }
+  .tool[aria-disabled="true"]:hover { background: transparent; }
+  .band .right { margin-left: auto; display: flex; align-items: stretch; }
+  .band .who { display: flex; align-items: center; gap: 6px; padding: 0 12px; font-size: 12.5px; opacity: .9; white-space: nowrap; }
 
+  .layout { flex: 1; display: flex; min-height: 0; }
+  nav {
+    width: 210px;
+    flex-shrink: 0;
+    padding: 6px 0;
+    background: var(--nav-bg);
+    overflow-y: auto;
+  }
+  nav a, nav span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px;
+    color: var(--text);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  nav a:hover { background: #e0e0e0; }
+  nav a.active, nav a.active:hover { background: var(--nav-active); color: #fff; }
+  nav span { color: #8b8b8b; cursor: default; }
+  nav .sub { padding-left: 20px; font-size: 13px; background: #d6eef9; }
+
+  main { flex: 1; min-width: 0; overflow: auto; padding: 10px 14px 16px; }
+
+  .panel { margin-bottom: 12px; border: 1px solid var(--line); background: #fff; }
+  .panel-title {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 0 10px;
+    padding: 7px 0 4px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .panel-title em { font-style: italic; }
+  .panel-title select {
+    border: 0;
+    background: transparent;
+    font-style: italic;
+    font-size: 15px;
+    padding: 0 2px;
+    cursor: pointer;
+  }
+  .panel-body { padding: 10px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .grid-box { margin: 10px; border: 1px solid var(--line); overflow: auto; max-height: 52vh; }
   table.grid { width: 100%; border-collapse: collapse; }
   table.grid th {
     position: sticky;
     top: 0;
     z-index: 1;
-    padding: 3px 6px;
-    background: linear-gradient(var(--grid-head-top), var(--grid-head-bottom));
-    border: 1px solid var(--line);
-    border-top: 0;
+    padding: 5px 8px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--row-line);
+    color: var(--head-text);
     font-weight: 600;
     text-align: left;
     white-space: nowrap;
   }
   table.grid td {
-    max-width: 380px;
-    padding: 3px 6px;
-    border-right: 1px solid var(--line-soft);
-    border-bottom: 1px solid var(--line-soft);
+    max-width: 420px;
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--row-line);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   table.grid tbody tr { cursor: pointer; }
-  table.grid tbody tr:nth-child(even) td { background: var(--row-alt); }
-  table.grid tbody tr:hover td { background: var(--row-hover); }
-  table.grid tbody tr.sel td { background: var(--sel); }
+  table.grid tbody tr:hover td { background: var(--hover); }
+  table.grid tbody tr.sel td { background: var(--sel); border-top: 1px solid var(--sel-line); border-bottom: 1px solid var(--sel-line); }
   table.grid tbody tr.is-new td { animation: arrive 10s ease-out; }
   @keyframes arrive { 0%, 60% { background: var(--new); } }
-  td.code { font-weight: 600; letter-spacing: .02em; }
-  td.pri-high, td.pri-urgent { font-weight: 600; }
-  a.acct { color: var(--link); text-decoration: none; }
-  a.acct:hover { text-decoration: underline; }
-  .empty { padding: 16px; color: var(--muted); text-align: center; }
+  td.link, a.link { color: var(--link); text-decoration: none; }
+  a.link:hover { text-decoration: underline; }
+  .empty { padding: 18px; color: var(--muted); text-align: center; cursor: default; }
 
-  .acct-header {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 6px 16px;
-  }
-  .acct-name { grid-column: 1 / -1; font-size: 16px; font-weight: 600; }
+  .glance { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 10px; margin: 0; }
+  .glance dt { color: var(--muted); text-align: right; }
+  .glance dd { margin: 0; font-weight: 700; }
+  .note-meta { display: flex; gap: 28px; padding-bottom: 4px; margin-bottom: 8px; border-bottom: 1px solid var(--rule); color: var(--muted); }
+  .note-meta b { color: var(--text); }
+  .note-text { white-space: pre-wrap; }
+  .placeholder { color: var(--muted); font-style: italic; font-weight: 400; }
 
-  .fields {
-    display: grid;
-    grid-template-columns: 120px minmax(0, 1fr) 120px minmax(0, 1fr);
-    gap: 5px 8px;
-    align-items: start;
+  .card {
+    margin-bottom: 14px;
+    padding: 16px 20px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
   }
-  .fields label { padding-top: 3px; color: var(--muted); text-align: right; }
-  .fields .val {
-    min-height: 22px;
-    padding: 2px 6px;
-    background: var(--field-bg);
-    border: 1px solid #cfd4da;
-  }
-  .fields .wide { grid-column: 2 / -1; }
-  .fields .note { min-height: 70px; white-space: pre-wrap; }
+  .card .kicker { font-size: 11px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+  .card h1 { margin: 0 0 14px; font-size: 22px; font-weight: 600; color: var(--navy); }
+  .card .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px 24px; }
+  .card .facts b { display: block; font-weight: 600; margin-bottom: 3px; }
 
-  .error {
-    margin-bottom: 8px;
-    padding: 6px 10px;
-    background: var(--error-bg);
-    border: 1px solid var(--error-line);
-  }
+  .section-bar { margin: 0 -14px 10px; padding: 5px 14px; background: var(--section-bar); font-size: 15px; font-weight: 600; }
+  .locate { display: grid; grid-template-columns: max-content minmax(0, 420px) max-content; gap: 8px 10px; align-items: center; margin: 4px 0 16px 40px; }
+  .locate label { text-align: right; }
+  .locate input, .locate select { padding: 4px 6px; border: 1px solid #9a9a9a; background: #fff; }
+  .btn-primary { padding: 5px 30px; border: 1px solid #2f2a9e; border-radius: 2px; background: var(--primary); color: #fff; font-weight: 600; cursor: pointer; }
+  .btn-primary:hover { filter: brightness(1.08); }
+
+  .error { margin-bottom: 10px; padding: 7px 10px; background: var(--error-bg); border: 1px solid var(--error-line); }
 
   .statusbar {
     display: flex;
-    gap: 16px;
+    gap: 18px;
     padding: 3px 10px;
-    background: #e9ecef;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--rule);
+    background: var(--menubar);
     color: var(--muted);
     font-size: 11px;
   }
   .statusbar .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); margin-right: 5px; }
-  .statusbar .dot.bad { background: #c0392b; }
+  .statusbar .dot.bad { background: var(--bad); }
   .statusbar .news { color: var(--text); font-weight: 600; }
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
+    nav { width: 160px; }
+    .row2 { grid-template-columns: 1fr; }
+    .menubar { display: none; }
+  }
+  @media (max-width: 640px) {
     nav { display: none; }
-    .fields { grid-template-columns: 100px minmax(0, 1fr); }
-    .fields .wide { grid-column: 2; }
-    .toolbar input { width: 140px; }
+    .brand .name { display: none; }
+    .locate { grid-template-columns: 1fr; margin-left: 0; }
+    .locate label { text-align: left; }
   }
 </style>
 </head>
 <body>
 
 <div class="demo-banner">
-  <strong>FUNCTIONAL REFERENCE</strong> · A mock broker management screen built for a demo. Field labels follow Applied Epic; this is not Applied Epic. All clients and policies are fictional.
+  <strong>FUNCTIONAL REFERENCE</strong> · A mock broker management screen built for a demo. Its layout and labels follow Applied Epic; this is not Applied Epic. All clients, policies, and staff are fictional.
 </div>
 
-<div class="titlebar">
-  <span class="app">Callander &amp; Reid Insurance Brokers · Broker Management</span>
-  <span class="user">Sandra Pellegrino (CSR)</span>
+<div class="menubar" aria-hidden="true">
+  <span>File</span><span>Edit</span><span>Areas</span><span>Home</span><span>Locate</span><span>Actions</span><span>Links</span><span>Help</span>
 </div>
 
-<div class="toolbar">
-  <button class="btn" type="button" data-go="#/home">Home</button>
-  <span class="sep"></span>
-  <label for="locate">Locate</label>
-  <input id="locate" type="search" placeholder="Lookup code, name, or policy #">
-  <button class="btn" type="button" id="locate-btn">Find</button>
-  <span class="sep"></span>
-  <label for="show">Show</label>
-  <select id="show">
-    <option value="open">Open activities</option>
-    <option value="all">All activities</option>
-    <option value="closed">Closed activities</option>
-  </select>
-  <button class="btn" type="button" id="refresh-btn">Refresh</button>
+<div class="band">
+  <div class="brand">
+    <span class="mark">C&amp;R</span>
+    <span class="name">Callander &amp; Reid<small>Broker Management</small></span>
+  </div>
+  <div class="tools" id="tools"></div>
+  <div class="right">
+    <span class="who" id="who"></span>
+    <span class="tool" aria-disabled="true" title="Not part of this functional reference" id="logout"></span>
+  </div>
 </div>
 
 <div class="layout">
-  <nav aria-label="Areas">
-    <a href="#/home" data-nav="home">Home</a>
-    <a href="#/accounts" data-nav="accounts">Accounts</a>
-    <div class="group">Not in this mock</div>
-    <span title="Not part of this functional reference">Policies</span>
-    <span title="Not part of this functional reference">Claims</span>
-    <span title="Not part of this functional reference">Marketing</span>
-    <span title="Not part of this functional reference">Procedures</span>
-    <span title="Not part of this functional reference">Reports</span>
-  </nav>
+  <nav id="nav" aria-label="Areas"></nav>
   <main id="main"></main>
 </div>
 
@@ -266,6 +299,32 @@
   const REFRESH_MS = 5000;
   const NEW_HIGHLIGHT_MS = 10000;
   const TZ = 'America/Toronto';
+  const USER = 'Sandra Pellegrino';
+
+  const ICONS = {
+    home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',
+    locate: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
+    actions: '<path d="M4 18c2-6 7-8 13-8"/><path d="M14 6l4 4-4 4"/>',
+    links: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.8l6.1-.9z"/>',
+    new: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/>',
+    print: '<path d="M7 9V4h10v5"/><rect x="4" y="9" width="16" height="7"/><path d="M7 14h10v6H7z"/>',
+    refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
+    logout: '<path d="M10 4H5v16h5"/><path d="M14 8l4 4-4 4M18 12H9"/>',
+    user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+    accounts: '<circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M16 5a3 3 0 0 1 0 6M18 19c0-2-1-3.6-2.6-4.4"/>',
+    ledger: '<path d="M6 4h11a2 2 0 0 1 2 2v14H8a2 2 0 0 1-2-2z"/><path d="M6 18a2 2 0 0 1 2-2h11"/>',
+    dashboards: '<path d="M4 20V4M4 20h16"/><path d="M7 15l4-4 3 3 5-6"/>',
+    reports: '<path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/>',
+    procedures: '<rect x="4" y="4" width="7" height="6"/><rect x="13" y="14" width="7" height="6"/><path d="M7.5 10v7H13"/>',
+    configure: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>',
+    email: '<rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/>',
+    contacts: '<rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-1.5 1.7-2 3-2s2.5.5 3 2M14 10h4M14 14h3"/>',
+    policies: '<path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/>',
+    claims: '<path d="M12 3c3 4 6 6.5 6 11a6 6 0 0 1-12 0c0-2.5 1.5-4.5 3-6 0 2 1 3 2 3 0-3 0-5 1-8z"/>',
+    activities: '<rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 9h6M9 13h6M9 17h4"/>',
+    attachments: '<path d="M8 12l6.5-6.5a3 3 0 0 1 4.2 4.2L10 18.4a5 5 0 0 1-7-7L10 4.5"/>',
+  };
+  const icon = (name, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ''}</svg>`;
 
   const state = {
     clients: [],
@@ -275,6 +334,7 @@
     newIds: new Map(),      // id -> time first seen
     selectedId: null,
     show: 'open',
+    query: '',
     lastOk: null,
     error: null,
     news: '',
@@ -296,18 +356,20 @@
   }
 
   // Dates arrive in UTC; show them in Toronto time so a midnight date doesn't slip a day.
+  // Epic writes them as 12/8/2023 and 12/8/2023 3:23 pm.
   function fmtDate(iso, withTime) {
     if (!iso) return '';
     const d = new Date(iso);
     if (isNaN(d)) return String(iso);
     const date = d.toLocaleDateString('en-US', { timeZone: TZ, month: 'numeric', day: 'numeric', year: 'numeric' });
     if (!withTime) return date;
-    const time = d.toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
-    return time === '12:00 AM' ? date : `${date} ${time}`;
+    const time = d.toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' }).toLowerCase();
+    return time === '12:00 am' ? date : `${date} ${time}`;
   }
 
   const enteredOn = (a) => a.entered_on || a.createdAt;
   const isClosed = (a) => String(a.status || '').toLowerCase().startsWith('closed');
+  const SHOW_LABELS = { open: 'All Open Activities', all: 'All Activities', closed: 'Closed Activities' };
 
   function accounts() {
     const byCode = new Map();
@@ -327,137 +389,149 @@
 
   function association(a) {
     const parts = [a.associated_to, a.policy_number].filter(Boolean);
-    return parts.join(' · ');
+    return parts.join(' - ');
   }
 
-  function activityRows(list, cols) {
-    if (!list.length) {
-      return `<tr><td class="empty" colspan="${cols.length}">No activities to show.</td></tr>`;
+  function cell(a, col) {
+    switch (col) {
+      case 'Code': return `<td class="link">${esc(a.code)}</td>`;
+      case 'Priority': return `<td>${esc(a.priority)}</td>`;
+      case 'Follow Up/Start': return `<td>${esc(fmtDate(a.follow_up_start, true))}</td>`;
+      case 'Description': return `<td title="${esc(a.description)}">${esc(a.description)}</td>`;
+      case 'Account Name': return `<td><a class="link" href="#/account/${encodeURIComponent(a.lookup_code || '')}">${esc(accountName(a.lookup_code) || a.lookup_code)}</a></td>`;
+      case 'Who/Owner': return `<td>${esc(a.who_owner)}</td>`;
+      case 'Entered On': return `<td>${esc(fmtDate(enteredOn(a), true))}</td>`;
+      case 'Entered By': return `<td>${esc(a.entered_by)}</td>`;
+      case 'Association': return `<td>${esc(association(a))}</td>`;
+      default: return '<td></td>';
     }
-    return list.map((a) => {
-      const cls = [a.id === state.selectedId ? 'sel' : '', state.newIds.has(a.id) ? 'is-new' : ''].join(' ');
-      const cells = cols.map((col) => {
-        switch (col) {
-          case 'Code': return `<td class="code">${esc(a.code)}</td>`;
-          case 'Priority': return `<td class="pri-${esc(String(a.priority || '').toLowerCase())}">${esc(a.priority)}</td>`;
-          case 'Follow up/Start': return `<td>${esc(fmtDate(a.follow_up_start, true))}</td>`;
-          case 'Description': return `<td title="${esc(a.description)}">${esc(a.description)}</td>`;
-          case 'Account Name': return `<td><a class="acct" href="#/account/${encodeURIComponent(a.lookup_code || '')}">${esc(accountName(a.lookup_code) || a.lookup_code)}</a></td>`;
-          case 'Who/Owner': return `<td>${esc(a.who_owner)}</td>`;
-          case 'Entered On': return `<td>${esc(fmtDate(enteredOn(a), true))}</td>`;
-          case 'Entered By': return `<td>${esc(a.entered_by)}</td>`;
-          case 'Association': return `<td>${esc(association(a))}</td>`;
-          case 'Status': return `<td>${esc(a.status)}</td>`;
-          default: return '<td></td>';
-        }
-      }).join('');
-      return `<tr class="${cls}" data-activity="${esc(a.id)}">${cells}</tr>`;
-    }).join('');
   }
 
-  function activityGrid(title, list, cols) {
+  // The activity list, then the two panels Epic shows under it for the selected row.
+  function activitySection(list, cols) {
     const shown = visibleActivities(list);
+    if (!shown.some((a) => a.id === state.selectedId)) state.selectedId = shown[0]?.id ?? null;
+    const rows = shown.length
+      ? shown.map((a) => {
+          const cls = [a.id === state.selectedId ? 'sel' : '', state.newIds.has(a.id) ? 'is-new' : ''].join(' ');
+          return `<tr class="${cls}" data-activity="${esc(a.id)}">${cols.map((c) => cell(a, c)).join('')}</tr>`;
+        }).join('')
+      : `<tr><td class="empty" colspan="${cols.length}">No activities to show.</td></tr>`;
+    const options = Object.entries(SHOW_LABELS).map(([v, label]) =>
+      `<option value="${v}" ${v === state.show ? 'selected' : ''}>${label}</option>`).join('');
     return `
-      <div class="pane">
-        <div class="pane-head">${esc(title)} <span class="count">(${shown.length})</span></div>
-        <div class="grid-wrap">
+      <section class="panel" id="activities">
+        <div class="panel-title">Activities - <select data-show aria-label="Which activities to show">${options}</select></div>
+        <div class="grid-box">
           <table class="grid">
             <thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead>
-            <tbody>${activityRows(shown, cols)}</tbody>
+            <tbody>${rows}</tbody>
           </table>
         </div>
-      </div>
-      ${activityDetail(shown)}`;
+      </section>
+      ${activityPanels(shown.find((a) => a.id === state.selectedId))}`;
   }
 
-  // Field order follows Epic's Add Activity steps (applied-epic-field-list.md, section 08).
-  function activityDetail(shown) {
-    const a = shown.find((x) => x.id === state.selectedId);
-    if (!a) return '';
-    const field = (label, value, extra = '') =>
-      `<label>${esc(label)}</label><div class="val ${extra}">${esc(value)}</div>`;
+  function activityPanels(a) {
+    const val = (v) => (v ? esc(v) : '<span class="placeholder">None</span>');
+    const glance = a ? `
+      <dl class="glance">
+        <dt>Code</dt><dd>${val(a.code)}</dd>
+        <dt>Account</dt><dd><a class="link" href="#/account/${encodeURIComponent(a.lookup_code || '')}">${val(accountName(a.lookup_code) || a.lookup_code)}</a></dd>
+        <dt>Association</dt><dd>${val(association(a))}</dd>
+        <dt>Who/Owner</dt><dd>${val(a.who_owner)}</dd>
+        <dt>Priority</dt><dd>${val(a.priority)}</dd>
+        <dt>Status</dt><dd>${val(a.status)}</dd>
+        <dt>Follow up/Start</dt><dd>${val(fmtDate(a.follow_up_start, true))}</dd>
+      </dl>` : '<div class="placeholder">No activity selected.</div>';
+    const note = a ? `
+      <div class="note-meta">
+        <span>Entered on <b>${esc(fmtDate(enteredOn(a), true))}</b></span>
+        <span>Entered by <b>${esc(a.entered_by || '')}</b></span>
+      </div>
+      <div class="note-text">${a.note ? esc(a.note) : '<span class="placeholder">No note entered.</span>'}</div>` : '';
     return `
-      <div class="pane">
-        <div class="pane-head">Activity Detail</div>
-        <div class="pane-body fields">
-          ${field('Code', a.code)}
-          ${field('Priority', a.priority)}
-          <label>Description</label><div class="val wide">${esc(a.description)}</div>
-          ${field('Who/Owner', a.who_owner)}
-          ${field('Follow up/Start', fmtDate(a.follow_up_start, true))}
-          ${field('Status', a.status)}
-          ${field('Association', association(a))}
-          ${field('Account', `${accountName(a.lookup_code)} (${a.lookup_code || ''})`)}
-          ${field('Entered', `${fmtDate(enteredOn(a), true)}${a.entered_by ? ' by ' + a.entered_by : ''}`)}
-          <label>Note</label><div class="val wide note">${esc(a.note)}</div>
-        </div>
+      <div class="row2">
+        <section class="panel"><div class="panel-title">Activity at a Glance</div><div class="panel-body">${glance}</div></section>
+        <section class="panel"><div class="panel-title">Activity - <em>Last Note Entered</em></div><div class="panel-body">${note}</div></section>
       </div>`;
   }
 
   function viewHome() {
-    return activityGrid('Activities', state.activities,
-      ['Code', 'Priority', 'Follow up/Start', 'Description', 'Account Name', 'Who/Owner', 'Entered On', 'Entered By']);
+    return activitySection(state.activities,
+      ['Code', 'Priority', 'Follow Up/Start', 'Description', 'Entered On', 'Account Name']);
   }
 
-  function viewAccounts() {
-    const rows = accounts().map((acc) => {
-      const open = state.activities.filter((a) => a.lookup_code === acc.lookup_code && !isClosed(a)).length;
-      return `<tr data-account="${esc(acc.lookup_code)}">
-        <td class="code">${esc(acc.lookup_code)}</td>
+  function matches(acc, q) {
+    if (!q) return true;
+    const hay = [acc.lookup_code, acc.account_name, ...acc.policies.map((p) => p.policy_number)];
+    return hay.some((v) => String(v || '').toLowerCase().includes(q));
+  }
+
+  function viewLocate() {
+    const q = state.query.trim().toLowerCase();
+    const list = accounts().filter((a) => matches(a, q));
+    const rows = list.map((acc) => `<tr data-account="${esc(acc.lookup_code)}">
+        <td>${esc(acc.lookup_code)}</td>
         <td>${esc(acc.account_name)}</td>
         <td>${esc(acc.client_type)}</td>
+        <td>Active</td>
         <td>${esc(acc.producer)}</td>
-        <td>${acc.policies.length}</td>
-        <td>${open}</td>
-      </tr>`;
-    }).join('');
+      </tr>`).join('');
     return `
-      <div class="pane">
-        <div class="pane-head">Accounts <span class="count">(${accounts().length})</span></div>
-        <div class="grid-wrap">
-          <table class="grid">
-            <thead><tr><th>Lookup Code</th><th>Account Name</th><th>Client Type</th><th>Producer</th><th>Policies</th><th>Open Activities</th></tr></thead>
-            <tbody>${rows || '<tr><td class="empty" colspan="6">No accounts loaded.</td></tr>'}</tbody>
-          </table>
-        </div>
+      <div class="section-bar">Locate Criteria</div>
+      <form class="locate" data-locate>
+        <label for="locate-by">Locate account</label>
+        <select id="locate-by" disabled><option>Client</option></select>
+        <span></span>
+        <label for="locate-q">Name, lookup code, or policy # contains</label>
+        <input id="locate-q" type="search" value="${esc(state.query)}" autocomplete="off">
+        <button class="btn-primary" type="submit">Locate</button>
+      </form>
+      <div class="section-bar">Results</div>
+      <div class="grid-box" style="margin:0">
+        <table class="grid">
+          <thead><tr><th>Lookup Code</th><th>Account Name</th><th>Client Type</th><th>Account Status</th><th>Producer</th></tr></thead>
+          <tbody>${rows || '<tr><td class="empty" colspan="5">No accounts match.</td></tr>'}</tbody>
+        </table>
       </div>`;
   }
 
   function viewAccount(code) {
     const acc = accounts().find((a) => a.lookup_code === code);
-    if (!acc) return `<div class="pane"><div class="empty">No account with lookup code ${esc(code)}.</div></div>`;
-    const info = (label, value) => `<div><span style="color:var(--muted)">${esc(label)}:</span> ${esc(value)}</div>`;
+    if (!acc) return `<div class="panel"><div class="empty">No account with lookup code ${esc(code)}.</div></div>`;
+    const fact = (label, value) => `<div><b>${esc(label)}</b>${value}</div>`;
     const policies = acc.policies.map((p) => `<tr>
         <td>${esc(p.policy_type)}</td>
-        <td>${esc(p.policy_number)}</td>
+        <td class="link">${esc(p.policy_number)}</td>
         <td title="${esc(p.line_description)}">${esc(p.line_description)}</td>
         <td>${esc(fmtDate(p.effective))}</td>
         <td>${esc(fmtDate(p.expiry))}</td>
         <td>${esc(p.ico_carrier)}</td>
       </tr>`).join('');
     return `
-      <div class="pane">
-        <div class="pane-head">Account</div>
-        <div class="pane-body acct-header">
-          <div class="acct-name">${esc(acc.account_name)}</div>
-          ${info('Lookup Code', acc.lookup_code)}
-          ${info('Client Type', acc.client_type)}
-          ${info('Producer', acc.producer)}
-          ${info('Contact', acc.contact)}
-          ${info('Email', acc.contact_email)}
+      <div class="card" id="detail">
+        <div class="kicker">Account</div>
+        <h1>${esc(acc.account_name)} (${esc(acc.lookup_code)})</h1>
+        <div class="facts">
+          ${fact('Client Type', esc(acc.client_type))}
+          ${fact('Account Status', 'Active')}
+          ${fact('Primary Contact', esc(acc.contact))}
+          ${fact('Email', `<a class="link" href="mailto:${esc(acc.contact_email)}">${esc(acc.contact_email)}</a>`)}
+          ${fact('Producer', esc(acc.producer))}
         </div>
       </div>
-      <div class="pane">
-        <div class="pane-head">Policies <span class="count">(${acc.policies.length})</span></div>
-        <div class="grid-wrap">
+      <section class="panel" id="policies">
+        <div class="panel-title">Policies - <em>Current/Renewed</em></div>
+        <div class="grid-box">
           <table class="grid">
-            <thead><tr><th>Policy Type</th><th>Policy Number</th><th>Description</th><th>Effective</th><th>Expiry</th><th>ICO/Carrier</th></tr></thead>
+            <thead><tr><th>Policy Type</th><th>Policy #</th><th>Description</th><th>Effective</th><th>Expiry</th><th>ICO/Carrier</th></tr></thead>
             <tbody>${policies}</tbody>
           </table>
         </div>
-      </div>
-      ${activityGrid('Activities', state.activities.filter((a) => a.lookup_code === code),
-        ['Entered On', 'Priority', 'Code', 'Description', 'Who/Owner', 'Follow up/Start', 'Association', 'Status'])}`;
+      </section>
+      ${activitySection(state.activities.filter((a) => a.lookup_code === code),
+        ['Entered On', 'Priority', 'Code', 'Description', 'Who/Owner', 'Follow Up/Start', 'Association', 'Entered By'])}`;
   }
 
   function route() {
@@ -465,17 +539,62 @@
     return { view: view || 'home', arg: arg ? decodeURIComponent(arg) : '' };
   }
 
+  function renderChrome(view, arg) {
+    const tool = (name, label, go, live = true) => live
+      ? `<button class="tool" type="button" data-go="${go}">${icon(name)}${label}</button>`
+      : `<span class="tool" aria-disabled="true" title="Not part of this functional reference">${icon(name)}${label}</span>`;
+    $('#tools').innerHTML = [
+      tool('home', 'Home', '#/home'),
+      tool('locate', 'Locate', '#/locate'),
+      tool('actions', 'Actions', '', false),
+      tool('links', 'Links', '', false),
+      tool('new', 'New', '', false),
+      tool('print', 'Print', '', false),
+      `<button class="tool" type="button" data-refresh>${icon('refresh')}Refresh</button>`,
+    ].join('');
+    $('#who').innerHTML = `${icon('user', 'ic-sm')}${esc(USER)}`;
+    $('#logout').innerHTML = `${icon('logout')}Logout`;
+
+    const live = (name, label, href, active) =>
+      `<a href="${href}" class="${active ? 'active' : ''}">${icon(name, 'ic-sm')}${label}</a>`;
+    const dead = (name, label) => `<span title="Not part of this functional reference">${icon(name, 'ic-sm')}${label}</span>`;
+    if (view === 'account') {
+      const name = accountName(arg);
+      $('#nav').innerHTML = [
+        live('accounts', 'Account Detail', `#/account/${encodeURIComponent(arg)}`, true),
+        name ? `<a class="sub" href="#/account/${encodeURIComponent(arg)}">${esc(name)}</a>` : '',
+        dead('contacts', 'Contacts'),
+        `<a href="#policies" data-jump="policies">${icon('policies', 'ic-sm')}Policies</a>`,
+        dead('claims', 'Claims'),
+        `<a href="#activities" data-jump="activities">${icon('activities', 'ic-sm')}Activities</a>`,
+        dead('attachments', 'Attachments'),
+      ].join('');
+    } else {
+      $('#nav').innerHTML = [
+        live('home', 'Home', '#/home', view === 'home'),
+        live('accounts', 'Accounts', '#/locate', view === 'locate'),
+        dead('ledger', 'General Ledger'),
+        dead('dashboards', 'Dashboards'),
+        dead('reports', 'Reports/Marketing'),
+        dead('procedures', 'Procedures'),
+        dead('configure', 'Configure'),
+        dead('email', 'Email'),
+      ].join('');
+    }
+  }
+
   function render() {
     const { view, arg } = route();
     const scroll = $('#main').scrollTop;
-    const body = view === 'accounts' ? viewAccounts() : view === 'account' ? viewAccount(arg) : viewHome();
+    const body = view === 'locate' ? viewLocate() : view === 'account' ? viewAccount(arg) : viewHome();
     const err = state.error
       ? `<div class="error"><strong>Can't reach the data.</strong> ${esc(state.error)}. Check that n8n is running and the "Mock Epic data" workflow is published.</div>`
       : '';
+    const focused = document.activeElement?.id === 'locate-q';
     $('#main').innerHTML = err + body;
     $('#main').scrollTop = scroll;
-    document.querySelectorAll('nav a').forEach((a) =>
-      a.classList.toggle('active', a.dataset.nav === (view === 'account' ? 'accounts' : view)));
+    if (focused) { const q = $('#locate-q'); q.focus(); q.setSelectionRange(q.value.length, q.value.length); }
+    renderChrome(view, arg);
     renderStatus();
   }
 
@@ -527,34 +646,33 @@
     }
   }
 
-  // Clicks: activity rows open the detail pane, account rows open the account.
-  $('#main').addEventListener('click', (e) => {
-    if (e.target.closest('a.acct')) return;
+  // Clicks: header tools, activity rows (select), account rows (open), left-menu jumps.
+  document.addEventListener('click', (e) => {
+    const go = e.target.closest('[data-go]');
+    if (go) { location.hash = go.dataset.go; return; }
+    if (e.target.closest('[data-refresh]')) { load(); return; }
+    const jump = e.target.closest('[data-jump]');
+    if (jump) { e.preventDefault(); document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: 'smooth' }); return; }
+    if (e.target.closest('a.link')) return;
     const act = e.target.closest('tr[data-activity]');
-    if (act) {
-      const id = Number(act.dataset.activity);
-      state.selectedId = state.selectedId === id ? null : id;
-      render();
-      return;
-    }
+    if (act) { state.selectedId = Number(act.dataset.activity); render(); return; }
     const acc = e.target.closest('tr[data-account]');
     if (acc) location.hash = `#/account/${encodeURIComponent(acc.dataset.account)}`;
   });
-
-  function locate() {
-    const q = $('#locate').value.trim().toLowerCase();
-    if (!q) return;
-    const hit = state.clients.find((c) =>
-      [c.lookup_code, c.account_name, c.policy_number].some((v) => String(v || '').toLowerCase().includes(q)));
-    if (hit) location.hash = `#/account/${encodeURIComponent(hit.lookup_code)}`;
-    else { setNews(`No account matches "${$('#locate').value.trim()}"`); renderStatus(); }
-  }
-  $('#locate-btn').addEventListener('click', locate);
-  $('#locate').addEventListener('keydown', (e) => { if (e.key === 'Enter') locate(); });
-  $('#show').addEventListener('change', (e) => { state.show = e.target.value; render(); });
-  $('#refresh-btn').addEventListener('click', load);
-  document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => { location.hash = b.dataset.go; }));
-  window.addEventListener('hashchange', () => { state.selectedId = null; render(); });
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('[data-show]')) { state.show = e.target.value; state.selectedId = null; render(); }
+  });
+  document.addEventListener('input', (e) => {
+    if (e.target.id === 'locate-q') { state.query = e.target.value; render(); }
+  });
+  document.addEventListener('submit', (e) => {
+    if (!e.target.matches('[data-locate]')) return;
+    e.preventDefault();
+    const q = state.query.trim().toLowerCase();
+    const list = accounts().filter((a) => matches(a, q));
+    if (list.length === 1) location.hash = `#/account/${encodeURIComponent(list[0].lookup_code)}`;
+  });
+  window.addEventListener('hashchange', () => { state.selectedId = null; $('#main').scrollTop = 0; render(); });
 
   render();
   load();
