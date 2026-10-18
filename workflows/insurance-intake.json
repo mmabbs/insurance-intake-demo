@@ -6,7 +6,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -48,
+        -64,
         -32
       ],
       "id": "83884ac3-d3b3-48cd-929d-0f60a17d8eab",
@@ -26,7 +26,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        176,
+        160,
         80
       ],
       "id": "34f474d2-82b6-4a0e-b9b6-b2a8d20d614f",
@@ -49,8 +49,8 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        624,
-        80
+        608,
+        160
       ],
       "id": "d88db774-5892-4572-9da9-1a5fe76d89da",
       "name": "Sort and pull out"
@@ -63,8 +63,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        1112,
-        312
+        1096,
+        376
       ],
       "id": "6b272ca4-6145-4c89-b52e-eec9b9d2e797",
       "name": "Structured Output Parser"
@@ -84,7 +84,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        176,
+        160,
         -112
       ],
       "id": "163a05ac-6759-4fe0-89f3-4c1981eae6d8",
@@ -103,8 +103,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        696,
-        312
+        680,
+        376
       ],
       "id": "c19a9a2d-ab7d-40b9-89f0-47dc77a55095",
       "name": "Sort emails and pull out fields (Haiku 5.5)",
@@ -128,8 +128,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        984,
-        312
+        968,
+        376
       ],
       "id": "1b17cbb3-5049-4eb7-8db4-095361590ff5",
       "name": "Draft activity and follow-up email (Haiku 5.5)",
@@ -158,8 +158,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.9,
       "position": [
-        976,
-        80
+        960,
+        160
       ],
       "id": "e646de80-9bba-4f3d-bc35-f3ad72aa3fc9",
       "name": "Draft the entry (Basic LLM Chain)"
@@ -174,8 +174,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        1328,
-        80
+        1312,
+        160
       ],
       "id": "d3332528-2523-4996-8e30-f956980702d3",
       "name": "Set activity fields"
@@ -185,8 +185,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        400,
-        80
+        384,
+        160
       ],
       "id": "b18d2114-8ee2-4409-8dce-29ff4ba0009f",
       "name": "Incoming email (No Operation)"
@@ -198,8 +198,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1552,
-        80
+        1536,
+        160
       ],
       "id": "0eb03dff-c398-4899-bd27-2e7478a296ef",
       "name": "Review one email at a time (Loop Over Items)"
@@ -224,8 +224,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1776,
-        -80
+        1760,
+        80
       ],
       "id": "8b2c3229-14c7-4d99-bac8-4bd7dbc0cce9",
       "name": "Send draft to broker for review (Gmail Send and Wait)",
@@ -246,8 +246,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        2000,
-        -80
+        1984,
+        80
       ],
       "id": "54ff9022-e5a1-4cc3-a469-cc4c73d5c85a",
       "name": "Build activity row (Edit Fields)"
@@ -395,8 +395,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        2224,
-        -80
+        2208,
+        80
       ],
       "id": "3b3c07c6-6da3-443c-9519-4a27739568da",
       "name": "Write activity to Epic (Data Table)"
@@ -410,8 +410,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        2448,
-        -80
+        2432,
+        80
       ],
       "id": "1c1e2e1f-c9c6-4127-81a5-3e2f3cc13cdc",
       "name": "Build audit row (Edit Fields)"
@@ -599,8 +599,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        2672,
-        -80
+        2656,
+        80
       ],
       "id": "fa48b2c0-84c9-4e8f-8131-0b25b6c2802b",
       "name": "Log the email (Data Table)"
@@ -633,8 +633,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2896,
-        32
+        2880,
+        80
       ],
       "id": "39a0a44a-3596-4636-af30-64c6674eb37c",
       "name": "Did the broker change anything? (If)"
@@ -648,8 +648,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        3120,
-        32
+        3104,
+        80
       ],
       "id": "610a3fda-739a-40b0-ba77-99fc2e485336",
       "name": "Build correction row (Edit Fields)"
@@ -777,11 +777,41 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        3344,
-        128
+        3328,
+        160
       ],
       "id": "90f8ebcb-7153-4ffa-804c-412e10c8aefe",
       "name": "Save the correction (Data Table)"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "-from:me"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -64,
+        288
+      ],
+      "id": "974eadbb-4d93-4571-a641-817eae2174f8",
+      "name": "Watch shared inbox for new email (Gmail Trigger)",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "fOuGRailv5AH3YvK",
+          "name": "Gmail account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1745,6 +1775,22 @@
           }
         ]
       ]
+    },
+    "Watch shared inbox for new email (Gmail Trigger)": {
+      "main": [
+        [
+          {
+            "node": "Incoming email (No Operation)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -1752,7 +1798,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "b9d0cd38-50cb-4752-918c-ceebee7f3aeb",
+  "versionId": "bdb11f6f-fa94-44c7-8852-a0aa6ec2062c",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "5272b2b72c7351f30248768af67323c3f8e737d74309fdfd6ec5a73dbcdbfb58"
