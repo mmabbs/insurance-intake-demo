@@ -6,8 +6,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -64,
-        -32
+        -80,
+        -64
       ],
       "id": "83884ac3-d3b3-48cd-929d-0f60a17d8eab",
       "name": "When clicking ‘Execute workflow’"
@@ -26,8 +26,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        160,
-        80
+        144,
+        -64
       ],
       "id": "34f474d2-82b6-4a0e-b9b6-b2a8d20d614f",
       "name": "Get many messages",
@@ -44,13 +44,15 @@
         "text": "=Received: {{ DateTime.fromISO($json.date).setZone('America/Toronto').toFormat('cccc, LLLL d, yyyy, h:mm a') }}\nFrom: {{ $json.from.text }}\nSubject: {{ $json.subject }}\n\n{{ $json.text }}",
         "schemaType": "manual",
         "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"reason\": {\n      \"type\": \"string\",\n      \"description\": \"Two or three plain sentences a broker can read: what the email is asking for, and why you chose this category, client, and policy. Write this first.\"\n    },\n    \"category\": {\n      \"type\": \"string\",\n      \"enum\": [\"policy change\", \"renewal question\", \"claim notice\", \"underwriter request\", \"other\"],\n      \"description\": \"What kind of work the email is. 'policy change': a client asks to change an existing policy, such as adding, removing, or replacing a vehicle, adding or removing a driver, or changing an address. 'renewal question': a question about an upcoming or recent renewal, such as its price, its terms, or shopping it around. 'claim notice': a client reports a loss or damage, such as an accident, a leak, or a theft. 'underwriter request': an insurance company writes to the brokerage asking for documents, information, or a change on a policy. 'other': anything else. If an email asks for more than one thing, choose the request that needs action on a policy.\"\n    },\n    \"urgency\": {\n      \"type\": \"string\",\n      \"enum\": [\"High\", \"Normal\", \"Low\"],\n      \"description\": \"How soon the brokerage must act. 'High' for claims, and for anything that threatens the client's coverage, such as an insurer warning that a policy will be cancelled or not renewed. 'Normal' for ordinary requests. 'Low' for anything that can wait with no consequence.\"\n    },\n    \"client_name\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The brokerage's client the email is about, not necessarily the sender. When staff write for a company, the client is the company. When an insurer writes, the client is the insured person named in the email. Write a person as 'Last, First' and a company by its full name. null when the email doesn't say who the client is.\"\n    },\n    \"policy_number\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The policy number exactly as the email writes it. null when the email gives none. Never guess or make one up.\"\n    },\n    \"cant_tell_policy\": {\n      \"type\": \"boolean\",\n      \"description\": \"true when the email gives no policy number, or gives more than one without saying which one the request is about. Otherwise false.\"\n    },\n    \"effective_date\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The one date the request turns on, as YYYY-MM-DD: when a change takes effect, the date of loss for a claim, the renewal date for a renewal question, or the reply deadline for an underwriter request. Work out relative dates such as 'yesterday' or 'Tuesday' from the date the email was received. null when the email gives no date.\"\n    },\n    \"requested_change\": {\n      \"type\": \"string\",\n      \"description\": \"One or two sentences on what the client or insurer wants done, with the specifics a broker would need: vehicle, VIN, driver, address, or document.\"\n    },\n    \"confidence\": {\n      \"type\": \"string\",\n      \"enum\": [\"high\", \"medium\", \"low\"],\n      \"description\": \"How sure you are of the category, client, and policy together. 'low' if any of them is a guess.\"\n    }\n  },\n  \"required\": [\"reason\", \"category\", \"urgency\", \"client_name\", \"policy_number\", \"cant_tell_policy\", \"effective_date\", \"requested_change\", \"confidence\"]\n}",
-        "options": {}
+        "options": {
+          "systemPromptTemplate": "=You are an expert extraction algorithm.\nOnly extract relevant information from the text.\nIf you do not know the value of an attribute asked to extract, you may omit the attribute's value.\n{{ (() => {\n  const urgencyFor = { Urgent: 'High', Normal: 'Normal', Low: 'Low' };\n  const categoryFor = { CHGR: 'policy change', RENL: 'renewal question', FNOL: 'claim notice', UNDR: 'underwriter request', MISC: 'other' };\n  const rows = $('Combine corrections into one list (Aggregate)').first().json.corrections || [];\n  const examples = rows.map(row => {\n    const ai = JSON.parse(row.ai_values || '{}');\n    const broker = JSON.parse(row.broker_values || '{}');\n    const fixes = [];\n    if ('Priority' in broker) fixes.push(`urgency: you said \"${urgencyFor[ai.Priority] ?? ai.Priority}\", the broker changed it to \"${urgencyFor[broker.Priority] ?? broker.Priority}\"`);\n    if ('Code' in broker) fixes.push(`category: you said \"${categoryFor[ai.Code] ?? ai.Code}\", the broker changed it to \"${categoryFor[broker.Code] ?? broker.Code}\"`);\n    if (fixes.length === 0) return null;\n    return `Subject: ${row.email_subject}\\n${row.email_text}\\nThe broker's correction: ${fixes.join('; ')}`;\n  }).filter(Boolean).filter((example, i, all) => all.indexOf(example) === i);\n  if (examples.length === 0) return '';\n  return '\\nA broker reviews every answer you give. These are past emails where the broker corrected you. Use the same judgement on similar emails:\\n\\n' + examples.join('\\n\\n---\\n\\n');\n})() }}"
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        608,
-        160
+        592,
+        128
       ],
       "id": "d88db774-5892-4572-9da9-1a5fe76d89da",
       "name": "Sort and pull out"
@@ -64,32 +66,11 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        1104,
-        384
+        1088,
+        368
       ],
       "id": "6b272ca4-6145-4c89-b52e-eec9b9d2e797",
       "name": "Structured Output Parser"
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "dataTableId": {
-          "__rl": true,
-          "value": "oWARmRld1D3QiwIK",
-          "mode": "list",
-          "cachedResultName": "clients",
-          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/oWARmRld1D3QiwIK"
-        },
-        "returnAll": true
-      },
-      "type": "n8n-nodes-base.dataTable",
-      "typeVersion": 1.1,
-      "position": [
-        160,
-        -112
-      ],
-      "id": "163a05ac-6759-4fe0-89f3-4c1981eae6d8",
-      "name": "Get clients"
     },
     {
       "parameters": {
@@ -104,8 +85,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        688,
-        384
+        672,
+        368
       ],
       "id": "c19a9a2d-ab7d-40b9-89f0-47dc77a55095",
       "name": "Sort emails and pull out fields (Haiku 5.5)",
@@ -129,8 +110,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        976,
-        384
+        960,
+        368
       ],
       "id": "1b17cbb3-5049-4eb7-8db4-095361590ff5",
       "name": "Draft activity and follow-up email (Haiku 5.5)",
@@ -144,7 +125,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Today's date: {{ $now.toFormat('yyyy-MM-dd') }}\n\nTHE EMAIL\nFrom: {{ $('Incoming email (No Operation)').item.json.from.value[0].name }} <{{ $('Incoming email (No Operation)').item.json.from.value[0].address }}>\nSent: {{ $('Incoming email (No Operation)').item.json.date }}\nSubject: {{ $('Incoming email (No Operation)').item.json.subject }}\n\n{{ $('Incoming email (No Operation)').item.json.text }}\n\nWHAT SORTING FOUND\nCategory: {{ $json.output.category }}\nUrgency: {{ $json.output.urgency }}\nClient: {{ $json.output.client_name }}\nPolicy number: {{ $json.output.policy_number }}\nCan't tell which policy: {{ $json.output.cant_tell_policy }}\nDate the request turns on: {{ $json.output.effective_date }}\nWhat they want done: {{ $json.output.requested_change }}\nWhy sorting read it this way: {{ $json.output.reason }}\n\nCLIENT FILE\n{{ (() => {\n  const s = $json.output;\n  const rows = $('Get clients').all().map(i => i.json);\n  const sender = String($('Incoming email (No Operation)').item.json.from.value[0].name || '').toLowerCase();\n  const key = r => r.account_name.split(',')[0].trim().toLowerCase();\n  let hit = rows.find(r => s.policy_number && r.policy_number === s.policy_number);\n  if (!hit && s.client_name) hit = rows.find(r => s.client_name.toLowerCase().includes(key(r)));\n  if (!hit && sender) hit = rows.find(r => sender.includes(key(r)));\n  if (!hit) return 'No client file found for this email.';\n  const policies = rows.filter(r => r.lookup_code === hit.lookup_code);\n  return 'Account: ' + hit.account_name + ' (' + hit.lookup_code + '), ' + hit.client_type + ' client. Contact: ' + hit.contact + '. Producer: ' + hit.producer + '.\\nPolicies on file:\\n' +\n    policies.map(p => '- ' + p.policy_number + ': ' + p.policy_type + ', ' + p.line_description + ', ' + p.ico_carrier + ', ' + String(p.effective).slice(0, 10) + ' to ' + String(p.expiry).slice(0, 10)).join('\\n');\n})() }}\n",
+        "text": "=Today's date: {{ $now.toFormat('yyyy-MM-dd') }}\n\nTHE EMAIL\nFrom: {{ $('Incoming email (No Operation)').item.json.from.value[0].name }} <{{ $('Incoming email (No Operation)').item.json.from.value[0].address }}>\nSent: {{ $('Incoming email (No Operation)').item.json.date }}\nSubject: {{ $('Incoming email (No Operation)').item.json.subject }}\n\n{{ $('Incoming email (No Operation)').item.json.text }}\n\nWHAT SORTING FOUND\nCategory: {{ $json.output.category }}\nUrgency: {{ $json.output.urgency }}\nClient: {{ $json.output.client_name }}\nPolicy number: {{ $json.output.policy_number }}\nCan't tell which policy: {{ $json.output.cant_tell_policy }}\nDate the request turns on: {{ $json.output.effective_date }}\nWhat they want done: {{ $json.output.requested_change }}\nWhy sorting read it this way: {{ $json.output.reason }}\n\nCLIENT FILE\n{{ (() => {\n  const s = $json.output;\n  const rows = $('Get clients (Data Table)').all().map(i => i.json);\n  const sender = String($('Incoming email (No Operation)').item.json.from.value[0].name || '').toLowerCase();\n  const key = r => r.account_name.split(',')[0].trim().toLowerCase();\n  let hit = rows.find(r => s.policy_number && r.policy_number === s.policy_number);\n  if (!hit && s.client_name) hit = rows.find(r => s.client_name.toLowerCase().includes(key(r)));\n  if (!hit && sender) hit = rows.find(r => sender.includes(key(r)));\n  if (!hit) return 'No client file found for this email.';\n  const policies = rows.filter(r => r.lookup_code === hit.lookup_code);\n  return 'Account: ' + hit.account_name + ' (' + hit.lookup_code + '), ' + hit.client_type + ' client. Contact: ' + hit.contact + '. Producer: ' + hit.producer + '.\\nPolicies on file:\\n' +\n    policies.map(p => '- ' + p.policy_number + ': ' + p.policy_type + ', ' + p.line_description + ', ' + p.ico_carrier + ', ' + String(p.effective).slice(0, 10) + ' to ' + String(p.expiry).slice(0, 10)).join('\\n');\n})() }}\n",
         "hasOutputParser": true,
         "messages": {
           "messageValues": [
@@ -159,8 +140,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.9,
       "position": [
-        960,
-        160
+        976,
+        128
       ],
       "id": "e646de80-9bba-4f3d-bc35-f3ad72aa3fc9",
       "name": "Draft the entry (Basic LLM Chain)"
@@ -175,8 +156,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        1312,
-        160
+        1440,
+        128
       ],
       "id": "d3332528-2523-4996-8e30-f956980702d3",
       "name": "Set activity fields"
@@ -186,8 +167,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        384,
-        160
+        368,
+        128
       ],
       "id": "b18d2114-8ee2-4409-8dce-29ff4ba0009f",
       "name": "Incoming email (No Operation)"
@@ -199,8 +180,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1536,
-        160
+        1664,
+        128
       ],
       "id": "0eb03dff-c398-4899-bd27-2e7478a296ef",
       "name": "Review one email at a time (Loop Over Items)"
@@ -225,8 +206,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1760,
-        80
+        1888,
+        64
       ],
       "id": "8b2c3229-14c7-4d99-bac8-4bd7dbc0cce9",
       "name": "Send draft to broker for review (Gmail Send and Wait)",
@@ -247,8 +228,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        1984,
-        80
+        2112,
+        64
       ],
       "id": "54ff9022-e5a1-4cc3-a469-cc4c73d5c85a",
       "name": "Build activity row (Edit Fields)"
@@ -396,8 +377,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        2208,
-        80
+        2336,
+        64
       ],
       "id": "3b3c07c6-6da3-443c-9519-4a27739568da",
       "name": "Write activity to Epic (Data Table)"
@@ -411,8 +392,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        2432,
-        80
+        2560,
+        64
       ],
       "id": "1c1e2e1f-c9c6-4127-81a5-3e2f3cc13cdc",
       "name": "Build audit row (Edit Fields)"
@@ -600,8 +581,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        2656,
-        80
+        2784,
+        64
       ],
       "id": "fa48b2c0-84c9-4e8f-8131-0b25b6c2802b",
       "name": "Log the email (Data Table)"
@@ -634,8 +615,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2880,
-        80
+        3008,
+        64
       ],
       "id": "39a0a44a-3596-4636-af30-64c6674eb37c",
       "name": "Did the broker change anything? (If)"
@@ -649,8 +630,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        3104,
-        80
+        3232,
+        64
       ],
       "id": "610a3fda-739a-40b0-ba77-99fc2e485336",
       "name": "Build correction row (Edit Fields)"
@@ -778,8 +759,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        3328,
-        160
+        3456,
+        128
       ],
       "id": "90f8ebcb-7153-4ffa-804c-412e10c8aefe",
       "name": "Save the correction (Data Table)"
@@ -802,8 +783,8 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.4,
       "position": [
-        -64,
-        288
+        128,
+        256
       ],
       "id": "974eadbb-4d93-4571-a641-817eae2174f8",
       "name": "Watch shared inbox for new email (Gmail Trigger)",
@@ -827,8 +808,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        1264,
-        584
+        1168,
+        576
       ],
       "id": "c8125490-7a7a-4e02-b593-d76b5458056e",
       "name": "Fix draft format (Haiku 5.5)",
@@ -838,6 +819,66 @@
           "name": "Anthropic account"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "jyiziPsLMITItgPs",
+          "mode": "list",
+          "cachedResultName": "corrections",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/jyiziPsLMITItgPs"
+        },
+        "limit": 5,
+        "orderBy": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        -448
+      ],
+      "id": "35022db3-1819-4623-b506-7861624ca937",
+      "name": "Get recent corrections (Data Table)",
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oWARmRld1D3QiwIK",
+          "mode": "list",
+          "cachedResultName": "clients",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/oWARmRld1D3QiwIK"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        352,
+        -160
+      ],
+      "id": "163a05ac-6759-4fe0-89f3-4c1981eae6d8",
+      "name": "Get clients (Data Table)"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "corrections",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -448
+      ],
+      "id": "1949cea5-eb41-459c-bb51-a78d97f5e8a3",
+      "name": "Combine corrections into one list (Aggregate)"
     }
   ],
   "pinData": {
@@ -1590,12 +1631,17 @@
       "main": [
         [
           {
-            "node": "Get clients",
+            "node": "Get clients (Data Table)",
             "type": "main",
             "index": 0
           },
           {
             "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get recent corrections (Data Table)",
             "type": "main",
             "index": 0
           }
@@ -1633,11 +1679,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Get clients": {
-      "main": [
-        []
       ]
     },
     "Sort emails and pull out fields (Haiku 5.5)": {
@@ -1811,7 +1852,12 @@
             "index": 0
           },
           {
-            "node": "Get clients",
+            "node": "Get clients (Data Table)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get recent corrections (Data Table)",
             "type": "main",
             "index": 0
           }
@@ -1828,6 +1874,22 @@
           }
         ]
       ]
+    },
+    "Get recent corrections (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Combine corrections into one list (Aggregate)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get clients (Data Table)": {
+      "main": [
+        []
+      ]
     }
   },
   "active": false,
@@ -1839,7 +1901,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "9526d9f0-4ac6-486d-b580-82d6fcc9551b",
+  "versionId": "256e9a53-c3c0-4e21-ba0f-6bc7ec2cacd2",
   "meta": {
     "templateCredsSetupCompleted": true
   },
