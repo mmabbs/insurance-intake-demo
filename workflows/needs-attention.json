@@ -1,0 +1,165 @@
+{
+  "name": "Needs attention",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "adb9815d-8be9-4bb6-9543-4ff82a4557e4",
+      "name": "Catch a failed run (Error Trigger)"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ (() => {\n  const ex = $json.execution || {};\n  const err = ex.error || ($json.trigger || {}).error || {};\n  return JSON.stringify({\n    failed_at: $now.toISO(),\n    workflow: ($json.workflow || {}).name || 'unknown',\n    failed_step: ex.lastNodeExecuted || 'Trigger',\n    error: String(err.message || 'No error message').slice(0, 500),\n    execution_id: ex.id ? Number(ex.id) : null,\n    run_link: ex.url || null,\n    started_by: ex.mode || 'trigger'\n  });\n})() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "9c7b8cc6-d2be-4b26-94f1-c89119031ade",
+      "name": "Build needs-attention row (Edit Fields)"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "GbJ1KpQSIMP7AvjH",
+          "mode": "list",
+          "cachedResultName": "needs_attention",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/GbJ1KpQSIMP7AvjH"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "failed_at",
+              "displayName": "failed_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "workflow",
+              "displayName": "workflow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "failed_step",
+              "displayName": "failed_step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "error",
+              "displayName": "error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "execution_id",
+              "displayName": "execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "run_link",
+              "displayName": "run_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "started_by",
+              "displayName": "started_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "0862b318-7a1d-48ae-974d-7e053beb8a1e",
+      "name": "Add to needs attention (Data Table)"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Catch a failed run (Error Trigger)": {
+      "main": [
+        [
+          {
+            "node": "Build needs-attention row (Edit Fields)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build needs-attention row (Edit Fields)": {
+      "main": [
+        [
+          {
+            "node": "Add to needs attention (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1901801b-81a9-4fbb-b523-f71bacacee15",
+  "meta": null,
+  "id": "wPtipQkdKDiaTsfy",
+  "tags": [],
+  "nodeGroups": []
+}

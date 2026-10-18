@@ -1,0 +1,2 @@
+failed_at,workflow,failed_step,error,execution_id,run_link,started_by
+2026-10-18T18:00:00.000Z,sample row - delete after import,Sample step,sample error,1,http://localhost:5678/,webhook

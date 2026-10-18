@@ -63,8 +63,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        1096,
-        376
+        1104,
+        384
       ],
       "id": "6b272ca4-6145-4c89-b52e-eec9b9d2e797",
       "name": "Structured Output Parser"
@@ -103,8 +103,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        680,
-        376
+        688,
+        384
       ],
       "id": "c19a9a2d-ab7d-40b9-89f0-47dc77a55095",
       "name": "Sort emails and pull out fields (Haiku 5.5)",
@@ -128,8 +128,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        968,
-        376
+        976,
+        384
       ],
       "id": "1b17cbb3-5049-4eb7-8db4-095361590ff5",
       "name": "Draft activity and follow-up email (Haiku 5.5)",
@@ -149,7 +149,7 @@
           "messageValues": [
             {
               "type": "=SystemMessagePromptTemplate",
-              "message": "=You are the intake assistant for Callander & Reid Insurance Brokers, an independent brokerage in Ontario. A request from the shared service inbox has already been sorted, and the client's file has been looked up. Your job is to draft the activity a CSR would log in the brokerage's management system, and a follow-up email when the brokerage needs something before it can act.\n\nRules:\n1. Use only what the email, the sorting results, and the client file say. If a detail is missing, say it's missing. Never fill a gap with a guess.\n2. The client file is the brokerage's own record. Never ask anyone for something already in it, such as a policy number, a vehicle on a policy, an address, or the insurer.\n3. If the email doesn't say which policy it's about, use the client file to narrow it. When only one policy on file fits, use it. When more than one fits, ask which one in the follow-up, naming the options by type (for example, \"your auto policy or your home policy\").\n4. If there is no client file, say so in the note. The sender may not be a client yet, or may be on file under another name.\n5. Never say a change is done, a claim is open, or coverage is in place. The insurer confirms those, not the brokerage's intake.\n6. Never make up names, email addresses, phone numbers, claim numbers, policy numbers, or deadlines.\n7. Write the way an experienced Ontario CSR writes: short, plain, specific. Canadian spelling.\n8. In Ontario, a \"pink slip\" is the proof-of-insurance card (the liability slip) a driver must carry in the vehicle. It is not a vehicle title or ownership document."
+              "message": "=You are the intake assistant for Callander & Reid Insurance Brokers, an independent brokerage in Ontario. A request from the shared service inbox has already been sorted, and the client's file has been looked up. Your job is to draft the activity a CSR would log in the brokerage's management system, and a follow-up email when the brokerage needs something before it can act.\n\nRules:\n1. Use only what the email, the sorting results, and the client file say. If a detail is missing, say it's missing. Never fill a gap with a guess.\n2. The client file is the brokerage's own record. Never ask anyone for something already in it, such as a policy number, a vehicle on a policy, an address, or the insurer.\n3. If the email doesn't say which policy it's about, use the client file to narrow it. When only one policy on file fits, use it. When more than one fits, ask which one in the follow-up, naming the options by type (for example, \"your auto policy or your home policy\").\n4. If there is no client file, say so in the note. The sender may not be a client yet, or may be on file under another name.\n5. Never say a change is done, a claim is open, or coverage is in place. The insurer confirms those, not the brokerage's intake.\n6. Never make up names, email addresses, phone numbers, claim numbers, policy numbers, or deadlines.\n7. Write the way an experienced Ontario CSR writes: short, plain, specific. Canadian spelling.\n8. In Ontario, a \"pink slip\" is the proof-of-insurance card (the liability slip) a driver must carry in the vehicle. It is not a vehicle title or ownership document.\n9. The Description and Note are the brokerage's own record, written as a CSR who read the email. Never mention the sorting step, its labels, its confidence, or the lookup. Never say something was corrected or relabelled. If a sorting result is wrong, write the right version without comment. If the email doesn't name the policy, say \"the email doesn't say which policy,\" not that sorting couldn't tell."
             }
           ]
         },
@@ -208,7 +208,7 @@
       "parameters": {
         "operation": "sendAndWait",
         "sendTo": "callanderreid.service@gmail.com",
-        "subject": "={{ $json.review_flag ? '⚠ Check closely: ' : '' }}Review {{ $json.code }} for {{ $json.email.from_name }}: {{ $json.email.subject }}",
+        "subject": "={{ $json.review_flag ? '⚠ Check closely: ' : '' }}Review {{ $json.code }} for {{ $json.email.from_name }}: {{ $json.email.subject }} (Ref {{ $execution.id }})",
         "message": "={{ $json.review_flag ? '⚠ Needs a closer look: ' + $json.review_flag + '.\\n\\n' : '' }}Nothing goes into Epic until you approve this draft. Open the form, fix anything that's wrong, and submit.\n\nTHE EMAIL\nFrom: {{ $json.email.from_name }} <{{ $json.email.from_address }}>\nSent: {{ DateTime.fromISO($json.email.date).setZone('America/Toronto').toFormat('ccc d LLL yyyy, h:mm a') }}\nSubject: {{ $json.email.subject }}\n\n{{ $json.email.text.slice(0, 2500) }}\n\nHOW THE AI READ IT\nCategory: {{ $json.ai_read.category }}\nUrgency: {{ $json.ai_read.urgency }}\nConfidence: {{ $json.ai_read.confidence }} (the AI's own estimate, not a measured score)\nReason: {{ $json.ai_read.reason }}",
         "responseType": "customForm",
         "defineForm": "json",
@@ -1796,14 +1796,17 @@
   "active": false,
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate"
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "wPtipQkdKDiaTsfy",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
-  "versionId": "bdb11f6f-fa94-44c7-8852-a0aa6ec2062c",
+  "versionId": "b5250a1b-143f-4dc9-b958-750dd41900a3",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "5272b2b72c7351f30248768af67323c3f8e737d74309fdfd6ec5a73dbcdbfb58"
+    "templateCredsSetupCompleted": true
   },
-  "nodeGroups": [],
   "id": "kwf1MlD3L54LqNzV",
-  "tags": []
+  "tags": [],
+  "nodeGroups": []
 }
