@@ -1,0 +1,391 @@
+{
+  "name": "Dashboard data",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "dash-audit-log",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "403bca45-998e-4f36-a12a-be93f1d1efc8",
+      "name": "Dashboard asks for audit log (Webhook)",
+      "webhookId": "008009ac-c2f2-4fb9-930a-50ff2df1588c"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lWn5zwFKBhSwGcVg",
+          "mode": "list",
+          "cachedResultName": "audit_log",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/lWn5zwFKBhSwGcVg"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "9d0e6aa7-33c6-41ff-ae41-4da3144f34ca",
+      "name": "Get audit log rows (Data Table)"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "id": "c992610f-f148-41e5-bf1c-81cc3c415302",
+      "name": "Send audit log rows (Respond to Webhook)"
+    },
+    {
+      "parameters": {
+        "path": "dash-corrections",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        192
+      ],
+      "id": "bf19cefd-0a47-474b-8852-eb2a97e426d6",
+      "name": "Dashboard asks for corrections (Webhook)",
+      "webhookId": "9d0eeccb-d53e-4fc1-a110-624555d21b98"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "jyiziPsLMITItgPs",
+          "mode": "list",
+          "cachedResultName": "corrections",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/jyiziPsLMITItgPs"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        192
+      ],
+      "id": "07d5ae66-fd8c-4626-9673-2f0849295322",
+      "name": "Get corrections rows (Data Table)"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        192
+      ],
+      "id": "5b28d8e9-fbca-4230-b363-3cf063358312",
+      "name": "Send corrections rows (Respond to Webhook)"
+    },
+    {
+      "parameters": {
+        "path": "dash-needs-attention",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        384
+      ],
+      "id": "d93520ff-4255-467e-ae99-3e2d306edb01",
+      "name": "Dashboard asks for needs attention list (Webhook)",
+      "webhookId": "d242dd67-3435-42a8-8730-bea2959f0523"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "GbJ1KpQSIMP7AvjH",
+          "mode": "list",
+          "cachedResultName": "needs_attention",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/GbJ1KpQSIMP7AvjH"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        384
+      ],
+      "id": "e8e207d1-5adb-4918-871f-6cc46e82e1b7",
+      "name": "Get needs attention list rows (Data Table)"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        384
+      ],
+      "id": "6ed004f6-a594-4a8a-a417-36edb1b5cbde",
+      "name": "Send needs attention list rows (Respond to Webhook)"
+    },
+    {
+      "parameters": {
+        "path": "dash-cost",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        608
+      ],
+      "id": "d25d891a-a051-4a4a-9649-5401e862c2c8",
+      "name": "Dashboard asks for running cost (Webhook)",
+      "webhookId": "b68ef339-d3ba-4553-90dc-225157a72176"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lWn5zwFKBhSwGcVg",
+          "mode": "list",
+          "cachedResultName": "audit_log",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/lWn5zwFKBhSwGcVg"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        608
+      ],
+      "id": "1cf3bab7-857e-4979-a6c5-8dda6ef5300c",
+      "name": "Get audit log rows for cost (Data Table)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Claude-built, demo use only. One item per run listed in audit_log, with how\n// many emails that run logged, so each run's details are fetched once.\nconst emailsByRun = {};\nfor (const item of $input.all()) {\n  const id = item.json.execution_id;\n  if (id === undefined || id === null) continue;\n  const key = String(Math.round(id));\n  emailsByRun[key] = (emailsByRun[key] ?? 0) + 1;\n}\nreturn Object.entries(emailsByRun).map(([executionId, emails]) => ({ json: { executionId, emails } }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        608
+      ],
+      "id": "dc5bced1-d6cf-4b0e-9cab-b89797f82b64",
+      "name": "List each run once (Code)"
+    },
+    {
+      "parameters": {
+        "resource": "execution",
+        "operation": "get",
+        "executionId": "={{ $json.executionId }}",
+        "options": {
+          "activeWorkflows": true
+        }
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        672,
+        608
+      ],
+      "id": "5b2f371a-82f1-4b36-a7ac-05f6ad594641",
+      "name": "Get each run's details (n8n)",
+      "credentials": {
+        "n8nApi": {
+          "id": "lqonYEkGoASsnSij",
+          "name": "n8n API (read runs only)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Claude-built, demo use only. Adds up the tokens of every Claude call in each\n// run listed in audit_log and prices them per model. Measured, not estimated:\n// the token counts are the ones n8n saved with each run.\n// USD per million tokens (in, out), from the Claude API reference cached\n// 2026-10-06, the same prices score_run.py uses.\nconst PRICES = {\n  'claude-haiku-5-5': [0.10, 0.50],\n  'claude-sonnet-5-5': [2.00, 10.00],\n  'claude-opus-5-5': [4.00, 20.00],\n};\nconst emailsByRun = {};\nfor (const item of $('List each run once (Code)').all()) {\n  emailsByRun[item.json.executionId] = item.json.emails;\n}\n\nconst runs = [];\nconst unpriced = new Set();\nlet unreadable = 0;\nfor (const item of $input.all()) {\n  const run = item.json.body ?? item.json;\n  const runData = run?.data?.resultData?.runData;\n  if (!runData) { unreadable++; continue; }\n  let tokensIn = 0, tokensOut = 0, cost = 0, calls = 0;\n  for (const node of run.workflowData?.nodes ?? []) {\n    if (!node.type.endsWith('.lmChatAnthropic')) continue;\n    const model = node.parameters?.model?.value ?? node.parameters?.model;\n    const price = PRICES[model];\n    for (const nodeRun of runData[node.name] ?? []) {\n      for (const out of nodeRun.data?.ai_languageModel?.[0] ?? []) {\n        const usage = out.json?.tokenUsage ?? {};\n        if (!price) { unpriced.add(String(model)); continue; }\n        tokensIn += usage.promptTokens ?? 0;\n        tokensOut += usage.completionTokens ?? 0;\n        cost += ((usage.promptTokens ?? 0) * price[0] + (usage.completionTokens ?? 0) * price[1]) / 1e6;\n        calls++;\n      }\n    }\n  }\n  runs.push({\n    execution_id: Number(run.id),\n    started_at: run.startedAt,\n    emails: emailsByRun[String(run.id)] ?? 0,\n    claude_calls: calls,\n    tokens_in: tokensIn,\n    tokens_out: tokensOut,\n    cost_usd: cost,\n  });\n}\nruns.sort((a, b) => a.execution_id - b.execution_id);\nconst sum = (key) => runs.reduce((total, r) => total + r[key], 0);\nconst emails = sum('emails');\nconst costUsd = sum('cost_usd');\nreturn [{ json: {\n  measured_at: new Date().toISOString(),\n  runs_counted: runs.length,\n  runs_unreadable: unreadable,\n  unpriced_models: [...unpriced],\n  emails,\n  claude_calls: sum('claude_calls'),\n  tokens_in: sum('tokens_in'),\n  tokens_out: sum('tokens_out'),\n  cost_usd: costUsd,\n  cost_per_email_usd: emails ? costUsd / emails : 0,\n  prices_source: 'Claude API reference, cached 2026-10-06',\n  runs,\n} }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        608
+      ],
+      "id": "82c46ce8-690a-49d0-8107-80d5b2d61683",
+      "name": "Add up tokens and cost (Code)"
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1120,
+        608
+      ],
+      "id": "290f9cce-2036-4525-9b8b-36ddfee05816",
+      "name": "Send running cost (Respond to Webhook)"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Dashboard asks for audit log (Webhook)": {
+      "main": [
+        [
+          {
+            "node": "Get audit log rows (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get audit log rows (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Send audit log rows (Respond to Webhook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dashboard asks for corrections (Webhook)": {
+      "main": [
+        [
+          {
+            "node": "Get corrections rows (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get corrections rows (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Send corrections rows (Respond to Webhook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dashboard asks for needs attention list (Webhook)": {
+      "main": [
+        [
+          {
+            "node": "Get needs attention list rows (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get needs attention list rows (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Send needs attention list rows (Respond to Webhook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dashboard asks for running cost (Webhook)": {
+      "main": [
+        [
+          {
+            "node": "Get audit log rows for cost (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get audit log rows for cost (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "List each run once (Code)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List each run once (Code)": {
+      "main": [
+        [
+          {
+            "node": "Get each run's details (n8n)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get each run's details (n8n)": {
+      "main": [
+        [
+          {
+            "node": "Add up tokens and cost (Code)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add up tokens and cost (Code)": {
+      "main": [
+        [
+          {
+            "node": "Send running cost (Respond to Webhook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "saveDataSuccessExecution": "none",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "tags": []
+}
