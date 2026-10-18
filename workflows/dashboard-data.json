@@ -226,7 +226,8 @@
           "id": "lqonYEkGoASsnSij",
           "name": "n8n API (read runs only)"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -387,5 +388,6 @@
     "saveDataSuccessExecution": "none",
     "callerPolicy": "workflowsFromSameOwner"
   },
-  "tags": []
+  "tags": [],
+  "id": "kn5Z1ao85d4bVepW"
 }

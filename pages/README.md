@@ -29,3 +29,37 @@ The page asks both addresses again every 5 seconds. Activities that appear after
 6. **Most of the navigation is for show.** Greyed-out menu items and header buttons (Actions, Links, New, Print, Logout) do nothing.
 7. **Dates show in Toronto time.** n8n sends dates in UTC (`2026-03-01T05:00:00.000Z`), and the page converts them. A Date column holding a time other than midnight shows the time too.
 8. **Depends on n8n.** If n8n stops or the workflow is unpublished, the page shows a "Can't reach the data" message and keeps the last rows it had.
+
+## dashboard-functional-reference.html
+
+The intake dashboard, in the branded look (`brand-brief.md` in the vault: warm charcoal, cream, pine, ochre; Zilla Slab headings, Satoshi body). It's the layer on top of the brokerage's own system, so it deliberately looks nothing like the mock Epic screen.
+
+**To open it:** n8n must be running, with the `Dashboard data` workflow published. Then double-click the file, or run `open pages/dashboard-functional-reference.html` from `insurance-intake/`.
+
+**Where its data comes from:** four webhooks in the `Dashboard data` workflow (`workflows/dashboard-data.json`).
+
+| Address | Returns |
+| --- | --- |
+| `http://localhost:5678/webhook/dash-audit-log` | Every row of `audit_log` |
+| `http://localhost:5678/webhook/dash-corrections` | Every row of `corrections` |
+| `http://localhost:5678/webhook/dash-needs-attention` | Every row of `needs_attention` |
+| `http://localhost:5678/webhook/dash-cost` | One summary: for each run listed in `audit_log`, the tokens of every Claude call n8n saved with that run, priced per model, plus the totals |
+
+The page asks the three table addresses every 5 seconds and the cost address every 30 seconds. New rows are highlighted for 10 seconds.
+
+**What it shows:** emails in (with how many were flagged for a closer look), approved as drafted, corrected by a broker, the "needs attention" count, and running cost with cost per email. Below: the needs-attention list, the broker's corrections (the AI's value struck through above the broker's), every email, and cost per run.
+
+**How the numbers are worked out:**
+
+1. **Approved as drafted:** `audit_log` rows whose `fields_changed` is empty. **Corrected:** the rest.
+2. **Running cost:** measured, not estimated. The `dash-cost` webhook reads each run through n8n's own API (the n8n node, with the `n8n API (read runs only)` credential) and adds up the token counts of every Claude model node, including the drafter's format fixer. Prices are the ones `score_run.py` uses (Claude API reference, cached 2026-10-06).
+3. **Cost per email:** the total divided by the emails in `audit_log`. A run stopped before every review was submitted counts all its Claude calls but only the emails it logged, so test runs like that push this number up. After Tuesday's cleanup, only complete runs remain.
+
+## Dashboard Known Limitations
+
+1. **Read-only, no login, no access control.** Same as the mock Epic screen: anyone who can open the file and reach `localhost:5678` sees all the data.
+2. **The cost webhook reads whole runs.** Each call fetches every listed run in full, which is why it's asked every 30 seconds, not every 5. Fine for a demo's handful of runs; it would need a saved running total for real volume.
+3. **Prices are fixed in the workflow.** If Anthropic changes a price or the workflow switches to a model not in the list, those calls show as "not counted" under the cost table until the price list in `Add up tokens and cost (Code)` is updated.
+4. **Runs n8n has deleted can't be priced.** n8n prunes old runs by default. A pruned run shows as "couldn't be read" under the cost table.
+5. **Fonts load from the web.** Zilla Slab from Google Fonts and Satoshi from Fontshare; offline, the page falls back to system fonts.
+6. **Fictional data only.**
