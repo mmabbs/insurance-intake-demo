@@ -1,0 +1,2 @@
+message_id,received_at,sender,subject,category,urgency,confidence,review_flag,pulled_out,ai_draft,broker_final,fields_changed,approved_by,approved_at,activity_id,execution_id
+SAMPLE-delete-me,2026-10-16T13:38:03.000Z,Sample <sample@example.com>,sample row - delete after import,other,Normal,high,sample,{},{},{},Priority,Sample,2026-10-18T00:05:40.988Z,1,1609

@@ -1,0 +1,2 @@
+message_id,email_subject,email_text,fields_changed,ai_values,broker_values,corrected_by,corrected_at,audit_id,execution_id
+SAMPLE-delete-me,sample row - delete after import,sample,Priority,{},{},Sample,2026-10-18T00:05:40.988Z,1,1609

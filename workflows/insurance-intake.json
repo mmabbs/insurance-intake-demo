@@ -7,7 +7,7 @@
       "typeVersion": 1,
       "position": [
         -48,
-        0
+        -32
       ],
       "id": "83884ac3-d3b3-48cd-929d-0f60a17d8eab",
       "name": "When clicking ‘Execute workflow’"
@@ -26,8 +26,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        448,
-        0
+        176,
+        80
       ],
       "id": "34f474d2-82b6-4a0e-b9b6-b2a8d20d614f",
       "name": "Get many messages",
@@ -49,8 +49,8 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        672,
-        0
+        624,
+        80
       ],
       "id": "d88db774-5892-4572-9da9-1a5fe76d89da",
       "name": "Sort and pull out"
@@ -63,8 +63,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        1184,
-        208
+        1112,
+        312
       ],
       "id": "6b272ca4-6145-4c89-b52e-eec9b9d2e797",
       "name": "Structured Output Parser"
@@ -84,7 +84,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        224,
+        176,
         -112
       ],
       "id": "163a05ac-6759-4fe0-89f3-4c1981eae6d8",
@@ -103,8 +103,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        608,
-        208
+        696,
+        312
       ],
       "id": "c19a9a2d-ab7d-40b9-89f0-47dc77a55095",
       "name": "Sort emails and pull out fields (Haiku 5.5)",
@@ -128,8 +128,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        880,
-        224
+        984,
+        312
       ],
       "id": "1b17cbb3-5049-4eb7-8db4-095361590ff5",
       "name": "Draft activity and follow-up email (Haiku 5.5)",
@@ -143,7 +143,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Today's date: {{ $now.toFormat('yyyy-MM-dd') }}\n\nTHE EMAIL\nFrom: {{ $('Get many messages').item.json.from.value[0].name }} <{{ $('Get many messages').item.json.from.value[0].address }}>\nSent: {{ $('Get many messages').item.json.date }}\nSubject: {{ $('Get many messages').item.json.subject }}\n\n{{ $('Get many messages').item.json.text }}\n\nWHAT SORTING FOUND\nCategory: {{ $json.output.category }}\nUrgency: {{ $json.output.urgency }}\nClient: {{ $json.output.client_name }}\nPolicy number: {{ $json.output.policy_number }}\nCan't tell which policy: {{ $json.output.cant_tell_policy }}\nDate the request turns on: {{ $json.output.effective_date }}\nWhat they want done: {{ $json.output.requested_change }}\nWhy sorting read it this way: {{ $json.output.reason }}\n\nCLIENT FILE\n{{ (() => {\n  const s = $json.output;\n  const rows = $('Get clients').all().map(i => i.json);\n  const sender = String($('Get many messages').item.json.from.value[0].name || '').toLowerCase();\n  const key = r => r.account_name.split(',')[0].trim().toLowerCase();\n  let hit = rows.find(r => s.policy_number && r.policy_number === s.policy_number);\n  if (!hit && s.client_name) hit = rows.find(r => s.client_name.toLowerCase().includes(key(r)));\n  if (!hit && sender) hit = rows.find(r => sender.includes(key(r)));\n  if (!hit) return 'No client file found for this email.';\n  const policies = rows.filter(r => r.lookup_code === hit.lookup_code);\n  return 'Account: ' + hit.account_name + ' (' + hit.lookup_code + '), ' + hit.client_type + ' client. Contact: ' + hit.contact + '. Producer: ' + hit.producer + '.\\nPolicies on file:\\n' +\n    policies.map(p => '- ' + p.policy_number + ': ' + p.policy_type + ', ' + p.line_description + ', ' + p.ico_carrier + ', ' + String(p.effective).slice(0, 10) + ' to ' + String(p.expiry).slice(0, 10)).join('\\n');\n})() }}",
+        "text": "=Today's date: {{ $now.toFormat('yyyy-MM-dd') }}\n\nTHE EMAIL\nFrom: {{ $('Incoming email (No Operation)').item.json.from.value[0].name }} <{{ $('Incoming email (No Operation)').item.json.from.value[0].address }}>\nSent: {{ $('Incoming email (No Operation)').item.json.date }}\nSubject: {{ $('Incoming email (No Operation)').item.json.subject }}\n\n{{ $('Incoming email (No Operation)').item.json.text }}\n\nWHAT SORTING FOUND\nCategory: {{ $json.output.category }}\nUrgency: {{ $json.output.urgency }}\nClient: {{ $json.output.client_name }}\nPolicy number: {{ $json.output.policy_number }}\nCan't tell which policy: {{ $json.output.cant_tell_policy }}\nDate the request turns on: {{ $json.output.effective_date }}\nWhat they want done: {{ $json.output.requested_change }}\nWhy sorting read it this way: {{ $json.output.reason }}\n\nCLIENT FILE\n{{ (() => {\n  const s = $json.output;\n  const rows = $('Get clients').all().map(i => i.json);\n  const sender = String($('Incoming email (No Operation)').item.json.from.value[0].name || '').toLowerCase();\n  const key = r => r.account_name.split(',')[0].trim().toLowerCase();\n  let hit = rows.find(r => s.policy_number && r.policy_number === s.policy_number);\n  if (!hit && s.client_name) hit = rows.find(r => s.client_name.toLowerCase().includes(key(r)));\n  if (!hit && sender) hit = rows.find(r => sender.includes(key(r)));\n  if (!hit) return 'No client file found for this email.';\n  const policies = rows.filter(r => r.lookup_code === hit.lookup_code);\n  return 'Account: ' + hit.account_name + ' (' + hit.lookup_code + '), ' + hit.client_type + ' client. Contact: ' + hit.contact + '. Producer: ' + hit.producer + '.\\nPolicies on file:\\n' +\n    policies.map(p => '- ' + p.policy_number + ': ' + p.policy_type + ', ' + p.line_description + ', ' + p.ico_carrier + ', ' + String(p.effective).slice(0, 10) + ' to ' + String(p.expiry).slice(0, 10)).join('\\n');\n})() }}\n",
         "hasOutputParser": true,
         "messages": {
           "messageValues": [
@@ -158,8 +158,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.9,
       "position": [
-        1040,
-        0
+        976,
+        80
       ],
       "id": "e646de80-9bba-4f3d-bc35-f3ad72aa3fc9",
       "name": "Draft the entry (Basic LLM Chain)"
@@ -167,18 +167,621 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={\n  \"code\": {{ JSON.stringify(({ \"policy change\": \"CHGR\", \"renewal question\": \"RENL\", \"claim notice\": \"FNOL\", \"underwriter request\": \"UNDR\", \"other\": \"MISC\" })[$('Sort and pull out').item.json.output.category] || \"MISC\") }},\n  \"description\": {{ JSON.stringify($json.output.description) }},\n  \"who_owner\": \"Sandra Pellegrino\",\n  \"follow_up_start\": {{ JSON.stringify($now.plus({ days: ({ High: 1, Normal: 3, Low: 7 })[$('Sort and pull out').item.json.output.urgency] || 3 }).toISODate()) }},\n  \"priority\": {{ JSON.stringify($('Sort and pull out').item.json.output.urgency) }},\n  \"status\": \"Open\",\n  \"associated_to\": {{ JSON.stringify($json.output.policy_number ? \"Policy\" : \"Account\") }},\n  \"lookup_code\": {{ JSON.stringify($json.output.lookup_code) }},\n  \"policy_number\": {{ JSON.stringify($json.output.policy_number) }},\n  \"note\": {{ JSON.stringify($json.output.note) }}\n}",
+        "jsonOutput": "={\n  \"code\": {{ JSON.stringify(({ \"policy change\": \"CHGR\", \"renewal question\": \"RENL\", \"claim notice\": \"FNOL\", \"underwriter request\": \"UNDR\", \"other\": \"MISC\" })[$('Sort and pull out').item.json.output.category] || \"MISC\") }},\n  \"description\": {{ JSON.stringify($json.output.description) }},\n  \"who_owner\": \"Sandra Pellegrino\",\n  \"follow_up_start\": {{ JSON.stringify($now.plus({ days: ({ High: 1, Normal: 3, Low: 7 })[$('Sort and pull out').item.json.output.urgency] || 3 }).toISODate()) }},\n  \"priority\": {{ JSON.stringify(({ High: \"Urgent\", Normal: \"Normal\", Low: \"Low\" })[$('Sort and pull out').item.json.output.urgency] || \"Normal\") }},\n  \"status\": \"Open\",\n  \"associated_to\": {{ JSON.stringify($json.output.policy_number ? \"Policy\" : \"Account\") }},\n  \"lookup_code\": {{ JSON.stringify($json.output.lookup_code) }},\n  \"policy_number\": {{ JSON.stringify($json.output.policy_number) }},\n  \"note\": {{ JSON.stringify($json.output.note) }},\n  \"review_flag\": {{ JSON.stringify([ $('Sort and pull out').item.json.output.cant_tell_policy ? \"the email didn't say which policy\" : \"\", $('Sort and pull out').item.json.output.confidence === \"low\" ? \"the AI's confidence is low\" : \"\", $('Sort and pull out').item.json.output.category === \"other\" ? \"not one of the four request types\" : \"\" ].filter(x => x).join(\"; \")) }},\n  \"email\": {\n    \"message_id\": {{ JSON.stringify($('Incoming email (No Operation)').item.json.id) }},\n    \"from_name\": {{ JSON.stringify($('Incoming email (No Operation)').item.json.from.value[0].name || \"\") }},\n    \"from_address\": {{ JSON.stringify($('Incoming email (No Operation)').item.json.from.value[0].address) }},\n    \"subject\": {{ JSON.stringify($('Incoming email (No Operation)').item.json.subject || \"\") }},\n    \"date\": {{ JSON.stringify($('Incoming email (No Operation)').item.json.date) }},\n    \"text\": {{ JSON.stringify(String($('Incoming email (No Operation)').item.json.text || \"\").trim()) }}\n  },\n  \"ai_read\": {\n    \"category\": {{ JSON.stringify($('Sort and pull out').item.json.output.category) }},\n    \"urgency\": {{ JSON.stringify($('Sort and pull out').item.json.output.urgency) }},\n    \"confidence\": {{ JSON.stringify($('Sort and pull out').item.json.output.confidence) }},\n    \"reason\": {{ JSON.stringify($('Sort and pull out').item.json.output.reason) }},\n    \"cant_tell_policy\": {{ JSON.stringify($('Sort and pull out').item.json.output.cant_tell_policy) }}\n  }\n}\n",
         "includeOtherFields": true,
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        1392,
-        0
+        1328,
+        80
       ],
       "id": "d3332528-2523-4996-8e30-f956980702d3",
       "name": "Set activity fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        80
+      ],
+      "id": "b18d2114-8ee2-4409-8dce-29ff4ba0009f",
+      "name": "Incoming email (No Operation)"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1552,
+        80
+      ],
+      "id": "0eb03dff-c398-4899-bd27-2e7478a296ef",
+      "name": "Review one email at a time (Loop Over Items)"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "callanderreid.service@gmail.com",
+        "subject": "={{ $json.review_flag ? '⚠ Check closely: ' : '' }}Review {{ $json.code }} for {{ $json.email.from_name }}: {{ $json.email.subject }}",
+        "message": "={{ $json.review_flag ? '⚠ Needs a closer look: ' + $json.review_flag + '.\\n\\n' : '' }}Nothing goes into Epic until you approve this draft. Open the form, fix anything that's wrong, and submit.\n\nTHE EMAIL\nFrom: {{ $json.email.from_name }} <{{ $json.email.from_address }}>\nSent: {{ DateTime.fromISO($json.email.date).setZone('America/Toronto').toFormat('ccc d LLL yyyy, h:mm a') }}\nSubject: {{ $json.email.subject }}\n\n{{ $json.email.text.slice(0, 2500) }}\n\nHOW THE AI READ IT\nCategory: {{ $json.ai_read.category }}\nUrgency: {{ $json.ai_read.urgency }}\nConfidence: {{ $json.ai_read.confidence }} (the AI's own estimate, not a measured score)\nReason: {{ $json.ai_read.reason }}",
+        "responseType": "customForm",
+        "defineForm": "json",
+        "jsonOutput": "=[\n  { \"fieldLabel\": \"Description\", \"fieldType\": \"text\", \"requiredField\": true, \"defaultValue\": {{ JSON.stringify($json.description) }} },\n  { \"fieldLabel\": \"Code\", \"fieldType\": \"dropdown\", \"requiredField\": true, \"fieldOptions\": { \"values\": [ { \"option\": \"CHGR\" }, { \"option\": \"RENL\" }, { \"option\": \"FNOL\" }, { \"option\": \"UNDR\" }, { \"option\": \"MISC\" } ] }, \"defaultValue\": {{ JSON.stringify($json.code) }} },\n  { \"fieldLabel\": \"Priority\", \"fieldType\": \"dropdown\", \"requiredField\": true, \"fieldOptions\": { \"values\": [ { \"option\": \"Urgent\" }, { \"option\": \"Normal\" }, { \"option\": \"Low\" } ] }, \"defaultValue\": {{ JSON.stringify($json.priority) }} },\n  { \"fieldLabel\": \"Follow up/Start\", \"fieldType\": \"date\", \"requiredField\": true, \"defaultValue\": {{ JSON.stringify($json.follow_up_start) }} },\n  { \"fieldLabel\": \"Lookup Code\", \"fieldType\": \"text\", \"defaultValue\": {{ JSON.stringify($json.lookup_code || \"\") }} },\n  { \"fieldLabel\": \"Policy Number\", \"fieldType\": \"text\", \"defaultValue\": {{ JSON.stringify($json.policy_number || \"\") }} },\n  { \"fieldLabel\": \"Note\", \"fieldType\": \"textarea\", \"requiredField\": true, \"defaultValue\": {{ JSON.stringify($json.note) }} },\n  { \"fieldLabel\": \"Follow-up email\", \"fieldType\": \"textarea\", \"placeholder\": \"No follow-up email needed\", \"defaultValue\": {{ JSON.stringify($json.output.follow_up_needed ? 'To: ' + ($json.output.follow_up_recipient === 'client' ? 'the client' : 'the sender') + '\\nSubject: ' + $json.output.follow_up_subject + '\\n\\n' + $json.output.follow_up_body : '') }} },\n  { \"fieldLabel\": \"Approved by\", \"fieldType\": \"text\", \"requiredField\": true, \"defaultValue\": \"Sandra Pellegrino\" }\n]",
+        "options": {
+          "messageButtonLabel": "Review the draft",
+          "responseFormTitle": "=Draft activity for {{ $json.email.from_name }}",
+          "responseFormDescription": "={{ $json.review_flag ? '⚠ ' + $json.review_flag + '. ' : '' }}The AI read this as {{ $json.ai_read.category }}, {{ $json.ai_read.urgency }} urgency, {{ $json.ai_read.confidence }} confidence. {{ $json.ai_read.reason }}",
+          "responseFormButtonLabel": "Approve and file in Epic",
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1776,
+        -80
+      ],
+      "id": "8b2c3229-14c7-4d99-bac8-4bd7dbc0cce9",
+      "name": "Send draft to broker for review (Gmail Send and Wait)",
+      "webhookId": "424537b6-fb3e-4324-834a-be2e118e6cad",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "fOuGRailv5AH3YvK",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"code\": {{ JSON.stringify($json.data.Code) }},\n  \"description\": {{ JSON.stringify($json.data.Description) }},\n  \"who_owner\": {{ JSON.stringify($('Review one email at a time (Loop Over Items)').item.json.who_owner) }},\n  \"follow_up_start\": {{ JSON.stringify($json.data['Follow up/Start']) }},\n  \"priority\": {{ JSON.stringify($json.data.Priority) }},\n  \"status\": {{ JSON.stringify($('Review one email at a time (Loop Over Items)').item.json.status) }},\n  \"associated_to\": {{ JSON.stringify($json.data['Policy Number'] ? \"Policy\" : \"Account\") }},\n  \"lookup_code\": {{ JSON.stringify($json.data['Lookup Code'] || null) }},\n  \"policy_number\": {{ JSON.stringify($json.data['Policy Number'] || null) }},\n  \"entered_on\": {{ JSON.stringify($json.data.respondedAt) }},\n  \"entered_by\": {{ JSON.stringify($json.data['Approved by']) }},\n  \"note\": {{ JSON.stringify(String($json.data.Note).replace(/\\r\\n/g, '\\n').trim()) }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        2000,
+        -80
+      ],
+      "id": "54ff9022-e5a1-4cc3-a469-cc4c73d5c85a",
+      "name": "Build activity row (Edit Fields)"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "oFI6lnVwZTetOoNQ",
+          "mode": "list",
+          "cachedResultName": "activities",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/oFI6lnVwZTetOoNQ"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "code",
+              "displayName": "code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "who_owner",
+              "displayName": "who_owner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "follow_up_start",
+              "displayName": "follow_up_start",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "priority",
+              "displayName": "priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "associated_to",
+              "displayName": "associated_to",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "lookup_code",
+              "displayName": "lookup_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "policy_number",
+              "displayName": "policy_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "entered_on",
+              "displayName": "entered_on",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "entered_by",
+              "displayName": "entered_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "note",
+              "displayName": "note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        2224,
+        -80
+      ],
+      "id": "3b3c07c6-6da3-443c-9519-4a27739568da",
+      "name": "Write activity to Epic (Data Table)"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ (() => {\n  const loop = $('Review one email at a time (Loop Over Items)').item.json;\n  const form = $('Send draft to broker for review (Gmail Send and Wait)').item.json.data;\n  const tidy = v => String(v ?? '').replace(/\\r\\n/g, '\\n').trim();\n  const out = loop.output;\n  const aiDraft = {\n    'Description': loop.description,\n    'Code': loop.code,\n    'Priority': loop.priority,\n    'Follow up/Start': loop.follow_up_start,\n    'Lookup Code': loop.lookup_code,\n    'Policy Number': loop.policy_number,\n    'Note': loop.note,\n    'Follow-up email': out.follow_up_needed ? 'To: ' + (out.follow_up_recipient === 'client' ? 'the client' : 'the sender') + '\\nSubject: ' + out.follow_up_subject + '\\n\\n' + out.follow_up_body : ''\n  };\n  const ai = {}, broker = {};\n  for (const k of Object.keys(aiDraft)) { ai[k] = tidy(aiDraft[k]); broker[k] = tidy(form[k]); }\n  const changed = Object.keys(ai).filter(k => ai[k] !== broker[k]);\n  return JSON.stringify({\n    message_id: loop.email.message_id,\n    received_at: loop.email.date,\n    sender: loop.email.from_name + ' <' + loop.email.from_address + '>',\n    subject: loop.email.subject,\n    category: loop.ai_read.category,\n    urgency: loop.ai_read.urgency,\n    confidence: loop.ai_read.confidence,\n    review_flag: loop.review_flag,\n    pulled_out: JSON.stringify($('Sort and pull out').item.json.output),\n    ai_draft: JSON.stringify(ai),\n    broker_final: JSON.stringify(broker),\n    fields_changed: changed.join(', '),\n    approved_by: tidy(form['Approved by']),\n    approved_at: form.respondedAt,\n    activity_id: $json.id,\n    execution_id: Number($execution.id)\n  });\n})() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        2448,
+        -80
+      ],
+      "id": "1c1e2e1f-c9c6-4127-81a5-3e2f3cc13cdc",
+      "name": "Build audit row (Edit Fields)"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "lWn5zwFKBhSwGcVg",
+          "mode": "list",
+          "cachedResultName": "audit_log",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/lWn5zwFKBhSwGcVg"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "received_at",
+              "displayName": "received_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sender",
+              "displayName": "sender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "urgency",
+              "displayName": "urgency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "review_flag",
+              "displayName": "review_flag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "pulled_out",
+              "displayName": "pulled_out",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ai_draft",
+              "displayName": "ai_draft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "broker_final",
+              "displayName": "broker_final",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fields_changed",
+              "displayName": "fields_changed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "approved_by",
+              "displayName": "approved_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "approved_at",
+              "displayName": "approved_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "activity_id",
+              "displayName": "activity_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "execution_id",
+              "displayName": "execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        2672,
+        -80
+      ],
+      "id": "fa48b2c0-84c9-4e8f-8131-0b25b6c2802b",
+      "name": "Log the email (Data Table)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "078aa536-839f-477a-ab31-dc94a135b518",
+              "leftValue": "={{ $json.fields_changed }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2896,
+        32
+      ],
+      "id": "39a0a44a-3596-4636-af30-64c6674eb37c",
+      "name": "Did the broker change anything? (If)"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ (() => {\n  const loop = $('Review one email at a time (Loop Over Items)').item.json;\n  const keys = $json.fields_changed.split(', ');\n  const ai = JSON.parse($json.ai_draft), broker = JSON.parse($json.broker_final);\n  return JSON.stringify({\n    message_id: $json.message_id,\n    email_subject: loop.email.subject,\n    email_text: loop.email.text,\n    fields_changed: $json.fields_changed,\n    ai_values: JSON.stringify(Object.fromEntries(keys.map(k => [k, ai[k]]))),\n    broker_values: JSON.stringify(Object.fromEntries(keys.map(k => [k, broker[k]]))),\n    corrected_by: $json.approved_by,\n    corrected_at: $json.approved_at,\n    audit_id: $json.id,\n    execution_id: $json.execution_id\n  });\n})() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        3120,
+        32
+      ],
+      "id": "610a3fda-739a-40b0-ba77-99fc2e485336",
+      "name": "Build correction row (Edit Fields)"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "jyiziPsLMITItgPs",
+          "mode": "list",
+          "cachedResultName": "corrections",
+          "cachedResultUrl": "/projects/Z30RII7I652iCFcy/datatables/jyiziPsLMITItgPs"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email_subject",
+              "displayName": "email_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email_text",
+              "displayName": "email_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fields_changed",
+              "displayName": "fields_changed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ai_values",
+              "displayName": "ai_values",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "broker_values",
+              "displayName": "broker_values",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "corrected_by",
+              "displayName": "corrected_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "corrected_at",
+              "displayName": "corrected_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "audit_id",
+              "displayName": "audit_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "execution_id",
+              "displayName": "execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        3344,
+        128
+      ],
+      "id": "90f8ebcb-7153-4ffa-804c-412e10c8aefe",
+      "name": "Save the correction (Data Table)"
     }
   ],
   "pinData": {
@@ -947,7 +1550,7 @@
       "main": [
         [
           {
-            "node": "Sort and pull out",
+            "node": "Incoming email (No Operation)",
             "type": "main",
             "index": 0
           }
@@ -1013,6 +1616,135 @@
           }
         ]
       ]
+    },
+    "Incoming email (No Operation)": {
+      "main": [
+        [
+          {
+            "node": "Sort and pull out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set activity fields": {
+      "main": [
+        [
+          {
+            "node": "Review one email at a time (Loop Over Items)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review one email at a time (Loop Over Items)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send draft to broker for review (Gmail Send and Wait)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send draft to broker for review (Gmail Send and Wait)": {
+      "main": [
+        [
+          {
+            "node": "Build activity row (Edit Fields)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build activity row (Edit Fields)": {
+      "main": [
+        [
+          {
+            "node": "Write activity to Epic (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write activity to Epic (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Build audit row (Edit Fields)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build audit row (Edit Fields)": {
+      "main": [
+        [
+          {
+            "node": "Log the email (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log the email (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Did the broker change anything? (If)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Did the broker change anything? (If)": {
+      "main": [
+        [
+          {
+            "node": "Build correction row (Edit Fields)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Review one email at a time (Loop Over Items)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build correction row (Edit Fields)": {
+      "main": [
+        [
+          {
+            "node": "Save the correction (Data Table)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save the correction (Data Table)": {
+      "main": [
+        [
+          {
+            "node": "Review one email at a time (Loop Over Items)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -1020,7 +1752,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "69469856-cdac-4700-a805-afc60b45e1cd",
+  "versionId": "b9d0cd38-50cb-4752-918c-ceebee7f3aeb",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "5272b2b72c7351f30248768af67323c3f8e737d74309fdfd6ec5a73dbcdbfb58"
