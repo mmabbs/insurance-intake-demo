@@ -30,11 +30,16 @@ The page asks both addresses again every 5 seconds. Activities that appear after
 7. **Dates show in Toronto time.** n8n sends dates in UTC (`2026-03-01T05:00:00.000Z`), and the page converts them. A Date column holding a time other than midnight shows the time too.
 8. **Depends on n8n.** If n8n stops or the workflow is unpublished, the page shows a "Can't reach the data" message and keeps the last rows it had.
 
-## dashboard-functional-reference.html
+## dashboard-functional-reference.html and dashboard-portfolio-functional-reference.html
 
-The intake dashboard, in the branded look (`brand-brief.md` in the vault: warm charcoal, cream, pine, ochre; Zilla Slab headings, Satoshi body). It's the layer on top of the brokerage's own system, so it deliberately looks nothing like the mock Epic screen.
+The intake dashboard, in two looks that share one script, `dashboard.js`, so the data and tables are identical:
 
-**To open it:** n8n must be running, with the `Dashboard data` workflow published. Then double-click the file, or run `open pages/dashboard-functional-reference.html` from `insurance-intake/`.
+1. **`dashboard-functional-reference.html`, for the sales demo:** the branded look (`brand-brief.md` in the vault: warm charcoal, cream, pine, ochre; Zilla Slab headings, Satoshi body). The brokerage's name leads the header, the builder's name is a small "Built by" credit, and a line under the header says the client's own build would wear the client's brand. It's the layer on top of the brokerage's own system, so it deliberately looks nothing like the mock Epic screen.
+2. **`dashboard-portfolio-functional-reference.html`, for the job-hunt portfolio:** a plain, unbranded light look (system font, grey and white, one slate-blue accent, amber only for flags and the needs-attention alert). No builder's name anywhere. Also deliberately unlike the Epic screen, so it can't be read as part of Epic.
+
+**To open either one:** n8n must be running, with the `Dashboard data` workflow published. Then double-click the file, or run `open pages/<file name>` from `insurance-intake/`. Keep `dashboard.js` in the same folder.
+
+**Sorting:** click a column heading to sort by it; click again to reverse. Each column starts in its natural order: dates newest first, numbers largest first, urgency High → Normal → Low, confidence high → low, flagged rows first, corrected rows first, text A to Z. Ties keep the table's default order. The sort stays put through refreshes. The cost table's Total row stays at the bottom.
 
 **Where its data comes from:** four webhooks in the `Dashboard data` workflow (`workflows/dashboard-data.json`).
 
@@ -61,5 +66,6 @@ The page asks the three table addresses every 5 seconds and the cost address eve
 2. **The cost webhook reads whole runs.** Each call fetches every listed run in full, which is why it's asked every 30 seconds, not every 5. Fine for a demo's handful of runs; it would need a saved running total for real volume.
 3. **Prices are fixed in the workflow.** If Anthropic changes a price or the workflow switches to a model not in the list, those calls show as "not counted" under the cost table until the price list in `Add up tokens and cost (Code)` is updated.
 4. **Runs n8n has deleted can't be priced.** n8n prunes old runs by default. A pruned run shows as "couldn't be read" under the cost table.
-5. **Fonts load from the web.** Zilla Slab from Google Fonts and Satoshi from Fontshare; offline, the page falls back to system fonts.
+5. **Fonts load from the web (branded look only).** Zilla Slab from Google Fonts and Satoshi from Fontshare; offline, the page falls back to system fonts. The plain look uses system fonts only.
 6. **Fictional data only.**
+7. **The sort isn't remembered.** Reloading the page goes back to each table's default order.
