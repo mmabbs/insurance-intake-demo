@@ -10,6 +10,7 @@ Twelve emails, numbered by ID. Only the two orders below matter; the rest can go
 
 1. **E06 and E12 are the story step 4 pair.** Send E06 early. Send E12 only after the broker has corrected E06 and that correction has been fed back to the extractor (Monday's feedback loop). If the loop is cut, E12 runs as a normal test email.
 2. **E11 replies on E04's thread.** Send E04 first.
+3. **E13 is the story step 4 "after" email (added 2026-10-18).** Send it only after the broker has corrected E07's Priority from Low to Normal. It replaced E12 in that role: E06 and E12 never showed the planned mistake.
 
 | # | Persona | Subject | Category |
 |---|---|---|---|
@@ -25,6 +26,7 @@ Twelve emails, numbered by ID. Only the two orders below matter; the rest can go
 | E10 | Dana Whitfield, Birchview underwriter | BVA-2290471 Tremblay - info required | underwriter request |
 | E11 | Daniel Okafor | RE: RE: Your Kestrel Bay renewal - KB-AU-0098213 | policy change |
 | E12 | Tamsin Lee, Fraser & Daughters Plumbing | New van - please add to policy | policy change |
+| E13 | Heather Gill | need a new pink slip | other (added 2026-10-18, not in scored runs) |
 
 ---
 
@@ -375,4 +377,29 @@ Regards,
 Tamsin Lee
 Bookkeeper
 Fraser & Daughters Plumbing Inc.
+```
+
+---
+
+## E13
+
+**Added 2026-10-18.** The "after" email for story step 4 (task note section 02, item 18). Not part of the pinned 12-email set, so scored runs don't include it. It's E07's twin: a casual pink-slip request from a personal client with an auto and a home policy, no policy number, and no words about timing. A broker would still give it Normal Priority, since driving without a pink slip can be ticketed. It goes to the shared inbox only after the broker has corrected E07's Priority from Low to Normal.
+
+**From (persona):** Heather Gill <heather.gill@example.com>
+
+**Subject:**
+
+```
+need a new pink slip
+```
+
+**Body:**
+
+```
+Hi,
+
+Is there any way you can send me another pink slip for the Tucson? I swapped purses this weekend and I have no idea where it went.
+
+Thanks,
+Heather
 ```

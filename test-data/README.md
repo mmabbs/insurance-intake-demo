@@ -5,7 +5,7 @@
 | File | What it holds |
 |---|---|
 | `clients.csv` | Six fake clients, one row per policy, with Applied Epic field names. Loads into the `clients` Data Table |
-| `test-emails.md` | Twelve test emails, in send order, ready to paste into Gmail |
+| `test-emails.md` | Twelve test emails, in send order, ready to paste into Gmail, plus E13, the "after" email for story step 4 (added 2026-10-18, not in scored runs) |
 | `answer-key.json` | The correct category and field values for each test email. Read by the scoring script |
 
 ## Fields in the Answer Key
@@ -32,6 +32,6 @@ The extractor's field descriptions (Thursday) should say the same thing as these
 | renewal question | E04, E08 |
 | claim notice | E01, E09 |
 | underwriter request | E05, E10 |
-| other | E07 |
+| other | E07, E13 (not in scored runs) |
 
 "Policy change" replaced "add a vehicle" on 2026-10-15. It covers vehicles, drivers, and addresses, which Epic logs under one code, CHGR (change request).

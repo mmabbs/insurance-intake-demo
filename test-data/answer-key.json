@@ -205,6 +205,23 @@
       "lookup_code": "FRASPLU-01",
       "epic_code_suggested": "CHGR",
       "notes": "Story step 4 pair, second email. After the E06 correction is fed back, the AI should give the company, not 'Tamsin Lee'. Owen Fraser is a second distractor, since the surname matches the company."
+    },
+    {
+      "id": "E13",
+      "subject": "need a new pink slip",
+      "category": "other",
+      "urgency": "Normal",
+      "client_name": "Gill, Heather",
+      "client_name_accept": ["Heather Gill"],
+      "policy_number": null,
+      "cant_tell_policy": true,
+      "effective_date": null,
+      "requested_change": "Asks for a replacement pink slip (proof of auto insurance) for her 2022 Hyundai Tucson.",
+      "must_mention": [["pink slip", "liability card", "proof of insurance"]],
+      "bms_policy": "KB-AU-0551902",
+      "lookup_code": "GILLHEA-01",
+      "epic_code_suggested": "AUID",
+      "notes": "Story step 4 'after' email, E07's twin (added 2026-10-18). Not in the pinned 12-email set. Normal, not Low: driving without a pink slip can be ticketed, which is why the broker corrected E07 from Low to Normal. Two policies on file, but 'the Tucson' points to the auto policy; the email gives no number, so cant_tell_policy is true, as in E07."
     }
   ]
 }

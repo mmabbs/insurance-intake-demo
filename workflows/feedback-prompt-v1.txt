@@ -1,0 +1,19 @@
+=You are an expert extraction algorithm.
+Only extract relevant information from the text.
+If you do not know the value of an attribute asked to extract, you may omit the attribute's value.
+{{ (() => {
+  const urgencyFor = { Urgent: 'High', Normal: 'Normal', Low: 'Low' };
+  const categoryFor = { CHGR: 'policy change', RENL: 'renewal question', FNOL: 'claim notice', UNDR: 'underwriter request', MISC: 'other' };
+  const rows = $('Combine corrections into one list (Aggregate)').first().json.corrections || [];
+  const examples = rows.map(row => {
+    const ai = JSON.parse(row.ai_values || '{}');
+    const broker = JSON.parse(row.broker_values || '{}');
+    const fixes = [];
+    if ('Priority' in broker) fixes.push(`urgency: you said "${urgencyFor[ai.Priority] ?? ai.Priority}", the broker changed it to "${urgencyFor[broker.Priority] ?? broker.Priority}"`);
+    if ('Code' in broker) fixes.push(`category: you said "${categoryFor[ai.Code] ?? ai.Code}", the broker changed it to "${categoryFor[broker.Code] ?? broker.Code}"`);
+    if (fixes.length === 0) return null;
+    return `Subject: ${row.email_subject}\n${row.email_text}\nThe broker's correction: ${fixes.join('; ')}`;
+  }).filter(Boolean).filter((example, i, all) => all.indexOf(example) === i);
+  if (examples.length === 0) return '';
+  return '\nA broker reviews every answer you give. These are past emails where the broker corrected you. Use the same judgement on similar emails:\n\n' + examples.join('\n\n---\n\n');
+})() }}
