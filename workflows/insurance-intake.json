@@ -55,7 +55,8 @@
         128
       ],
       "id": "d88db774-5892-4572-9da9-1a5fe76d89da",
-      "name": "Sort and pull out"
+      "name": "Sort and pull out",
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -1901,7 +1902,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "256e9a53-c3c0-4e21-ba0f-6bc7ec2cacd2",
+  "versionId": "0c8cdf52-f703-4c38-ba3f-3c761b0755d1",
   "meta": {
     "templateCredsSetupCompleted": true
   },

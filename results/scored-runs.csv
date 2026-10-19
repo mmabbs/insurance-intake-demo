@@ -3,3 +3,4 @@ run,started,label,model,emails,category_right,fields_right,fields_total,tokens_i
 7,2026-10-16T19:52:55.523Z,"Run 2: Sonnet 5.5, schema v1",claude-sonnet-5-5,12,11,70,72,20571,4023,0.0814,0.00678
 8,2026-10-16T20:04:21.571Z,"Run 3: Haiku 5.5, schema v1, repeat of run 1",claude-haiku-5-5,12,12,71,72,20571,8140,0.0061,0.00051
 2704,2026-10-18T20:10:41.091Z,"Run 4: Haiku 5.5, full pipeline with drafter v5 and auto-fix",claude-haiku-5-5,12,12,71,72,20571,8017,0.0061,0.00051
+6066,2026-10-19 14:53:18.319,"Haiku 5.5, final scored run, no examples, retry on",claude-haiku-5-5,12,12,71,72,20571,8476,0.0063,0.00052

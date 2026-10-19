@@ -1,0 +1,2 @@
+id,failed_at,workflow,failed_step,error,execution_id,run_link,started_by,createdAt,updatedAt
+1,"2026-10-18 19:08:09.470","Test failure","Stop and Error","Test failure: needs attention check",2576.0,http://localhost:5678/workflow/ha04mYhL48X8mIId/executions/2576,webhook,"2026-10-18 19:08:09.480","2026-10-18 19:08:09.480"
