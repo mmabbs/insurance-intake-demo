@@ -1,7 +1,6 @@
 // FUNCTIONAL REFERENCE: Claude-built, not developer-reviewed.
-// Shared data loading and tables for both intake dashboards:
-// dashboard-functional-reference.html (branded look) and
-// dashboard-portfolio-functional-reference.html (plain look). Each page supplies
+// Data loading and tables for the intake dashboard,
+// dashboard-portfolio-functional-reference.html. The page supplies
 // its own styles and the element ids used below. Read-only. All data is fictional.
 (() => {
   const BASE = 'http://localhost:5678/webhook/';

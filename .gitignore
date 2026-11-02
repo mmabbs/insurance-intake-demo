@@ -8,6 +8,7 @@ oauth/
 results/*-raw.json
 
 # Local Claude settings
+.claude/settings.json
 .claude/settings.local.json
 
 # macOS
