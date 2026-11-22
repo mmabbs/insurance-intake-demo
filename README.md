@@ -27,7 +27,8 @@ Every number below was measured and scored against an answer key written before 
 | What | Result |
 | --- | --- |
 | Request types right | 12 of 12 |
-| Details right (client, policy, effective date, what changed) | 71 of 72 |
+| Urgency right | 11 of 12 |
+| Other details right (client, policy, can't-tell-policy flag, effective date, what changed) | 60 of 60 |
 | Activity fields right (Code, Priority, Lookup Code, Policy Number) | 47 of 48 |
 | Cost per email, whole workflow | $0.00195, about a fifth of a cent |
 
