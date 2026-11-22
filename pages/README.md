@@ -4,7 +4,7 @@ Screens for the insurance intake demo. Each one is a **functional reference**: C
 
 ## mock-bms-functional-reference.html
 
-A mock broker management screen for Callander & Reid Insurance Brokers. Its layout follows real Applied Epic screenshots: the vendor images on Software Advice's Applied Epic page, and the Higginbotham Epic Configuration Guide (rev 04-21-26). Its field labels and activity codes come from `applied-epic-field-list.md`. It is not Applied Epic and carries no Applied branding.
+A mock broker management screen for Callander & Reid Insurance Brokers. Its layout follows real Applied Epic screenshots: the vendor images on Software Advice's Applied Epic page, and the Higginbotham Epic Configuration Guide (rev 04-21-26). Its field labels and the CHGR and RENL activity codes come from `applied-epic-field-list.md`. FNOL, UNDR, and MISC are Callander & Reid's own codes; no public source names them. It is not Applied Epic and carries no Applied branding.
 
 **To open it:** n8n must be running, with the `Mock Epic data` workflow published. Then double-click the file, or run `open pages/mock-bms-functional-reference.html` from `insurance-intake/`.
 
